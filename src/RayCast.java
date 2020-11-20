@@ -14,7 +14,7 @@ public class RayCast {
 
     // Find intersection of RAY & SEGMENT
     // returns null if no intersection found
-    public static Point getIntersection(LineSegment ray, LineSegment segment){
+    public static Point getIntersection(LineSegment ray, LineSegment segment){//TODO: allow it to return the type of intersections, enemy etc
         Vector r = new Vector(ray.B.x - ray.A.x,ray.B.y-ray.A.y);
         Vector s = new Vector(segment.B.x - segment.A.x,segment.B.y-segment.A.y);
         double rxs = crossProduct(r,s);

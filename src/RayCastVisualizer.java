@@ -31,8 +31,8 @@ public class RayCastVisualizer extends JPanel implements MouseMotionListener{
         addMouseMotionListener(this);
     }
 
-    ArrayList<Polygon> activePolygons = new ArrayList<>();
-    private void initPolygons(){
+    ArrayList<Polygon> activePolygons = new ArrayList<>();//TDOO: we could add something here to set the polygon type and then as teh character moves we update their position in this?
+    private void initPolygons(){//TODO: change this to randomly generate a map
 
         //Border Polygon
         Polygon b = new Polygon();
@@ -107,27 +107,29 @@ public class RayCastVisualizer extends JPanel implements MouseMotionListener{
     ArrayList<Point> currentRays = new ArrayList<>();
 
     @Override
-    public void mouseMoved(MouseEvent e) {
+    public void mouseMoved(MouseEvent e) {//TODO: change this to be about moving the character
         mousePos = new Point(e.getX(),e.getY());
-        currentRays = castRays(mousePos,50,800);
+        currentRays = castRays(mousePos,50,800);//B number of rays and how far to check
         repaint();
     }
 
-    public ArrayList<Point> castRays(Point src,int n,int dist){
+    public ArrayList<Point> castRays(Point src,int n,int dist){//TODO where in the int n fed in from (line 110 i found)
         ArrayList<Point> result = new ArrayList<>();
         double angle_div = 2 * Math.PI / n;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {//TODO: given the characters angle loop though certain angles
+            //(B) System.out.println(i);
             Point target = new Point((int)(src.x+Math.cos(angle_div*i)*dist),(int)(src.y+Math.sin(angle_div*i)*dist));
+            //above returns a list of all the points around the mouse 800 units away will need to TODO: adapt this to be based on character DIR
             LineSegment ray = new LineSegment(src,target);
             Point ci = RayCast.getClosestIntersection(ray,activeSegments);
             if(ci != null) result.add(ci);
             else result.add(target);
         }
-        return result;
+        return result;//B list of all points that the rays intersect with
     }
 
     @Override
-    public void paint(Graphics g) {
+    public void paint(Graphics g) {//TODO: add characters
         super.paint(g);
 
         g.setColor(Color.WHITE);

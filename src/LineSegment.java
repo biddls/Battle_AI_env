@@ -20,7 +20,4 @@ public class LineSegment {
     public String toString() {
         return "(" + A + " -> " + B + ")";
     }
-
-
-
 }
