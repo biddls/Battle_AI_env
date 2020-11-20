@@ -97,7 +97,7 @@ public class RayCastVisualizer extends JPanel implements MouseMotionListener{
                     end = new Point(p.xpoints[i+1],p.ypoints[i+1]);
                 }
                 activeSegments.add(new LineSegment(start,end));
-                System.out.println("new segment : " + start + " -> " + end);
+                //System.out.println("new segment : " + start + " -> " + end);
             }
         }
     }
@@ -140,13 +140,9 @@ public class RayCastVisualizer extends JPanel implements MouseMotionListener{
             g.drawLine(mousePos.x,mousePos.y,p.x,p.y);
             g.fillOval(p.x-5,p.y-5,10,10);
         }
-
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-
     }
-
-
 }
