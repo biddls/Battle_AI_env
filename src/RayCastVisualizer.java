@@ -112,23 +112,17 @@ public class RayCastVisualizer extends JPanel implements MouseMotionListener{
     @Override
     public void mouseMoved(MouseEvent e) {//TODO: change this to be about moving the character
         mousePos = new Point(e.getX(),e.getY());
-        currentRays = castRays(mousePos,1,800);//B number of rays and how far to check
-
-        for (LineSegment segment: activeSegments) {
-                if(currentRays.get(0).x > segment.A.x && currentRays.get(0).y  < segment.A.y) {
-                    System.out.println("point?");
-                    System.out.println(activeSegments.indexOf(segment));
-                }
-        }
+        currentRays = castRays(mousePos,100,800, 90,90);//B number of rays and how far to check
         repaint();
     }
 
-    public ArrayList<Point> castRays(Point src,int n,int dist){//TODO where in the int n fed in from (line 110 i found)
+    public ArrayList<Point> castRays(Point src,int n,int dist, double angle, int fov){//TODO where in the int n fed in from (line 110 i found)
         ArrayList<Point> result = new ArrayList<>();
-        double angle_div = 2 * Math.PI / n;
+        double angle_div = ((fov * Math.PI)/180)/n;
+        angle = ((angle - (fov/2)) * Math.PI)/180;
         for (int i = 0; i < n; i++) {//TODO: given the characters angle loop though certain angles
             //(B) System.out.println(i);
-            Point target = new Point((int)(src.x+Math.cos(angle_div*i)*dist),(int)(src.y+Math.sin(angle_div*i)*dist));
+            Point target = new Point((int)(src.x+Math.cos(angle_div*i + angle)*dist),(int)(src.y+Math.sin(angle_div*i + angle)*dist));
             //above returns a list of all the points around the mouse 800 units away will need to TODO: adapt this to be based on character DIR
             LineSegment ray = new LineSegment(src,target);
             Point ci = RayCast.getClosestIntersection(ray,activeSegments);
