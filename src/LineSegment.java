@@ -7,7 +7,7 @@ public class LineSegment {
     public LineSegment(Point A,Point B){
         this.A = A;
         this.B = B;
-        dir = new Vector(B.x-A.x,B.y-A.y);
+        dir = new Vector(B.x-A.x, B.y-A.y);
     }
 
     public LineSegment(Point A,Vector dir){

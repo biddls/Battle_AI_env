@@ -1,15 +1,16 @@
+
+
+import com.javacodegeeks.snippets.desktop.agent;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
-import java.awt.event.KeyAdapter;
 
 /**
  * Created by Armin on 9/21/2017.
  */
-public class RayCastVisualizer extends JPanel implements KeyAdapter{
+public class RayCastVisualizer extends JPanel implements KeyEvent {
 
     public static void main(String[] args) {
         JFrame window = new JFrame();
@@ -22,6 +23,7 @@ public class RayCastVisualizer extends JPanel implements KeyAdapter{
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setVisible(true);
     }
+    agent agent1 = new agent();
 
     public RayCastVisualizer(){
         this.setBackground(Color.BLACK);
@@ -30,7 +32,8 @@ public class RayCastVisualizer extends JPanel implements KeyAdapter{
 
         initPolygons();
         initSegments();
-        addMouseMotionListener(this);
+        agent1.agentMov('w');
+
     }
 
     ArrayList<Polygon> activePolygons = new ArrayList<>();//TODO: we could add something here to set the polygon type and then as teh character moves we update their position in this?
@@ -107,26 +110,33 @@ public class RayCastVisualizer extends JPanel implements KeyAdapter{
 
     }
 
-    Point agent = new agent(1,1);
+
 
     ArrayList<Point> currentRays = new ArrayList<>();
 
     @Override
-    public void keyPressed(KeyEvent event) {
+    public void keyTyped(KeyEvent event) {
+        System.out.println("SUP BOIIIIIIIIIII");
         char ch = event.getKeyChar();
-        agent = new Point(ch);
-        currentRays = castRays(agent,800);//B number of rays and how far to check
+        agent1.agentMov(ch);
+        currentRays = castRays(agent1,800);//B number of rays and how far to check
         repaint();
     }
 
-    public ArrayList<Point> castRays(Point src,int dist){//TODO where in the int n fed in from (line 110 i found)
+    @Override
+    public void keyReleased(KeyEvent e) {
+        System.out.println("i release the key by the power of christ and anime");
+    }
+
+    public ArrayList<Point> castRays(agent src,int dist){//TODO where in the int n fed in from (line 110 i found)
         ArrayList<Point> result = new ArrayList<>();
-        float angletart = ((src.direction - (src.fov/2)) * Math.PI)/180;
+        float angletart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
         for (int i = 0; i < src.rays; i++) {//TODO: given the characters angle loop though certain angles
             //(B) System.out.println(i);
             Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angletart)*dist),(int)(src.positionY+Math.sin(src.anglePerRay*i + angletart)*dist));
             //above returns a list of all the points around the mouse 800 units away will need to TODO: adapt this to be based on character DIR
-            LineSegment ray = new LineSegment(src,target);
+            Point position = new Point(src.positionX, src.positionY);
+            LineSegment ray = new LineSegment(position,target);
             Point ci = RayCast.getClosestIntersection(ray,activeSegments);
             if(ci != null) result.add(ci);
             else result.add(target);
@@ -145,8 +155,8 @@ public class RayCastVisualizer extends JPanel implements KeyAdapter{
 
         g.setColor(Color.RED);
         for(Point p : currentRays){
-            g.drawLine(mousePos.x,mousePos.y,p.x,p.y);
-            g.fillOval(p.x-5,p.y-5,10,10);
+            g.drawLine((int) agent1.positionX,(int) agent1.positionY, (int)p.x, (int) p.y);
+            g.fillOval((int) p.x-5,(int) p.y-5,10,10);
         }
     }
 }
