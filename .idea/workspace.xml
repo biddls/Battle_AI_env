@@ -31,7 +31,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eed9a793-0b3a-47d9-95bb-c1e88c94d8e9" name="Default" comment="coppied from Armins github going to build off of this" />
+    <list default="true" id="eed9a793-0b3a-47d9-95bb-c1e88c94d8e9" name="Default" comment="eddititng stuff">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DrawRect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawRect.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,7 +76,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DrawRect">
+  <component name="RunManager" selected="Application.RayCastVisualizer">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="DEPLOY" value="true" />
@@ -374,8 +377,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DrawRect" />
         <item itemvalue="Application.RayCastVisualizer" />
+        <item itemvalue="Application.DrawRect" />
         <item itemvalue="Application.SightDemo" />
         <item itemvalue="Application.SightDemo2" />
       </list>
@@ -403,6 +406,7 @@
       <workItem from="1605850865440" duration="36000" />
       <workItem from="1605850944827" duration="1309000" />
       <workItem from="1605918313393" duration="241000" />
+      <workItem from="1605918777256" duration="332000" />
     </task>
     <task id="LOCAL-00001" summary="coppied from Armins github going to build off of this">
       <created>1605851066757</created>
@@ -418,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605851089283</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="eddititng stuff">
+      <created>1605918937307</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1605918937307</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,7 +461,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="coppied from Armins github going to build off of this" />
-    <option name="LAST_COMMIT_MESSAGE" value="coppied from Armins github going to build off of this" />
+    <MESSAGE value="eddititng stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="eddititng stuff" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="160" key="#Plugins" timestamp="1605850961115">
