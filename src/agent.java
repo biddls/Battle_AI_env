@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 //tODO someone who gets java fix this cus i did the math but dunno how to convert to java best of luck xd
+
 public class agent{
     public float positionX = 0;
     public float positionY = 0;
@@ -15,14 +16,14 @@ public class agent{
     float anglePerRay = ((fov * Math.PI)/180)/rays;
 
     public agent(char keyPressed) {
-        anglePerRay = ((fov * Math.PI)/180)/rays
+        anglePerRay = ((fov * Math.PI)/180)/rays;
         if (keyPressed == "q"){
             this.direction -= anglePerRay;
         }
         if (keyPressed == "e"){
             this.direction += anglePerRay;
         }
-        if (keyPressed == "w");
+        if (keyPressed == "w");{
             this.positionX += Math.cos(Math.toRadians(direction));
             this.positionY += Math.sin(Math.toRadians(direction));
         }
