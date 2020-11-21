@@ -15,23 +15,25 @@
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
     </expand>
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:upstream/master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eed9a793-0b3a-47d9-95bb-c1e88c94d8e9" name="Default" comment="eddititng stuff" />
+    <list default="true" id="eed9a793-0b3a-47d9-95bb-c1e88c94d8e9" name="Default" comment="eddititng stuff">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LineSegment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LineSegment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RayCastVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCastVisualizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javacodegeeks/snippets/desktop/agent.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -271,7 +273,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RayCastVisualizer (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="RayCastVisualizer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RayCastVisualizer" />
+      <module name="RayCasting" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RayCastVisualizer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.javacodegeeks.snippets.desktop.RayCastVisualizer" />
       <module name="RayCasting" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -281,14 +291,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RayCastVisualizer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="RayCastVisualizer" />
-      <module name="RayCasting" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -309,6 +311,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -449,6 +462,7 @@
       <workItem from="1605850944827" duration="1309000" />
       <workItem from="1605918313393" duration="241000" />
       <workItem from="1605918777256" duration="11304000" />
+      <workItem from="1605966290901" duration="3377000" />
     </task>
     <task id="LOCAL-00001" summary="coppied from Armins github going to build off of this">
       <created>1605851066757</created>
@@ -488,7 +502,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="upstream/master" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -523,6 +537,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="247" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1605929740631" />
+    <state x="1085" y="406" key="#com.intellij.ide.util.MemberChooser" timestamp="1605969438791">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1085" y="406" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1605969438791" />
     <state x="743" y="410" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1605918877664">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -535,22 +553,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="689" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1605851144348" />
-    <state width="1877" height="274" key="GridCell.Tab.0.bottom" timestamp="1605934994914">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1605969257938">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605934994914" />
-    <state width="1877" height="274" key="GridCell.Tab.0.center" timestamp="1605934994914">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1605969257938" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1605969257938">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="274" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605934994914" />
-    <state width="1877" height="274" key="GridCell.Tab.0.left" timestamp="1605934994914">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1605969257938" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1605969257938">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="274" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605934994914" />
-    <state width="1877" height="274" key="GridCell.Tab.0.right" timestamp="1605934994914">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1605969257938" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1605969257938">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="274" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605934994914" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1605969257938" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1605852121533">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
