@@ -31,7 +31,7 @@ public class RayCastVisualizer extends JPanel implements MouseMotionListener{
         addMouseMotionListener(this);
     }
 
-    ArrayList<Polygon> activePolygons = new ArrayList<>();//TDOO: we could add something here to set the polygon type and then as teh character moves we update their position in this?
+    ArrayList<Polygon> activePolygons = new ArrayList<>();//TODO: we could add something here to set the polygon type and then as teh character moves we update their position in this?
     private void initPolygons(){//TODO: change this to randomly generate a map
 
         //Border Polygon
@@ -84,6 +84,8 @@ public class RayCastVisualizer extends JPanel implements MouseMotionListener{
         activePolygons.add(p6);
     }
 
+
+
     ArrayList<LineSegment> activeSegments = new ArrayList<>();
     private void initSegments(){
         for(Polygon p : activePolygons){
@@ -100,6 +102,7 @@ public class RayCastVisualizer extends JPanel implements MouseMotionListener{
                 //System.out.println("new segment : " + start + " -> " + end);
             }
         }
+
     }
 
     Point mousePos = new Point(1,1);
@@ -109,7 +112,14 @@ public class RayCastVisualizer extends JPanel implements MouseMotionListener{
     @Override
     public void mouseMoved(MouseEvent e) {//TODO: change this to be about moving the character
         mousePos = new Point(e.getX(),e.getY());
-        currentRays = castRays(mousePos,50,800);//B number of rays and how far to check
+        currentRays = castRays(mousePos,1,800);//B number of rays and how far to check
+
+        for (LineSegment segment: activeSegments) {
+                if(currentRays.get(0).x > segment.A.x && currentRays.get(0).y  < segment.A.y) {
+                    System.out.println("point?");
+                    System.out.println(activeSegments.indexOf(segment));
+                }
+        }
         repaint();
     }
 
