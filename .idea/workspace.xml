@@ -33,7 +33,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eed9a793-0b3a-47d9-95bb-c1e88c94d8e9" name="Default" comment="eddititng stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DrawRect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawRect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RayCastVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCastVisualizer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,10 +51,38 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="Thomas" />
+                    <option name="lastUsedInstant" value="1605919276" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1605919273" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="ProjectId" id="1kXcJYUE8ymV71EZN8fyK5kXRyl" />
   <component name="ProjectViewState">
@@ -67,6 +95,12 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -379,8 +413,9 @@
       <list>
         <item itemvalue="Application.RayCastVisualizer" />
         <item itemvalue="Application.DrawRect" />
-        <item itemvalue="Application.SightDemo" />
         <item itemvalue="Application.SightDemo2" />
+        <item itemvalue="Application.SightDemo" />
+        <item itemvalue="Application.DrawRect" />
       </list>
     </recent_temporary>
   </component>
@@ -406,7 +441,7 @@
       <workItem from="1605850865440" duration="36000" />
       <workItem from="1605850944827" duration="1309000" />
       <workItem from="1605918313393" duration="241000" />
-      <workItem from="1605918777256" duration="332000" />
+      <workItem from="1605918777256" duration="3566000" />
     </task>
     <task id="LOCAL-00001" summary="coppied from Armins github going to build off of this">
       <created>1605851066757</created>
@@ -473,6 +508,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="174" width="1092" height="739" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605850333685" />
+    <state x="743" y="410" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1605918877664">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="743" y="410" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1605918877664" />
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605850619538">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -481,22 +520,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="689" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1605851144348" />
-    <state width="1877" height="275" key="GridCell.Tab.0.bottom" timestamp="1605852144086">
+    <state width="1877" height="275" key="GridCell.Tab.0.bottom" timestamp="1605921719029">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605852144086" />
-    <state width="1877" height="275" key="GridCell.Tab.0.center" timestamp="1605852144086">
+    <state width="1877" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605921719029" />
+    <state width="1877" height="275" key="GridCell.Tab.0.center" timestamp="1605921719029">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="275" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605852144086" />
-    <state width="1877" height="275" key="GridCell.Tab.0.left" timestamp="1605852144086">
+    <state width="1877" height="275" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605921719029" />
+    <state width="1877" height="275" key="GridCell.Tab.0.left" timestamp="1605921719029">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="275" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605852144086" />
-    <state width="1877" height="275" key="GridCell.Tab.0.right" timestamp="1605852144086">
+    <state width="1877" height="275" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605921719029" />
+    <state width="1877" height="275" key="GridCell.Tab.0.right" timestamp="1605921719029">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="275" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605852144086" />
+    <state width="1877" height="275" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605921719029" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1605852121533">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -513,6 +552,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605852121532" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605918942289">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605918942289" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1605922247815">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605922247815" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
