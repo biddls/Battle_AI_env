@@ -48,5 +48,6 @@ public class DrawRect extends JPanel {//sets size fo box
                 createAndShowGui();
             }
         });
+        System.out.println("HI");
     }
 }
