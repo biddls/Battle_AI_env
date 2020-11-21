@@ -2,6 +2,6 @@
 *.jar
 *.war
 *.ear
-
+README.md
 hs_err_pid*
 

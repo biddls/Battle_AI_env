@@ -73,7 +73,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RayCastVisualizer">
+  <component name="RunManager" selected="Application.DrawRect">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="DEPLOY" value="true" />
@@ -259,6 +259,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -363,8 +374,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RayCastVisualizer" />
         <item itemvalue="Application.DrawRect" />
+        <item itemvalue="Application.RayCastVisualizer" />
         <item itemvalue="Application.SightDemo" />
         <item itemvalue="Application.SightDemo2" />
       </list>
