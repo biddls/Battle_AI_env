@@ -1,7 +1,4 @@
-
-
 import com.javacodegeeks.snippets.desktop.agent;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by Armin on 9/21/2017.
  */
-public class RayCastVisualizer extends JPanel implements KeyEvent {
+public class RayCastVisualizer extends JPanel{
 
     public static void main(String[] args) {
         JFrame window = new JFrame();
@@ -23,21 +20,17 @@ public class RayCastVisualizer extends JPanel implements KeyEvent {
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setVisible(true);
     }
-    agent agent1 = new agent();
 
     public RayCastVisualizer(){
         this.setBackground(Color.BLACK);
-
         this.setLayout(null);
-
         initPolygons();
         initSegments();
-        agent1.agentMov('w');
-
+        initclass1();
     }
 
     ArrayList<Polygon> activePolygons = new ArrayList<>();//TODO: we could add something here to set the polygon type and then as teh character moves we update their position in this?
-    private void initPolygons(){//TODO: change this to randomly generate a map
+    public void initPolygons(){//TODO: change this to randomly generate a map
 
         //Border Polygon
         Polygon b = new Polygon();
@@ -89,10 +82,8 @@ public class RayCastVisualizer extends JPanel implements KeyEvent {
         activePolygons.add(p6);
     }
 
-
-
     ArrayList<LineSegment> activeSegments = new ArrayList<>();
-    private void initSegments(){
+    public void initSegments(){
         for(Polygon p : activePolygons){
             for(int i=0;i<p.npoints;i++){
 
@@ -107,25 +98,16 @@ public class RayCastVisualizer extends JPanel implements KeyEvent {
                 //System.out.println("new segment : " + start + " -> " + end);
             }
         }
-
     }
-
-
 
     ArrayList<Point> currentRays = new ArrayList<>();
+    agent agent1 = new agent();
 
-    @Override
-    public void keyTyped(KeyEvent event) {
-        System.out.println("SUP BOIIIIIIIIIII");
-        char ch = event.getKeyChar();
-        agent1.agentMov(ch);
-        currentRays = castRays(agent1,800);//B number of rays and how far to check
+    public void initclass1(){
+        //char ch = event.getKeyChar();
+        agent1.agentMov('w');
+        currentRays = castRays(agent1, 800);//B number of rays and how far to check
         repaint();
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        System.out.println("i release the key by the power of christ and anime");
     }
 
     public ArrayList<Point> castRays(agent src,int dist){//TODO where in the int n fed in from (line 110 i found)
