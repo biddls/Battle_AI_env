@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 /**
  * Created by Armin on 9/21/2017.
@@ -87,14 +88,14 @@ public class RayCastVisualizer extends JPanel{
         for(Polygon p : activePolygons){
             for(int i=0;i<p.npoints;i++){
 
-                Point start = new Point(p.xpoints[i],p.ypoints[i]);
+                Point start = new Point(p.xpoints[i],p.ypoints[i],1);
                 Point end;
                 if(i==p.npoints-1){
-                    end = new Point(p.xpoints[0],p.ypoints[0]);
+                    end = new Point(p.xpoints[0],p.ypoints[0],1);
                 }else{
-                    end = new Point(p.xpoints[i+1],p.ypoints[i+1]);
+                    end = new Point(p.xpoints[i+1],p.ypoints[i+1],1);
                 }
-                activeSegments.add(new LineSegment(start,end));
+                activeSegments.add(new LineSegment(start,end,1));
                 //System.out.println("new segment : " + start + " -> " + end);
             }
         }
@@ -106,8 +107,13 @@ public class RayCastVisualizer extends JPanel{
     public void initclass1(){
         //char ch = event.getKeyChar();
         agent1.agentMov('w');
-        currentRays = castRays(agent1, 800);//B number of rays and how far to check
+        currentRays = castRays(agent1, 300);//B number of rays and how far to check
         repaint();
+
+        for (Point ray :currentRays) {
+            System.out.println(ray.type);
+        }
+
     }
 
     public ArrayList<Point> castRays(agent src,int dist){//TODO where in the int n fed in from (line 110 i found)
@@ -115,10 +121,10 @@ public class RayCastVisualizer extends JPanel{
         float angletart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
         for (int i = 0; i < src.rays; i++) {//TODO: given the characters angle loop though certain angles
             //(B) System.out.println(i);
-            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angletart)*dist),(int)(src.positionY+Math.sin(src.anglePerRay*i + angletart)*dist));
+            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angletart)*dist),(int)(src.positionY+Math.sin(src.anglePerRay*i + angletart)*dist), 2);
             //above returns a list of all the points around the mouse 800 units away will need to TODO: adapt this to be based on character DIR
-            Point position = new Point(src.positionX, src.positionY);
-            LineSegment ray = new LineSegment(position,target);
+            Point position = new Point(src.positionX, src.positionY,2);
+            LineSegment ray = new LineSegment(position,target,2);
             Point ci = RayCast.getClosestIntersection(ray,activeSegments);
             if(ci != null) result.add(ci);
             else result.add(target);

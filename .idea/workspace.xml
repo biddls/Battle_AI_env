@@ -15,26 +15,24 @@
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
     </expand>
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:upstream/master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="294787c6-b6ad-438a-b167-b33c62321571" name="Default Changelist" comment="">
+    <list default="true" id="eed9a793-0b3a-47d9-95bb-c1e88c94d8e9" name="Default" comment="eddititng stuff">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LineSegment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LineSegment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RayCast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCast.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RayCastVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCastVisualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/javacodegeeks/snippets/desktop/agent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javacodegeeks/snippets/desktop/agent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -545,6 +543,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="743" y="410" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1605918877664" />
+    <state x="991" y="501" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog" timestamp="1606130413522">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="991" y="501" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606130413522" />
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605850619538">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -553,26 +555,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="689" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1605851144348" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1605969257938">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1606131326044">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605934994914" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1605969257938" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1605969257938">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606131326044" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1606131326044">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="274" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605934994914" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1605969257938" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1605969257938">
+    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606131326044" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1606131326044">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="274" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605934994914" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1605969257938" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1605969257938">
+    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606131326044" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1606131326044">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="274" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605934994914" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1605969257938" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606131326044" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1605852121533">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -597,6 +599,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606121196112" />
+    <state x="1123" y="457" key="refactoring.ChangeSignatureDialog" timestamp="1606130627351">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1123" y="457" key="refactoring.ChangeSignatureDialog/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606130627351" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1605922247815">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

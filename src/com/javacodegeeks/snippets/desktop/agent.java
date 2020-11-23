@@ -6,12 +6,12 @@ import javax.swing.JTextField;
 //tODO someone who gets java fix this cus i did the math but dunno how to convert to java best of luck xd
 
 public class agent{
-    public float positionX = 0;
-    public float positionY = 0;
+    public float positionX = 50;
+    public float positionY = 50;
     public float direction = 45;//degrees
-    public float speedX = 0;
-    public float speedY = 0;
-    public float rays = 100;
+    public float speedX = 1;
+    public float speedY = 1;
+    public float rays = 20;
     public float fov = 90;
     public float anglePerRay = (float) 0;
 
