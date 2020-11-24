@@ -1,4 +1,3 @@
-import com.javacodegeeks.snippets.desktop.agent;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -24,10 +23,11 @@ public class RayCastVisualizer extends JPanel{
         this.setLayout(null);
         initPolygons();
         initSegments();
-        initclass1();
+        init();
     }
 
     ArrayList<Polygon> activePolygons = new ArrayList<>();
+    ArrayList<Polygon> activeAgents = new ArrayList<>();
     public void initPolygons(){
 
         //Border Polygon
@@ -58,6 +58,7 @@ public class RayCastVisualizer extends JPanel{
         p3.addPoint(300,200);
         p3.addPoint(350,320);
         activePolygons.add(p3);
+        activeAgents.add(p3);
 
         Polygon p4 = new Polygon();
         p4.addPoint(340,60);
@@ -77,6 +78,7 @@ public class RayCastVisualizer extends JPanel{
         p6.addPoint(580,50);
         p6.addPoint(480,150);
         p6.addPoint(400,95);
+
         activePolygons.add(p6);
     }
 
@@ -92,21 +94,33 @@ public class RayCastVisualizer extends JPanel{
                 }else{
                     end = new Point(p.xpoints[i+1],p.ypoints[i+1]);
                 }
-                activeSegments.add(new LineSegment(start,end));
+                activeSegments.add(new LineSegment(start,end,initType(p)));
                 //System.out.println("new segment : " + start + " -> " + end);
             }
+        }
+    }
+
+    int initType(Polygon shape) {
+        if(activePolygons.contains(shape)){
+            if (activeAgents.contains(shape)){
+                return 2;
+            }else{
+                return 1;
+            }
+        }else{
+            return 0;
         }
     }
 
     ArrayList<Point> currentRays = new ArrayList<>();
     agent agent1 = new agent();
 
-    public void initclass1(){
+    public void init(){
         //char ch = event.getKeyChar();
         agent1.agentMov('w');
         currentRays = castRays(agent1, 300);//B number of rays and how far to check
         for (Point ray :currentRays) {
-
+            System.out.println(ray.type);
 
         }
         repaint();
@@ -121,7 +135,7 @@ public class RayCastVisualizer extends JPanel{
             Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angletart)*dist),(int)(src.positionY+Math.sin(src.anglePerRay*i + angletart)*dist));
             //above returns a list of all the points around the mouse 800 units away will need to TODO: adapt this to be based on character DIR
             Point position = new Point((int) src.positionX,(int) src.positionY);
-            LineSegment ray = new LineSegment(position,target);
+            LineSegment ray = new LineSegment(position,target,0);
             Point ci = RayCast.getClosestIntersection(ray,activeSegments);
             if(ci != null) result.add(ci);
             else result.add(target);
