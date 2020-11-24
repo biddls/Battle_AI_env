@@ -1,10 +1,7 @@
 import com.javacodegeeks.snippets.desktop.agent;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.function.Consumer;
-
 /**
  * Created by Armin on 9/21/2017.
  */
@@ -30,8 +27,8 @@ public class RayCastVisualizer extends JPanel{
         initclass1();
     }
 
-    ArrayList<Polygon> activePolygons = new ArrayList<>();//TODO: we could add something here to set the polygon type and then as teh character moves we update their position in this?
-    public void initPolygons(){//TODO: change this to randomly generate a map
+    ArrayList<Polygon> activePolygons = new ArrayList<>();
+    public void initPolygons(){
 
         //Border Polygon
         Polygon b = new Polygon();
@@ -123,8 +120,8 @@ public class RayCastVisualizer extends JPanel{
             //(B) System.out.println(i);
             Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angletart)*dist),(int)(src.positionY+Math.sin(src.anglePerRay*i + angletart)*dist), 2);
             //above returns a list of all the points around the mouse 800 units away will need to TODO: adapt this to be based on character DIR
-            Point position = new Point(src.positionX, src.positionY,2);
-            LineSegment ray = new LineSegment(position,target,2);
+            Point position = new Point((int) src.positionX,(int) src.positionY);
+            LineSegment ray = new LineSegment(position,target);
             Point ci = RayCast.getClosestIntersection(ray,activeSegments);
             if(ci != null) result.add(ci);
             else result.add(target);
@@ -146,5 +143,10 @@ public class RayCastVisualizer extends JPanel{
             g.drawLine((int) agent1.positionX,(int) agent1.positionY, (int)p.x, (int) p.y);
             g.fillOval((int) p.x-5,(int) p.y-5,10,10);
         }
+        g.setColor(Color.BLUE);
+        g.fillOval((int) agent1.positionX - 5, (int) agent1.positionY - 5, (int) 10, (int) 10);
+        agent1.agentMov('q');
+        currentRays = castRays(agent1, 800);//B number of rays and how far to check
+        repaint();
     }
 }

@@ -5,7 +5,12 @@ public class RayCast {
     public static final double EPSILON = 0.000001;
 
     public static double crossProduct(Vector a, Vector b) {
-        return a.x * b.y - b.x * a.y;
+
+        if (a.x * b.y - b.x * a.y != 0){
+            return a.x * b.y - b.x * a.y;
+        }
+        else {
+            return a.v * b.v1 - b.v * a.v1;}
     }
 
     public static double distance(Point a,Point b){
@@ -18,10 +23,8 @@ public class RayCast {
         Vector r = new Vector(ray.B.x - ray.A.x,ray.B.y-ray.A.y);
         Vector s = new Vector(segment.B.x - segment.A.x,segment.B.y-segment.A.y);
         double rxs = crossProduct(r,s);
-
         Vector qp = new Vector(segment.A.x - ray.A.x,segment.A.y - ray.A.y);
         double qpxr = crossProduct(qp,r);
-
         // If r x s = 0 and (q - p) x r = 0, then the two lines are collinear.
         if (rxs < EPSILON && qpxr < EPSILON)
         {

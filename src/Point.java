@@ -4,11 +4,10 @@
 
 public class Point {
 
-    public float x;
-    public float y;
-    public int type;
+    public int x;
+    public int y;
 
-    public Point(float x, float y, int type) {
+    public Point(int x, int y) {
         this.x = x;
         this.y = y;
         this.type = type;
