@@ -1,7 +1,3 @@
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
 //tODO someone who gets java fix this cus i did the math but dunno how to convert to java best of luck xd
 
 public class agent{
@@ -14,7 +10,7 @@ public class agent{
     public float fov = 90;
     public float anglePerRay = (float) 0;
 
-    public void agentMov(char keyPressed) {
+    public float agentMov(char keyPressed) {
         anglePerRay = (float) (((fov * Math.PI)/180)/rays);
         if (keyPressed == 'q'){
             this.direction -= anglePerRay;
@@ -38,5 +34,7 @@ public class agent{
             this.positionX += Math.cos(Math.toRadians(direction));
             this.positionY -= Math.sin(Math.toRadians(direction));
         }
+
+        return direction;
     }
 }

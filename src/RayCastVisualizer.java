@@ -27,7 +27,7 @@ public class RayCastVisualizer extends JPanel{
     }
 
     ArrayList<Polygon> activePolygons = new ArrayList<>();
-    ArrayList<Polygon> activeAgents = new ArrayList<>();
+    ArrayList<Polygon> activeAgents = new ArrayList<>(); //TODO adding the a
     public void initPolygons(){
 
         //Border Polygon
@@ -117,10 +117,12 @@ public class RayCastVisualizer extends JPanel{
 
     public void init(){
         //char ch = event.getKeyChar();
-        agent1.agentMov('w');
-        currentRays = castRays(agent1, 300);//B number of rays and how far to check
+        //agent1.agentMov('w');
+        //currentRays = castRays(agent1, 300);//B number of rays and how far to check
         for (Point ray :currentRays) {
-            System.out.println(ray.type);
+            if(ray.type == 2){
+                System.out.println(ray);
+            }
 
         }
         repaint();
@@ -132,13 +134,13 @@ public class RayCastVisualizer extends JPanel{
         float angletart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
         for (int i = 0; i < src.rays; i++) {//TODO: given the characters angle loop though certain angles
             //(B) System.out.println(i);
-            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angletart)*dist),(int)(src.positionY+Math.sin(src.anglePerRay*i + angletart)*dist));
+            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angletart)*dist),(int)(src.positionY+Math.sin(src.anglePerRay*i + angletart)*dist), (int) src.direction);
             //above returns a list of all the points around the mouse 800 units away will need to TODO: adapt this to be based on character DIR
             Point position = new Point((int) src.positionX,(int) src.positionY);
             LineSegment ray = new LineSegment(position,target,0);
             Point ci = RayCast.getClosestIntersection(ray,activeSegments);
             if(ci != null) result.add(ci);
-            else result.add(target);
+            else result.add(target) ;
         }
         return result;//B list of all points that the rays intersect with
     }
@@ -161,6 +163,12 @@ public class RayCastVisualizer extends JPanel{
         g.fillOval((int) agent1.positionX - 5, (int) agent1.positionY - 5, (int) 10, (int) 10);
         agent1.agentMov('q');
         currentRays = castRays(agent1, 800);//B number of rays and how far to check
+        for (Point ray :currentRays) {
+            if(ray.type == 2){
+                System.out.println(ray);
+            }
+
+        }
         repaint();
     }
 }

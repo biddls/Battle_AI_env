@@ -9,11 +9,16 @@ public class Point {
     public int x;
     public int y;
     public int type;
+    public float dir;
+
 
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
 
+    }
+    public Point(float dir) {
+        this.dir= dir;
     }
     public Point(int x, int y, int type ) {
         this.x = x;
@@ -24,7 +29,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return "(" + x + "|" + y + ")" + "||" + type;
+        return "(" + x + "|" + y + ")" + "||" + type + "|" + dir;
     }
 
 }
