@@ -10,12 +10,12 @@ public class Point {
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
-        this.type = type;
+
     }
 
     @Override
     public String toString() {
-        return "(" + x + "|" + y + "|" + type + ")";
+        return "(" + x + "|" + y + ")";
     }
 
 }

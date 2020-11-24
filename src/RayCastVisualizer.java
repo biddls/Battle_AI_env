@@ -85,14 +85,14 @@ public class RayCastVisualizer extends JPanel{
         for(Polygon p : activePolygons){
             for(int i=0;i<p.npoints;i++){
 
-                Point start = new Point(p.xpoints[i],p.ypoints[i],1);
+                Point start = new Point(p.xpoints[i],p.ypoints[i]);
                 Point end;
                 if(i==p.npoints-1){
-                    end = new Point(p.xpoints[0],p.ypoints[0],1);
+                    end = new Point(p.xpoints[0],p.ypoints[0]);
                 }else{
-                    end = new Point(p.xpoints[i+1],p.ypoints[i+1],1);
+                    end = new Point(p.xpoints[i+1],p.ypoints[i+1]);
                 }
-                activeSegments.add(new LineSegment(start,end,1));
+                activeSegments.add(new LineSegment(start,end));
                 //System.out.println("new segment : " + start + " -> " + end);
             }
         }
@@ -105,11 +105,11 @@ public class RayCastVisualizer extends JPanel{
         //char ch = event.getKeyChar();
         agent1.agentMov('w');
         currentRays = castRays(agent1, 300);//B number of rays and how far to check
-        repaint();
-
         for (Point ray :currentRays) {
-            System.out.println(ray.type);
+
+
         }
+        repaint();
 
     }
 
@@ -118,7 +118,7 @@ public class RayCastVisualizer extends JPanel{
         float angletart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
         for (int i = 0; i < src.rays; i++) {//TODO: given the characters angle loop though certain angles
             //(B) System.out.println(i);
-            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angletart)*dist),(int)(src.positionY+Math.sin(src.anglePerRay*i + angletart)*dist), 2);
+            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angletart)*dist),(int)(src.positionY+Math.sin(src.anglePerRay*i + angletart)*dist));
             //above returns a list of all the points around the mouse 800 units away will need to TODO: adapt this to be based on character DIR
             Point position = new Point((int) src.positionX,(int) src.positionY);
             LineSegment ray = new LineSegment(position,target);
