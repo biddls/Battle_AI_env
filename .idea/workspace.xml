@@ -19,17 +19,17 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/Thomas" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:Thomas" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eed9a793-0b3a-47d9-95bb-c1e88c94d8e9" name="Default" comment="eddititng stuff">
+    <list default="true" id="294787c6-b6ad-438a-b167-b33c62321571" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Point.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RayCastVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCastVisualizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +50,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="75f51b210c6f0ac7b6e0cc9ff79501ef5dd71cd3" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,11 +66,7 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="Thomas" />
-                    <option name="lastUsedInstant" value="1605919276" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1605919273" />
+                    <option name="lastUsedInstant" value="1606231680" />
                   </RecentBranch>
                 </list>
               </option>
@@ -421,6 +417,7 @@
         <item itemvalue="Application.agent" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.DrawRect" />
+        <item itemvalue="Application.RayCastVisualizer" />
       </list>
     </recent_temporary>
   </component>
@@ -447,10 +444,11 @@
       <workItem from="1605918313393" duration="241000" />
       <workItem from="1605918777256" duration="11304000" />
       <workItem from="1605966290901" duration="3377000" />
-      <workItem from="1606210928058" duration="67000" />
-      <workItem from="1606227363895" duration="1196000" />
-      <workItem from="1606260137878" duration="3365000" />
-      <workItem from="1606303894369" duration="331000" />
+      <workItem from="1606210167972" duration="7000" />
+      <workItem from="1606210697757" duration="1000" />
+      <workItem from="1606210724515" duration="10000" />
+      <workItem from="1606228111701" duration="409000" />
+      <workItem from="1606286393451" duration="12506000" />
     </task>
     <task id="LOCAL-00001" summary="coppied from Armins github going to build off of this">
       <created>1605851066757</created>
@@ -490,7 +488,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/Thomas" />
+                        <option value="Thomas" />
                       </list>
                     </value>
                   </entry>
@@ -551,46 +549,43 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="689" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1605851144348" />
-    <state x="1059" y="441" key="FileChooserDialogImpl" timestamp="1606210992805">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
     <state x="1059" y="441" key="FileChooserDialogImpl/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606210992805" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1606263532602">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1877" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605934994914" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606263532602" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1606263532602">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1877" height="274" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605934994914" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606263532602" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1606263532602">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1877" height="274" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605934994914" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606263532602" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1606263532602">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1877" height="274" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605934994914" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606263532602" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1605852121533">
+    <state width="1233" height="2" key="GridCell.Tab.0.bottom" timestamp="1606303685780">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="512" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606128756725" />
-    <state width="914" height="512" key="GridCell.Tab.1.center" timestamp="1606128756725">
+    <state width="1233" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606303685780" />
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606232924733" />
+    <state width="1233" height="2" key="GridCell.Tab.0.center" timestamp="1606303685780">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="512" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606128756725" />
-    <state width="914" height="512" key="GridCell.Tab.1.left" timestamp="1606128756725">
+    <state width="1233" height="2" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606303685780" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606232924733" />
+    <state width="1233" height="2" key="GridCell.Tab.0.left" timestamp="1606303685780">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="512" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606128756725" />
-    <state width="914" height="512" key="GridCell.Tab.1.right" timestamp="1606128756725">
+    <state width="1233" height="2" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606303685780" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606232924733" />
+    <state width="1233" height="2" key="GridCell.Tab.0.right" timestamp="1606303685780">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="512" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606128756725" />
+    <state width="1233" height="2" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606303685780" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606232924733" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1606300622220">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606300622220" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1606300622220">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606300622220" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1606300622220">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606300622220" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1606300622220">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606300622220" />
     <state x="598" y="281" key="MultipleFileMergeDialog" timestamp="1606121382142">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
