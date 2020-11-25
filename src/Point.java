@@ -23,6 +23,7 @@ public class Point {
     public Point(double x, double y) {
         this.xd = x;
         this.yd = y;
+    }
 
     public Point(int x, int y, float direction ) {
         this.x = x;
@@ -30,7 +31,8 @@ public class Point {
         this.direction = direction;
         System.out.println(this.direction);
     }
-    public Point(float dir) {this.dir= dir;}
+
+
     public Point(int x, int y, int type ) {
         this.x = x;
         this.y = y;

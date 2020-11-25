@@ -166,7 +166,6 @@ public class RayCastVisualizer extends JPanel{
         agent1.agentMov('q', activeSegments);
         currentRays = castRays(agent1, 800);//B number of rays and how far to check
         g.fillOval((int) agent1.positionX - 5, (int) agent1.positionY - 5, (int) 10, (int) 10);
-        agent1.agentMov('q');
         currentRays = castRays(agent1, 200);//B number of rays and how far to check
         for (Point ray :currentRays) {
             if(ray.type == 2){

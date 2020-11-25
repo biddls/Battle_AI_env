@@ -11,7 +11,7 @@ public class agent{
     public float fov = 45;
     public float anglePerRay = (float) 0;
 
-    public float agentMov(char keyPressed, ArrayList<LineSegment> segments) {
+    public void agentMov(char keyPressed, ArrayList<LineSegment> segments) {
         anglePerRay = (float) (((fov * Math.PI)/180)/rays);
         this.direction = this.direction % 360;
 
