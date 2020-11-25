@@ -19,7 +19,7 @@ public class RayCast {
 
     // Find intersection of RAY & SEGMENT
     // returns null if no intersection found
-    public static Point getIntersection(LineSegment ray, LineSegment segment){//TODO: allow it to return the type of intersections, enemy etc
+    public static Point getIntersection(LineSegment ray, LineSegment segment, int type){//TODO: allow it to return the type of intersections, enemy etc
         Vector r = new Vector(ray.B.x - ray.A.x,ray.B.y-ray.A.y);
         Vector s = new Vector(segment.B.x - segment.A.x,segment.B.y-segment.A.y);
         double rxs = crossProduct(r,s);
@@ -57,7 +57,7 @@ public class RayCast {
             // We can calculate the intersection point using either t or u.
             //intersection = p + t*r;
 
-            return new Point((int)Math.floor(ray.A.x + t*r.x),(int)Math.floor(ray.A.y + t*r.y));
+            return new Point((int)Math.floor(ray.A.x + t*r.x),(int)Math.floor(ray.A.y + t*r.y), type);
 
             // An intersection was found.
             //return true;
@@ -71,10 +71,10 @@ public class RayCast {
         Point closestIntersect = null;
         double closestDistance = Double.MAX_VALUE;
         for(LineSegment l : segments){
-            Point intersect = getIntersection(ray, l);
+            Point intersect = getIntersection(ray, l, l.type);
             if(intersect == null) continue;
             if(closestIntersect == null || distance(ray.A,intersect) < closestDistance){
-                closestIntersect = intersect;
+                closestIntersect = intersect ;
                 closestDistance = distance(ray.A,intersect);
             }
         }

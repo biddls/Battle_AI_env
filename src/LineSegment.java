@@ -2,12 +2,14 @@ public class LineSegment {
 
     public Point A;
     public Point B;
+    public int type;
     public Vector dir;
 
 
-    public LineSegment(Point A,Point B){
+    public LineSegment(Point A,Point B, int type){
         this.A = A;
         this.B = B;
+        this.type = type;
         dir = new Vector(B.x-A.x, B.y-A.y);
     }
 
@@ -19,6 +21,6 @@ public class LineSegment {
 
     @Override
     public String toString() {
-        return "(" + A + " -> " + B + ")";
+        return "(" + A + " -> " + B + "||" + type + ")";
     }
 }
