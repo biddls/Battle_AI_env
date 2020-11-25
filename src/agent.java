@@ -3,15 +3,19 @@
 public class agent{
     public float positionX = 280;
     public float positionY = 100;
-    public float direction = 45;//degrees
+    public float direction = 90;//degrees
     public float speedX = 1;
     public float speedY = 1;
     public float rays = 20;
     public float fov = 90;
     public float anglePerRay = (float) 0;
 
-    public float agentMov(char keyPressed) {
+    public void agentMov(char keyPressed) {
+
         anglePerRay = (float) (((fov * Math.PI)/180)/rays);
+        this.direction = this.direction % 360;
+
+        if (this.direction < 0) this.direction += 360;
         if (keyPressed == 'q'){
             this.direction -= anglePerRay;
         }
@@ -35,6 +39,5 @@ public class agent{
             this.positionY -= Math.sin(Math.toRadians(direction));
         }
 
-        return direction;
     }
 }

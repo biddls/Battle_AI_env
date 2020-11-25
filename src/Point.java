@@ -9,7 +9,7 @@ public class Point {
     public int x;
     public int y;
     public int type;
-    public float dir;
+    public float direction;
 
 
     public Point(int x, int y) {
@@ -17,8 +17,11 @@ public class Point {
         this.y = y;
 
     }
-    public Point(float dir) {
-        this.dir= dir;
+    public Point(int x, int y, float direction ) {
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
+        System.out.println(this.direction);
     }
     public Point(int x, int y, int type ) {
         this.x = x;
@@ -29,7 +32,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return "(" + x + "|" + y + ")" + "||" + type + "|" + dir;
+        return "(" + x + "|" + y + ")" + "||" + type + "|" + direction + ")";
     }
 
 }
