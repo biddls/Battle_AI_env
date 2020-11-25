@@ -8,6 +8,8 @@ public class Point {
 
     public int x;
     public int y;
+    public double xd;
+    public double yd;
     public int type;
     public float dir;
 
@@ -17,9 +19,13 @@ public class Point {
         this.y = y;
 
     }
-    public Point(float dir) {
-        this.dir= dir;
+
+    public Point(double x, double y) {
+        this.xd = x;
+        this.yd = y;
+
     }
+    public Point(float dir) {this.dir= dir;}
     public Point(int x, int y, int type ) {
         this.x = x;
         this.y = y;

@@ -4,6 +4,8 @@ public class Vector {
     public int y;
     public float v;
     public float v1;
+    public double vx;
+    public double v1x;
 
     public Vector(int x, int y) {
         this.x = x;
@@ -13,6 +15,11 @@ public class Vector {
     public Vector(float v, float v1) {
         this.v = v;
         this.v1 = v1;
+    }
+
+    public Vector(double v, double v1) {
+        this.vx = v;
+        this.v1x = v1;
     }
 
     @Override

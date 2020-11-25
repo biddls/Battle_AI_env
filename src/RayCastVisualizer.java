@@ -9,7 +9,7 @@ public class RayCastVisualizer extends JPanel{
     public static void main(String[] args) {
         JFrame window = new JFrame();
         window.setTitle("RayCast Visualizer");
-        window.setSize(640,380);
+        window.setSize(657,400);
 
         RayCastVisualizer rcv = new RayCastVisualizer();
 
@@ -95,6 +95,7 @@ public class RayCastVisualizer extends JPanel{
                     end = new Point(p.xpoints[i+1],p.ypoints[i+1]);
                 }
                 activeSegments.add(new LineSegment(start,end,initType(p)));
+                //System.out.println(initType(p));
                 //System.out.println("new segment : " + start + " -> " + end);
             }
         }
@@ -121,7 +122,7 @@ public class RayCastVisualizer extends JPanel{
         //currentRays = castRays(agent1, 300);//B number of rays and how far to check
         for (Point ray :currentRays) {
             if(ray.type == 2){
-                System.out.println(ray);
+                //System.out.println(ray);
             }
 
         }
@@ -154,18 +155,18 @@ public class RayCastVisualizer extends JPanel{
             g.drawPolygon(p);
         }
 
-        g.setColor(Color.RED);
+        g.setColor(Color.GREEN);
         for(Point p : currentRays){
             g.drawLine((int) agent1.positionX,(int) agent1.positionY, (int)p.x, (int) p.y);
-            g.fillOval((int) p.x-5,(int) p.y-5,10,10);
+            //g.fillOval((int) p.x-5,(int) p.y-5,10,10);
         }
         g.setColor(Color.BLUE);
-        g.fillOval((int) agent1.positionX - 5, (int) agent1.positionY - 5, (int) 10, (int) 10);
-        agent1.agentMov('q');
+        g.fillOval((int) agent1.positionX - agent1.size/2, (int) agent1.positionY - agent1.size/2, agent1.size, agent1.size);
+        agent1.agentMov('q', activeSegments);
         currentRays = castRays(agent1, 800);//B number of rays and how far to check
         for (Point ray :currentRays) {
             if(ray.type == 2){
-                System.out.println(ray);
+                //System.out.println(ray);
             }
 
         }
