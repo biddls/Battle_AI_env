@@ -1,18 +1,22 @@
+import sun.management.Agent;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 /**
  * Created by Armin on 9/21/2017.
  */
-public class RayCastVisualizer extends JPanel{
+public  class RayCastVisualizer extends JPanel{
+    private static agent Agent;
 
     public static void main(String[] args) {
         JFrame window = new JFrame();
         window.setTitle("RayCast Visualizer");
         window.setSize(657,400);
-        window.addKeyListener(new KeyDown());
+        window.addKeyListener(this.Agent);
         RayCastVisualizer rcv = new RayCastVisualizer();
 
         window.add(rcv);
@@ -20,7 +24,10 @@ public class RayCastVisualizer extends JPanel{
         window.setVisible(true);
     }
 
+
+
     public RayCastVisualizer(){
+        this.Agent = new agent(this);
         this.setBackground(Color.BLACK);
         this.setLayout(null);
         initPolygons();
@@ -84,7 +91,7 @@ public class RayCastVisualizer extends JPanel{
         activePolygons.add(p6);
     }
 
-    ArrayList<LineSegment> activeSegments = new ArrayList<>();
+    public ArrayList<LineSegment> activeSegments = new ArrayList<>();
     public void initSegments(){
         for(Polygon p : activePolygons){
             for(int i=0;i<p.npoints;i++){
@@ -116,8 +123,6 @@ public class RayCastVisualizer extends JPanel{
     }
 
     ArrayList<Point> currentRays = new ArrayList<>();
-    agent agent1 = new agent();
-    KeyDown event = new KeyDown();
 
     public void init(){
         //char ch = event.getKeyChar();
@@ -150,6 +155,8 @@ public class RayCastVisualizer extends JPanel{
         return result;//B list of all points that the rays intersect with
     }
 
+
+
     @Override
     public void paint(Graphics g) {//TODO: add characters
         super.paint(g);
@@ -161,13 +168,13 @@ public class RayCastVisualizer extends JPanel{
 
         g.setColor(Color.GREEN);
         for(Point p : currentRays){
-            g.drawLine((int) agent1.positionX,(int) agent1.positionY, (int)p.x, (int) p.y);
+            g.drawLine((int) Agent.positionX,(int) Agent.positionY, (int)p.x, (int) p.y);
             g.fillOval((int) p.x-5,(int) p.y-5,10,10);
         }
         g.setColor(Color.BLUE);
-        g.fillOval((int) agent1.positionX - agent1.size/2, (int) agent1.positionY - agent1.size/2, agent1.size, agent1.size);
-        currentRays = castRays(agent1, 800);//B number of rays and how far to check
-        agent1.agentMov('e',  activeSegments);
+        g.fillOval((int) Agent.positionX - Agent.size/2, (int) Agent.positionY - Agent.size/2, Agent.size, Agent.size);
+        currentRays = castRays(Agent, 800);//B number of rays and how far to check
+
         for (Point ray :currentRays) {
             if(ray.type == 2){
                 System.out.println(ray);
@@ -177,23 +184,8 @@ public class RayCastVisualizer extends JPanel{
         repaint();
     }
 
-    public void getKey(char e) {
-        System.out.println(e);
-
-    }
-}
-
- class KeyDown extends KeyAdapter {
-
-
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        super.keyPressed(e);
-        RayCastVisualizer r = new RayCastVisualizer();
-
-        r.getKey(e.getKeyChar());
-
-    }
 
 }
+
+
+

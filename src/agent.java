@@ -1,8 +1,14 @@
 //tODO someone who gets java fix this cus i did the math but dunno how to convert to java best of luck xd
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public class agent{
+
+
+public class agent extends KeyAdapter {
+
+    private RayCastVisualizer rayCastVisualizer;
     public float positionX = 280;
     public float positionY = 100;
     public float direction = 45;//degrees
@@ -10,6 +16,18 @@ public class agent{
     public float rays = 50;
     public float fov = 45;
     public float anglePerRay = (float) 0;
+
+    public agent(RayCastVisualizer parent) {
+        this.rayCastVisualizer = parent;
+    }
+
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        super.keyPressed(e);
+        System.out.println(e);
+        agentMov(e.getKeyChar(),  rayCastVisualizer.activeSegments);
+    }
 
     public void agentMov(char keyPressed, ArrayList<LineSegment> segments) {
         anglePerRay = (float) (((fov * Math.PI)/180)/rays);
