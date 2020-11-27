@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 /**
  * Created by Armin on 9/21/2017.
@@ -10,7 +12,7 @@ public class RayCastVisualizer extends JPanel{
         JFrame window = new JFrame();
         window.setTitle("RayCast Visualizer");
         window.setSize(657,400);
-
+        window.addKeyListener(new KeyDown());
         RayCastVisualizer rcv = new RayCastVisualizer();
 
         window.add(rcv);
@@ -115,6 +117,7 @@ public class RayCastVisualizer extends JPanel{
 
     ArrayList<Point> currentRays = new ArrayList<>();
     agent agent1 = new agent();
+    KeyDown event = new KeyDown();
 
     public void init(){
         //char ch = event.getKeyChar();
@@ -159,20 +162,38 @@ public class RayCastVisualizer extends JPanel{
         g.setColor(Color.GREEN);
         for(Point p : currentRays){
             g.drawLine((int) agent1.positionX,(int) agent1.positionY, (int)p.x, (int) p.y);
-            //g.fillOval((int) p.x-5,(int) p.y-5,10,10);
+            g.fillOval((int) p.x-5,(int) p.y-5,10,10);
         }
         g.setColor(Color.BLUE);
         g.fillOval((int) agent1.positionX - agent1.size/2, (int) agent1.positionY - agent1.size/2, agent1.size, agent1.size);
-        agent1.agentMov('q', activeSegments);
         currentRays = castRays(agent1, 800);//B number of rays and how far to check
-        g.fillOval((int) agent1.positionX - 5, (int) agent1.positionY - 5, (int) 10, (int) 10);
-        currentRays = castRays(agent1, 200);//B number of rays and how far to check
+        agent1.agentMov('e',  activeSegments);
         for (Point ray :currentRays) {
             if(ray.type == 2){
-                //System.out.println(ray);
+                System.out.println(ray);
             }
 
         }
         repaint();
     }
+
+    public void getKey(char e) {
+        System.out.println(e);
+
+    }
+}
+
+ class KeyDown extends KeyAdapter {
+
+
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        super.keyPressed(e);
+        RayCastVisualizer r = new RayCastVisualizer();
+
+        r.getKey(e.getKeyChar());
+
+    }
+
 }

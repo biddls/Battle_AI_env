@@ -29,8 +29,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Point.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RayCastVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCastVisualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,6 +307,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -424,6 +433,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+      <changelist id="294787c6-b6ad-438a-b167-b33c62321571" name="Default Changelist" comment="" />
       <created>1508427836113</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -449,6 +459,7 @@
       <workItem from="1606210724515" duration="10000" />
       <workItem from="1606228111701" duration="409000" />
       <workItem from="1606286393451" duration="12506000" />
+      <workItem from="1606431190424" duration="5220000" />
     </task>
     <task id="LOCAL-00001" summary="coppied from Armins github going to build off of this">
       <created>1605851066757</created>
@@ -550,26 +561,26 @@
     </state>
     <state x="689" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1605851144348" />
     <state x="1059" y="441" key="FileChooserDialogImpl/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606210992805" />
-    <state width="1233" height="2" key="GridCell.Tab.0.bottom" timestamp="1606303685780">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1606436379956">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1233" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606303685780" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606232924733" />
-    <state width="1233" height="2" key="GridCell.Tab.0.center" timestamp="1606303685780">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606436379956" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1606436379956">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1233" height="2" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606303685780" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606232924733" />
-    <state width="1233" height="2" key="GridCell.Tab.0.left" timestamp="1606303685780">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606436379956" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1606436379956">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1233" height="2" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606303685780" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606232924733" />
-    <state width="1233" height="2" key="GridCell.Tab.0.right" timestamp="1606303685780">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606436379956" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1606436379956">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1233" height="2" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606303685780" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606232924733" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-720.3072.1688@0.0.2560.1400" timestamp="1606436379956" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1606300622220">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
