@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class agent  {
 
-    private RayCastVisualizer rayCastVisualizer;
+
     public float positionX = 280;
     public float positionY = 100;
     public float direction = 45;//degrees
@@ -16,10 +16,6 @@ public class agent  {
     public float rays = 50;
     public float fov = 45;
     public float anglePerRay = (float) 0;
-
-    public agent(RayCastVisualizer parent) {
-        this.rayCastVisualizer = parent;
-    }
 
     public void agentMov(char keyPressed, ArrayList<LineSegment> segments) {
 

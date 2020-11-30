@@ -6,7 +6,7 @@ import java.util.ArrayList;
  */
 public  class RayCastVisualizer extends JPanel{
 
-    private agent Agent;
+    agent Agent = new agent();
     KeyPress kp = new KeyPress();
 
     public static void main(String[] args) {
@@ -16,7 +16,6 @@ public  class RayCastVisualizer extends JPanel{
 
     public void window() {
         JFrame window = new JFrame();
-
         window.setTitle("RayCast Visualizer");
         window.setSize(657,400);
         window.addKeyListener(kp);
@@ -27,7 +26,6 @@ public  class RayCastVisualizer extends JPanel{
     }
 
     public RayCastVisualizer(){
-        this.Agent = new agent(this);
         this.setBackground(Color.BLACK);
         this.setLayout(null);
         initPolygons();
@@ -125,11 +123,17 @@ public  class RayCastVisualizer extends JPanel{
     ArrayList<Point> currentRays = new ArrayList<>();
 
     public void init(){
-
         Agent.agentMov(kp.keyp, activeSegments);
-        System.out.println(kp.keyp);
-        repaint();
+        System.out.println("ho");
+        currentRays = castRays(Agent, 800);//B number of rays and how far to check
 
+        for (Point ray :currentRays) {
+            if(ray.type == 2){
+                System.out.println(ray);
+            }
+
+        }
+        repaint();
     }
 
     public ArrayList<Point> castRays(agent src,int dist){//TODO where in the int n fed in from (line 110 i found)
@@ -167,15 +171,6 @@ public  class RayCastVisualizer extends JPanel{
         }
         g.setColor(Color.BLUE);
         g.fillOval((int) Agent.positionX - Agent.size/2, (int) Agent.positionY - Agent.size/2, Agent.size, Agent.size);
-        currentRays = castRays(Agent, 800);//B number of rays and how far to check
-
-        for (Point ray :currentRays) {
-            if(ray.type == 2){
-                System.out.println(ray);
-            }
-
-        }
-
     }
 
 
