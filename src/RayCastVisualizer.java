@@ -1,30 +1,30 @@
-import sun.management.Agent;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 /**
  * Created by Armin on 9/21/2017.
  */
 public  class RayCastVisualizer extends JPanel{
-    private static agent Agent;
+
+    private agent Agent;
+    KeyPress kp = new KeyPress();
 
     public static void main(String[] args) {
+        RayCastVisualizer r = new RayCastVisualizer();
+        r.window();
+    }
+
+    public void window() {
         JFrame window = new JFrame();
+
         window.setTitle("RayCast Visualizer");
         window.setSize(657,400);
-        window.addKeyListener(this.Agent);
+        window.addKeyListener(kp);
         RayCastVisualizer rcv = new RayCastVisualizer();
-
         window.add(rcv);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setVisible(true);
     }
-
-
 
     public RayCastVisualizer(){
         this.Agent = new agent(this);
@@ -125,15 +125,9 @@ public  class RayCastVisualizer extends JPanel{
     ArrayList<Point> currentRays = new ArrayList<>();
 
     public void init(){
-        //char ch = event.getKeyChar();
-        //agent1.agentMov('w');
-        //currentRays = castRays(agent1, 300);//B number of rays and how far to check
-        for (Point ray :currentRays) {
-            if(ray.type == 2){
-                //System.out.println(ray);
-            }
 
-        }
+        Agent.agentMov(kp.keyp, activeSegments);
+        System.out.println(kp.keyp);
         repaint();
 
     }
@@ -168,8 +162,8 @@ public  class RayCastVisualizer extends JPanel{
 
         g.setColor(Color.GREEN);
         for(Point p : currentRays){
-            g.drawLine((int) Agent.positionX,(int) Agent.positionY, (int)p.x, (int) p.y);
-            g.fillOval((int) p.x-5,(int) p.y-5,10,10);
+            g.drawLine((int) Agent.positionX,(int) Agent.positionY, p.x,p.y);
+            g.fillOval( p.x-5,p.y-5,10,10);
         }
         g.setColor(Color.BLUE);
         g.fillOval((int) Agent.positionX - Agent.size/2, (int) Agent.positionY - Agent.size/2, Agent.size, Agent.size);
@@ -181,8 +175,9 @@ public  class RayCastVisualizer extends JPanel{
             }
 
         }
-        repaint();
+
     }
+
 
 
 }

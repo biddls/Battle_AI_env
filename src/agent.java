@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 
-public class agent extends KeyAdapter {
+public class agent  {
 
     private RayCastVisualizer rayCastVisualizer;
     public float positionX = 280;
@@ -21,15 +21,8 @@ public class agent extends KeyAdapter {
         this.rayCastVisualizer = parent;
     }
 
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        super.keyPressed(e);
-        System.out.println(e);
-        agentMov(e.getKeyChar(),  rayCastVisualizer.activeSegments);
-    }
-
     public void agentMov(char keyPressed, ArrayList<LineSegment> segments) {
+
         anglePerRay = (float) (((fov * Math.PI)/180)/rays);
         this.direction = this.direction % 360;
 
@@ -71,7 +64,7 @@ public class agent extends KeyAdapter {
             Point b = new Point(positionX - size * Math.cos(perpendicular), positionY - size * Math.sin(perpendicular));
             LineSegment character = new LineSegment(a, b, 1);
             Point intersect = RayCast.getIntersection(character, segment, 0);
-            System.out.println(intersect);
+            //System.out.println(intersect);
         }
         this.positionX += (float) changex;
         this.positionY += (float) changey;
