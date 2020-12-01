@@ -1,12 +1,8 @@
 //tODO someone who gets java fix this cus i did the math but dunno how to convert to java best of luck xd
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-
-
-public class agent extends KeyAdapter {
+public class agent {
 
     public float positionX = 630;
     public float positionY = 350;
@@ -16,11 +12,7 @@ public class agent extends KeyAdapter {
     public float fov = 45;
     public float anglePerRay = (float) 0;
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        super.keyPressed(e);
-        //System.out.println(e);
-    }
+
 
     public void agentMov(char keyPressed, ArrayList<LineSegment> segments) {
 
