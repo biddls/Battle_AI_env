@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+
 /**
  * Created by Armin on 9/21/2017.
  */
@@ -135,8 +136,8 @@ public class RayCastVisualizer extends JPanel{
         float angletart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
         for (int i = 0; i < src.rays; i++) {//TODO: given the characters angle loop though certain angles
             //(B) System.out.println(i);
-            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angletart)*dist),(int)(src.positionY+Math.sin(src.anglePerRay*i + angletart)*dist), src.direction);
-
+            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angletart)*dist),
+                    (int)(src.positionY+Math.sin(src.anglePerRay*i + angletart)*dist), src.direction);
             //above returns a list of all the points around the mouse 800 units away will need to TODO: adapt this to be based on character DIR
             Point position = new Point((int) src.positionX,(int) src.positionY);
             LineSegment ray = new LineSegment(position,target,0);
@@ -162,11 +163,20 @@ public class RayCastVisualizer extends JPanel{
             //g.fillOval((int) p.x-5,(int) p.y-5,10,10);
         }
         g.setColor(Color.BLUE);
+        try
+        {
+            Thread.sleep(0);
+        }
+        catch(InterruptedException e)
+        {
+            // this part is executed when an exception (in this example InterruptedException) occurs
+        }
         g.fillOval((int) agent1.positionX - agent1.size/2, (int) agent1.positionY - agent1.size/2, agent1.size, agent1.size);
-        agent1.agentMov('q', activeSegments);
+        agent1.agentMov('e', activeSegments);
+        agent1.agentMov('w', activeSegments);
         currentRays = castRays(agent1, 800);//B number of rays and how far to check
         g.fillOval((int) agent1.positionX - 5, (int) agent1.positionY - 5, (int) 10, (int) 10);
-        currentRays = castRays(agent1, 200);//B number of rays and how far to check
+        currentRays = castRays(agent1, 800);//B number of rays and how far to check
         for (Point ray :currentRays) {
             if(ray.type == 2){
                 //System.out.println(ray);

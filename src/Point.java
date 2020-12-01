@@ -17,7 +17,6 @@ public class Point {
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
-
     }
 
     public Point(double x, double y) {
@@ -29,7 +28,7 @@ public class Point {
         this.x = x;
         this.y = y;
         this.direction = direction;
-        System.out.println(this.direction);
+        //System.out.println(this.direction);
     }
 
 
@@ -40,9 +39,13 @@ public class Point {
 
     }
 
+    public SimplePoint getPoint(){
+        return new SimplePoint(x + xd, y + yd);
+    }
+
     @Override
     public String toString() {
-        return "(" + x + "|" + y + ")" + "||" + type + "|" + direction + ")";
+        return "(" + x + xd + "|" + y + yd + ")" + "||" + type + "|" + direction + ")";
     }
 
 }
