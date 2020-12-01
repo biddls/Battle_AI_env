@@ -188,7 +188,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         Agent.agentMov(e.getKeyChar(), activeSegments);
-
+        currentRays = castRays(Agent, 800);//B number of rays and how far to check
         repaint();
     }
 

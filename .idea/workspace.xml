@@ -26,10 +26,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="294787c6-b6ad-438a-b167-b33c62321571" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KeyPress.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RayCastVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCastVisualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agent.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,17 +305,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -466,6 +452,7 @@
       <workItem from="1606757424641" duration="1921000" />
       <workItem from="1606759415595" duration="633000" />
       <workItem from="1606831812333" duration="3443000" />
+      <workItem from="1606836645151" duration="18000" />
     </task>
     <task id="LOCAL-00001" summary="coppied from Armins github going to build off of this">
       <created>1605851066757</created>
