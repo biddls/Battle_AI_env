@@ -11,16 +11,14 @@ public class agent  {
 
     public float positionX = 280;
     public float positionY = 100;
-    public float direction = 45;//degrees
+    public float direction = this.direction % 360;
     public int size = 10;
     public float rays = 50;
     public float fov = 45;
-    public float anglePerRay = (float) 0;
+    public float anglePerRay = (float) (((fov * Math.PI)/180)/rays);
+
 
     public void agentMov(char keyPressed, ArrayList<LineSegment> segments) {
-
-        anglePerRay = (float) (((fov * Math.PI)/180)/rays);
-        this.direction = this.direction % 360;
 
         if (this.direction < 0) this.direction += 360;
         if (keyPressed == 'q'){
