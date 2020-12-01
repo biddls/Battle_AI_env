@@ -1,23 +1,35 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 /**
  * Created by Armin on 9/21/2017.
  */
-public class RayCastVisualizer extends JPanel{
+public class RayCastVisualizer extends JPanel implements KeyListener {
+
+    agent Agent = new agent();
+
 
     public static void main(String[] args) {
-        JFrame window = new JFrame();
-        window.setTitle("RayCast Visualizer");
-        window.setSize(657,400);
-
-        RayCastVisualizer rcv = new RayCastVisualizer();
-
-        window.add(rcv);
-        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        window.setVisible(true);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame window = new JFrame();
+                RayCastVisualizer rcv = new RayCastVisualizer();
+                window.setTitle("RayCast Visualizer");
+                window.setSize(657,400);
+                window.addKeyListener(rcv);
+                window.add(rcv);
+                window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                window.setVisible(true);
+                window.setFocusable(true);
+            }
+        });
     }
+
+
 
     public RayCastVisualizer(){
         this.setBackground(Color.BLACK);
@@ -30,7 +42,7 @@ public class RayCastVisualizer extends JPanel{
     ArrayList<Polygon> activePolygons = new ArrayList<>();
     ArrayList<Polygon> activeAgents = new ArrayList<>();
     public void initPolygons(){
-        /*
+
         //Border Polygon
         Polygon b = new Polygon();
         b.addPoint(0,0);
@@ -64,7 +76,7 @@ public class RayCastVisualizer extends JPanel{
         p4.addPoint(340,60);
         p4.addPoint(360,40);
         p4.addPoint(370,70);
-        activePolygons.add(p4);*/
+        activePolygons.add(p4);
 
         Polygon p5 = new Polygon();
         //p5.addPoint(450,190);
@@ -72,17 +84,17 @@ public class RayCastVisualizer extends JPanel{
         p5.addPoint(540,270);
         p5.addPoint(430,290);
         activePolygons.add(p5);
-        /*
+
         Polygon p6 = new Polygon();
         p6.addPoint(400,95);
         p6.addPoint(580,50);
         p6.addPoint(480,150);
         p6.addPoint(400,95);
 
-        activePolygons.add(p6);*/
+        activePolygons.add(p6);
     }
 
-    ArrayList<LineSegment> activeSegments = new ArrayList<>();
+    public ArrayList<LineSegment> activeSegments = new ArrayList<>();
     public void initSegments(){
         for(Polygon p : activePolygons){
             for(int i=0;i<p.npoints;i++){
@@ -101,6 +113,12 @@ public class RayCastVisualizer extends JPanel{
         }
     }
 
+    void init() {
+
+        currentRays = castRays(Agent, 800);//B number of rays and how far to check
+        repaint();
+    }
+
     int initType(Polygon shape) {
         if(activePolygons.contains(shape)){
             if (activeAgents.contains(shape)){
@@ -114,23 +132,9 @@ public class RayCastVisualizer extends JPanel{
     }
 
     ArrayList<Point> currentRays = new ArrayList<>();
-    agent agent1 = new agent();
-
-    public void init(){
-        //char ch = event.getKeyChar();
-        //agent1.agentMov('w');
-        //currentRays = castRays(agent1, 300);//B number of rays and how far to check
-        for (Point ray :currentRays) {
-            if(ray.type == 2){
-                //System.out.println(ray);
-            }
-
-        }
-        repaint();
-
-    }
 
     public ArrayList<Point> castRays(agent src,int dist){//TODO where in the int n fed in from (line 110 i found)
+
         ArrayList<Point> result = new ArrayList<>();
         float angletart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
         for (int i = 0; i < src.rays; i++) {//TODO: given the characters angle loop though certain angles
@@ -147,6 +151,8 @@ public class RayCastVisualizer extends JPanel{
         return result;//B list of all points that the rays intersect with
     }
 
+
+
     @Override
     public void paint(Graphics g) {//TODO: add characters
         super.paint(g);
@@ -158,30 +164,43 @@ public class RayCastVisualizer extends JPanel{
 
         g.setColor(Color.GREEN);
         for(Point p : currentRays){
-            g.drawLine((int) agent1.positionX,(int) agent1.positionY, (int)p.x, (int) p.y);
-            //g.fillOval((int) p.x-5,(int) p.y-5,10,10);
+            g.drawLine((int) Agent.positionX,(int) Agent.positionY, p.x,p.y);
+            g.fillOval( p.x-5,p.y-5,10,10);
         }
         g.setColor(Color.BLUE);
-        /*try
-        {
-            Thread.sleep(0);
-        }
-        catch(InterruptedException e)
-        {
-            // this part is executed when an exception (in this example InterruptedException) occurs
-        }*/
-        g.fillOval((int) agent1.positionX - agent1.size/2, (int) agent1.positionY - agent1.size/2, agent1.size, agent1.size);
-        agent1.agentMov('e', activeSegments);
-        //agent1.agentMov('w', activeSegments);
-        currentRays = castRays(agent1, 800);//B number of rays and how far to check
-        g.fillOval((int) agent1.positionX - 5, (int) agent1.positionY - 5, (int) 10, (int) 10);
-        currentRays = castRays(agent1, 800);//B number of rays and how far to check
+        g.fillOval((int) Agent.positionX - Agent.size/2, (int) Agent.positionY - Agent.size/2, Agent.size, Agent.size);
+
         for (Point ray :currentRays) {
             if(ray.type == 2){
-                //System.out.println(ray);
+                System.out.println(ray);
             }
 
         }
+
+    }
+
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        Agent.agentMov(e.getKeyChar(), activeSegments);
+        currentRays = castRays(Agent, 800);//B number of rays and how far to check
         repaint();
     }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+
+
+    }
+
+
 }
+
+
+

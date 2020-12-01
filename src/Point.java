@@ -28,7 +28,6 @@ public class Point {
         this.x = x;
         this.y = y;
         this.direction = direction;
-        //System.out.println(this.direction);
     }
 
 

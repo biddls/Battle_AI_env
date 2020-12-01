@@ -1,12 +1,8 @@
 //tODO someone who gets java fix this cus i did the math but dunno how to convert to java best of luck xd
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-
-
-public class agent extends KeyAdapter {
+public class agent {
 
     public float positionX = 630;
     public float positionY = 350;
@@ -16,23 +12,21 @@ public class agent extends KeyAdapter {
     public float fov = 45;
     public float anglePerRay = (float) 0;
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        super.keyPressed(e);
-        //System.out.println(e);
-    }
+
 
     public void agentMov(char keyPressed, ArrayList<LineSegment> segments) {
+
         anglePerRay = (float) (((fov * Math.PI)/180)/rays);
         this.direction = this.direction % 360;
+        if (this.direction < 0) this.direction += 360;
 
         if (this.direction < 0) this.direction += 360;
         switch (keyPressed){
             case 'q':
-                this.direction -= anglePerRay;
+                this.direction -= 1;
                 break;
             case 'e':
-                this.direction += anglePerRay;
+                this.direction += 1;
                 break;
             case 'w':
                 collisionCheck(segments, Math.cos(Math.toRadians(direction)),
@@ -42,11 +36,11 @@ public class agent extends KeyAdapter {
                 collisionCheck(segments, -Math.cos(Math.toRadians(direction)),
                         -Math.sin(Math.toRadians(direction)));
                 break;
-            case 'a':
+            case 'd':
                 collisionCheck(segments, -Math.cos(Math.toRadians(90-direction)),
                         Math.sin(Math.toRadians(90-direction)));
                 break;
-            case 'd':
+            case 'a':
                 collisionCheck(segments, Math.cos(Math.toRadians(90-direction)),
                         -Math.sin(Math.toRadians(90-direction)));
                 break;
