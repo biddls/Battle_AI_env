@@ -25,16 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="294787c6-b6ad-438a-b167-b33c62321571" name="Default Changelist" comment="eddititng stuff">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DrawRect.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RayCast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RayCastVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCastVisualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SimplePoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimplePoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/agent.java" afterDir="false" />
-    </list>
+    <list default="true" id="294787c6-b6ad-438a-b167-b33c62321571" name="Default Changelist" comment="eddititng stuff" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Thomas" />
+        <entry key="$PROJECT_DIR$" value="Joseph" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,7 +60,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="Thomas" />
-                    <option name="lastUsedInstant" value="1606231680" />
+                    <option name="lastUsedInstant" value="1606839189" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="Joseph" />
+                    <option name="lastUsedInstant" value="1606839139" />
                   </RecentBranch>
                 </list>
               </option>
@@ -428,9 +423,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.RayCastVisualizer" />
-        <item itemvalue="Application.DrawRect" />
         <item itemvalue="Application.agent" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.DrawRect" />
         <item itemvalue="Application.RayCastVisualizer" />
       </list>
     </recent_temporary>
@@ -647,26 +642,5 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606767856326" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="11" />
-        </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/RayCast.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="ray.B" />
-        <watch expression="character" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>
