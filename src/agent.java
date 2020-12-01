@@ -31,10 +31,10 @@ public class agent extends KeyAdapter {
         if (this.direction < 0) this.direction += 360;
         switch (keyPressed){
             case 'q':
-                this.direction -= anglePerRay;
+                this.direction -= 1;
                 break;
             case 'e':
-                this.direction += anglePerRay;
+                this.direction += 1;
                 break;
             case 'w':
                 collisionCheck(segments, Math.cos(Math.toRadians(direction)),
@@ -44,11 +44,11 @@ public class agent extends KeyAdapter {
                 collisionCheck(segments, -Math.cos(Math.toRadians(direction)),
                         -Math.sin(Math.toRadians(direction)));
                 break;
-            case 'a':
+            case 'd':
                 collisionCheck(segments, -Math.cos(Math.toRadians(90-direction)),
                         Math.sin(Math.toRadians(90-direction)));
                 break;
-            case 'd':
+            case 'a':
                 collisionCheck(segments, Math.cos(Math.toRadians(90-direction)),
                         -Math.sin(Math.toRadians(90-direction)));
                 break;

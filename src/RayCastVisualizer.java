@@ -42,7 +42,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     ArrayList<Polygon> activePolygons = new ArrayList<>();
     ArrayList<Polygon> activeAgents = new ArrayList<>();
     public void initPolygons(){
-        /*
+
         //Border Polygon
         Polygon b = new Polygon();
         b.addPoint(0,0);
@@ -76,7 +76,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         p4.addPoint(340,60);
         p4.addPoint(360,40);
         p4.addPoint(370,70);
-        activePolygons.add(p4);*/
+        activePolygons.add(p4);
 
         Polygon p5 = new Polygon();
         //p5.addPoint(450,190);
@@ -84,14 +84,14 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         p5.addPoint(540,270);
         p5.addPoint(430,290);
         activePolygons.add(p5);
-        /*
+
         Polygon p6 = new Polygon();
         p6.addPoint(400,95);
         p6.addPoint(580,50);
         p6.addPoint(480,150);
         p6.addPoint(400,95);
 
-        activePolygons.add(p6);*/
+        activePolygons.add(p6);
     }
 
     public ArrayList<LineSegment> activeSegments = new ArrayList<>();
