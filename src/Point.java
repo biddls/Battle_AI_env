@@ -17,7 +17,6 @@ public class Point {
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
-
     }
 
     public Point(double x, double y) {
@@ -39,9 +38,13 @@ public class Point {
 
     }
 
+    public SimplePoint getPoint(){
+        return new SimplePoint(x + xd, y + yd);
+    }
+
     @Override
     public String toString() {
-        return "(" + x + "|" + y + ")" + "||" + type + "|" + direction + ")";
+        return "(" + (double) (x + xd) + "|" + (double) (y + yd) + ")" + "||" + type + "|" + direction + ")";
     }
 
 }

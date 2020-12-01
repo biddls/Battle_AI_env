@@ -2,29 +2,33 @@ public class Vector {
 
     public int x;
     public int y;
-    public float v;
-    public float v1;
-    public double vx;
+    public float vx;
+    public float vy;
     public double v1x;
+    public double v1y;
 
     public Vector(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public Vector(float v, float v1) {
-        this.v = v;
-        this.v1 = v1;
+    public Vector(float x, float y) {
+        this.vx = x;
+        this.vy = y;
     }
 
-    public Vector(double v, double v1) {
-        this.vx = v;
-        this.v1x = v1;
+    public Vector(double x, double y) {
+        this.v1x = x;
+        this.v1y = y;
+    }
+
+    public SimpleVector getVector(){
+        return new SimpleVector(x + vx + v1y, y + vy + v1y);
     }
 
     @Override
     public String toString() {
-        return "(" + x + "|" + y + ")";
+        return "(" + x + vx + v1y + "|" + y + vy + v1y + ")";
     }
 
 }
