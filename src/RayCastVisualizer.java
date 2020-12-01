@@ -28,9 +28,9 @@ public class RayCastVisualizer extends JPanel{
     }
 
     ArrayList<Polygon> activePolygons = new ArrayList<>();
-    ArrayList<Polygon> activeAgents = new ArrayList<>(); //TODO adding the a
+    ArrayList<Polygon> activeAgents = new ArrayList<>();
     public void initPolygons(){
-
+        /*
         //Border Polygon
         Polygon b = new Polygon();
         b.addPoint(0,0);
@@ -38,7 +38,6 @@ public class RayCastVisualizer extends JPanel{
         b.addPoint(640,360);
         b.addPoint(0,360);
         activePolygons.add(b);
-
 
         Polygon p1 = new Polygon();
         p1.addPoint(100,150);
@@ -65,22 +64,22 @@ public class RayCastVisualizer extends JPanel{
         p4.addPoint(340,60);
         p4.addPoint(360,40);
         p4.addPoint(370,70);
-        activePolygons.add(p4);
+        activePolygons.add(p4);*/
 
         Polygon p5 = new Polygon();
-        p5.addPoint(450,190);
+        //p5.addPoint(450,190);
         p5.addPoint(560,170);
         p5.addPoint(540,270);
         p5.addPoint(430,290);
         activePolygons.add(p5);
-
+        /*
         Polygon p6 = new Polygon();
         p6.addPoint(400,95);
         p6.addPoint(580,50);
         p6.addPoint(480,150);
         p6.addPoint(400,95);
 
-        activePolygons.add(p6);
+        activePolygons.add(p6);*/
     }
 
     ArrayList<LineSegment> activeSegments = new ArrayList<>();
@@ -163,17 +162,17 @@ public class RayCastVisualizer extends JPanel{
             //g.fillOval((int) p.x-5,(int) p.y-5,10,10);
         }
         g.setColor(Color.BLUE);
-        try
+        /*try
         {
             Thread.sleep(0);
         }
         catch(InterruptedException e)
         {
             // this part is executed when an exception (in this example InterruptedException) occurs
-        }
+        }*/
         g.fillOval((int) agent1.positionX - agent1.size/2, (int) agent1.positionY - agent1.size/2, agent1.size, agent1.size);
         agent1.agentMov('e', activeSegments);
-        agent1.agentMov('w', activeSegments);
+        //agent1.agentMov('w', activeSegments);
         currentRays = castRays(agent1, 800);//B number of rays and how far to check
         g.fillOval((int) agent1.positionX - 5, (int) agent1.positionY - 5, (int) 10, (int) 10);
         currentRays = castRays(agent1, 800);//B number of rays and how far to check

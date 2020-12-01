@@ -45,7 +45,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return "(" + x + xd + "|" + y + yd + ")" + "||" + type + "|" + direction + ")";
+        return "(" + (double) (x + xd) + "|" + (double) (y + yd) + ")" + "||" + type + "|" + direction + ")";
     }
 
 }

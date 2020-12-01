@@ -10,7 +10,7 @@ public class agent extends KeyAdapter {
 
     public float positionX = 630;
     public float positionY = 350;
-    public float direction = 225;//degrees
+    public float direction = 220;//degrees
     public int size = 10;
     public float rays = 50;
     public float fov = 45;
@@ -19,7 +19,7 @@ public class agent extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
         super.keyPressed(e);
-        System.out.println(e);
+        //System.out.println(e);
     }
 
     public void agentMov(char keyPressed, ArrayList<LineSegment> segments) {

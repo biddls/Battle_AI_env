@@ -8,6 +8,11 @@ public class SimplePoint {
         this.y = y;
     }
 
+    public SimplePoint(Point a){
+        this.x = a.x + a.xd;
+        this.y = a.y + a.yd;
+    }
+
     @Override
     public String toString() {
         return "(" + x + "|" + y + ")";
