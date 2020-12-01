@@ -11,21 +11,23 @@ public class agent  {
 
     public float positionX = 280;
     public float positionY = 100;
-    public float direction = this.direction % 360;
+    public float direction = 45;//degrees
     public int size = 10;
     public float rays = 50;
     public float fov = 45;
-    public float anglePerRay = (float) (((fov * Math.PI)/180)/rays);
-
+    public float anglePerRay = (float) 0;
 
     public void agentMov(char keyPressed, ArrayList<LineSegment> segments) {
 
+        anglePerRay = (float) (((fov * Math.PI)/180)/rays);
+        this.direction = this.direction % 360;
         if (this.direction < 0) this.direction += 360;
+
         if (keyPressed == 'q'){
-            this.direction -= anglePerRay;
+            this.direction -= 1;
         }
         if (keyPressed == 'e'){
-            this.direction += anglePerRay;
+            this.direction += 1;
         }
         if (keyPressed == 'w'){
             collionCheck(segments, Math.cos(Math.toRadians(direction)),
@@ -35,11 +37,11 @@ public class agent  {
             collionCheck(segments, -Math.cos(Math.toRadians(direction)),
                     -Math.sin(Math.toRadians(direction)));
         }
-        if (keyPressed == 'a'){
+        if (keyPressed == 'd'){
             collionCheck(segments, -Math.cos(Math.toRadians(90-direction)),
                     Math.sin(Math.toRadians(90-direction)));
         }
-        if (keyPressed == 'd'){
+        if (keyPressed == 'a'){
             collionCheck(segments, Math.cos(Math.toRadians(direction)),
                     -Math.sin(Math.toRadians(direction)));
         }
