@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class RayCastVisualizer extends JPanel implements KeyListener {
 
     agent Agent = new agent();
+    char key;
 
 
     public static void main(String[] args) {
@@ -169,6 +170,11 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         }
         g.setColor(Color.BLUE);
         g.fillOval((int) Agent.positionX - Agent.size/2, (int) Agent.positionY - Agent.size/2, Agent.size, Agent.size);
+        if(key != 0){
+            Agent.agentMov(key, activeSegments);
+            repaint();
+        }
+        currentRays = castRays(Agent, 800);//B number of rays and how far to check
 
         for (Point ray :currentRays) {
             if(ray.type == 2){
@@ -187,14 +193,14 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        Agent.agentMov(e.getKeyChar(), activeSegments);
-        currentRays = castRays(Agent, 800);//B number of rays and how far to check
+       key = e.getKeyChar();
         repaint();
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        key= 0;
+        repaint();
 
 
     }
