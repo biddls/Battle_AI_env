@@ -3,15 +3,21 @@ import java.util.ArrayList;
 public class RayCast {
 
     public static final double EPSILON = 0.0001;
+    private static final double RANGE = RayCastVisualizer.RANGE;
 
     public static double crossProduct(SimpleVector a, SimpleVector b) {
         return a.x * b.y - b.x * a.y;
-
     }
 
-    public static double distance(SimplePoint a,SimplePoint b){
-        return Math.sqrt(Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2));
-    }
+    public static double distance(SimplePoint a,SimplePoint b){return Math.sqrt(Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2));}
+
+    public static double distance(Point a,double x, double y){return Math.sqrt(Math.pow(x-a.x,2)+Math.pow(y-a.y,2));}
+
+    public static double distance(Point a,Point b){return Math.sqrt(Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2));}
+
+    public static double distance(Point a,SimplePoint b){return Math.sqrt(Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2));}
+
+    public static double distance(SimplePoint a, SimplePoint b, int dw){return Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2);}
 
     // Find intersection of RAY & SEGMENT
     // returns null if no intersection found
@@ -32,17 +38,11 @@ public class RayCast {
             // 2. If neither 0 <= (q - p) * r = r * r nor 0 <= (p - q) * s <= s * s
             // then the two lines are collinear but disjoint.
             // No need to implement this expression, as it follows from the expression above.
-            System.out.println(segment);
-            System.out.println(ray);
-            System.out.println("next1");
             return null;
         }
 
         if (rxs < EPSILON && qpxr >= EPSILON) {
             //then the two lines are parallel and non-intersecting.
-            System.out.println(segment);
-            System.out.println(ray);
-            System.out.println("next2");
             return null;
         }
 
@@ -79,13 +79,46 @@ public class RayCast {
         return new Point((int) A, (int) B);
     }
 
-    public static Point getClosestIntersection(LineSegment ray,ArrayList<LineSegment> segments){
+    public static Point intersectLines(LineSegment ray, LineSegment wall, Agent agent){
+        Line L1 = new Line(ray.A, ray.B);//A is Agent, B is end point
+        Line L2 = new Line(wall.A, wall.B);
+        if (L1.m != L2.m){//makes sure they arnt parallel
+            double x = (L1.c - L2.c)/(L2.m - L1.m);//finds intersection point in the X axis
+            double y = L1.m * x + L1.c;//finds y intercept
+            double dist = distance(new SimplePoint(x, y), ray.A.getPoint(), 0);//does not SQRT the answer to save computationaly
+            if(dist <= Math.pow(RANGE, 2)) {//makes sure its within 800 units
+                if (x <= Math.max(wall.b.x, wall.a.x) && x >= Math.min(wall.b.x, wall.a.x)){
+                    Polar point = new Polar(ray.a, new SimplePoint(x, y));
+                    double dir = Math.abs((720 - agent.direction) % 360);
+                    double limit1 = (90 + (agent.direction - agent.fov / 2)) % 360;
+                    limit1 = Math.abs((720 - limit1) % 360);
+                    double limit2 = (dir + agent.fov / 2) % 360;
+                    //System.out.println(limit2 + "|" + point.angle + "|" + limit1);
+                    if(limit2 >= agent.fov){
+                        limit2 -= limit1;
+                        point.angle -= limit1;
+                        limit1 = 0;
+                    }else if(limit2 < agent.fov){
+                        limit2 = (360- limit1) + limit2;
+                        point.angle = (360-limit1) + limit2;
+                        limit1 = 0;
+                    }
+                    if(point.angle <= limit2 && point.angle >= limit1){
+                        return new Point(x,y);
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public static Point getClosestIntersection(LineSegment ray,ArrayList<LineSegment> segments, Agent angle){
         Point closestIntersect = null;
         double closestDistance = Double.MAX_VALUE;
         double closestDistanceTemp = Double.MAX_VALUE;
 
         for(LineSegment l : segments){
-            Point intersect = getIntersection(ray, l, l.type);
+            Point intersect = intersectLines(ray, l, angle);
             if (intersect != null){
                 closestDistanceTemp = closestDistance;
                 closestDistance = Math.min(closestDistance, distance(new SimplePoint(ray.A), new SimplePoint(intersect)));
@@ -93,19 +126,6 @@ public class RayCast {
                     closestIntersect = intersect;
                 }
             }
-            /*
-            Point intersect = getIntersection(ray, l, l.type);
-            if(intersect == null){
-                System.out.println("segment");
-                System.out.println(l);
-                System.out.println("ray");
-                System.out.println(ray);
-                continue;
-            }
-            if(closestIntersect == null || distance(new SimplePoint(ray.A), new SimplePoint(intersect)) < closestDistance){
-                closestIntersect = intersect ;
-                closestDistance = distance(new SimplePoint(ray.A), new SimplePoint(intersect));
-            }*/
         }
         return closestIntersect;
     }

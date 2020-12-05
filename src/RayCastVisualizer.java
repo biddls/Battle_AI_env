@@ -9,7 +9,8 @@ import java.util.ArrayList;
  */
 public class RayCastVisualizer extends JPanel implements KeyListener {
 
-    agent Agent = new agent();
+    Agent Agent1 = new Agent();//todo cahnge to agent1
+    public static final double RANGE = 800;
 
 
     public static void main(String[] args) {
@@ -115,7 +116,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
     void init() {
 
-        currentRays = castRays(Agent, 800);//B number of rays and how far to check
+        currentRays = castRays(Agent1, (int) RANGE);//B number of rays and how far to check
         repaint();
     }
 
@@ -133,18 +134,17 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
     ArrayList<Point> currentRays = new ArrayList<>();
 
-    public ArrayList<Point> castRays(agent src,int dist){//TODO where in the int n fed in from (line 110 i found)
+    public ArrayList<Point> castRays(Agent src, int dist){//TODO where in the int n fed in from (line 110 i found)
 
         ArrayList<Point> result = new ArrayList<>();
-        float angletart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
+        float angleStart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
         for (int i = 0; i < src.rays; i++) {//TODO: given the characters angle loop though certain angles
-            //(B) System.out.println(i);
-            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angletart)*dist),
-                    (int)(src.positionY+Math.sin(src.anglePerRay*i + angletart)*dist), src.direction);
+            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angleStart)*dist),
+                    (int)(src.positionY+Math.sin(src.anglePerRay*i + angleStart)*dist), src.direction);
             //above returns a list of all the points around the mouse 800 units away will need to TODO: adapt this to be based on character DIR
             Point position = new Point((int) src.positionX,(int) src.positionY);
             LineSegment ray = new LineSegment(position,target,0);
-            Point ci = RayCast.getClosestIntersection(ray,activeSegments);
+            Point ci = RayCast.getClosestIntersection(ray,activeSegments, src);
             if(ci != null) {result.add(ci);}
             else {result.add(target);}
         }
@@ -164,15 +164,16 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
         g.setColor(Color.GREEN);
         for(Point p : currentRays){
-            g.drawLine((int) Agent.positionX,(int) Agent.positionY, p.x,p.y);
-            g.fillOval( p.x-5,p.y-5,10,10);
+            SimplePoint P = new SimplePoint(p);
+            g.drawLine((int) Agent1.positionX,(int) Agent1.positionY, (int) P.x, (int) P.y);
+            //g.fillOval( p.x-5,p.y-5,10,10);
         }
         g.setColor(Color.BLUE);
-        g.fillOval((int) Agent.positionX - Agent.size/2, (int) Agent.positionY - Agent.size/2, Agent.size, Agent.size);
+        g.fillOval((int) Agent1.positionX - Agent1.size/2, (int) Agent1.positionY - Agent1.size/2, Agent1.size, Agent1.size);
 
         for (Point ray :currentRays) {
             if(ray.type == 2){
-                System.out.println(ray);
+                //System.out.println(ray);
             }
 
         }
@@ -187,8 +188,8 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        Agent.agentMov(e.getKeyChar(), activeSegments);
-        currentRays = castRays(Agent, 800);//B number of rays and how far to check
+        Agent1.agentMov(e.getKeyChar(), activeSegments);
+        currentRays = castRays(Agent1, (int) RANGE);//B number of rays and how far to check
         repaint();
     }
 

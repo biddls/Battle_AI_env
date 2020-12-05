@@ -2,25 +2,24 @@
 
 import java.util.ArrayList;
 
-public class agent {
+public class Agent {
 
-    public float positionX = 630;
-    public float positionY = 350;
-    public float direction = 220;//degrees
+    public float positionX = 10;
+    public float positionY = 10;
+    public float direction = 0;//degrees
     public int size = 10;
-    public float rays = 50;
-    public float fov = 45;
+    public float rays = 4;
+    public float fov = 90;
     public float anglePerRay = (float) 0;
 
 
 
     public void agentMov(char keyPressed, ArrayList<LineSegment> segments) {
-
+        //System.out.println(positionX + "|" + positionY);
         anglePerRay = (float) (((fov * Math.PI)/180)/rays);
-        this.direction = this.direction % 360;
-        if (this.direction < 0) this.direction += 360;
+        //this.direction = this.direction % 360;
+        //if (this.direction < 0) this.direction += 360;
 
-        if (this.direction < 0) this.direction += 360;
         switch (keyPressed){
             case 'q':
                 this.direction -= 1;
