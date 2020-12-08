@@ -194,7 +194,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-       key = e.getKeyChar();
+        key = e.getKeyChar();
         repaint();
     }
 

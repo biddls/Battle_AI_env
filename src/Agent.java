@@ -8,7 +8,7 @@ public class Agent {
     public float positionY = 10;
     public float direction = 0;//degrees
     public int size = 10;
-    public float rays = 50;
+    public float rays = 1000;
     public float fov = 90;
     public float anglePerRay = (float) 0;
 
