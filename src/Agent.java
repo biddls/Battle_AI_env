@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Agent {
 
-    public float positionX = 10;
-    public float positionY = 10;
+    public float positionX = 300;
+    public float positionY = 150;
     public float direction = 0;//degrees
     public int size = 10;
-    public float rays = 1000;
+    public float rays = 100;
     public float fov = 90;
     public float anglePerRay = (float) 0;
 

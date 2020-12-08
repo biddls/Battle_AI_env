@@ -89,21 +89,22 @@ public class RayCast {
             if(dist <= Math.pow(RANGE, 2)) {//makes sure its within 800 units
                 if (x <= Math.max(wall.b.x, wall.a.x) && x >= Math.min(wall.b.x, wall.a.x)){
                     Polar point = new Polar(ray.a, new SimplePoint(x, y));
-                    double dir = Math.abs((720 - agent.direction) % 360);
-                    double limit1 = PolarMath(dir - (agent.fov / 2));
-                    double limit2 = PolarMath(dir + (agent.fov / 2));
-                    System.out.println(limit2 + "|" + dir + "|" + limit1);
-                    if(limit2 >= agent.fov){
-                        limit2 -= limit1;
-                        point.angle -= limit1;
-                        limit1 = 0;
-                        System.out.println("KMS");
-                    }else if(limit2 < agent.fov){
-                        //limit2 = (360- limit1) + limit2;
-                        limit2 += 360;
-                        //point.angle = (360-limit1) + limit2;
-                        //limit1 = 0;
-                        System.out.println("DNF");
+                    double dir = 360 + (-agent.direction % 360);
+                    double limit1 = (90 + (agent.direction - agent.fov / 2)) % 360;
+                    limit1 = Math.abs((720 - limit1) % 360);
+                    double limit2 = (dir + agent.fov / 2) % 360;
+                    if(point.angle <= limit2 && point.angle >= limit1){
+                        return new Point(x,y);
+                    }
+                    if(limit2 < 90) {
+                        if (point.angle < 90) {
+                            limit1 = 0;
+                            System.out.println(limit2 + "\t||\t" + dir + "\t|\t" + point.angle + "\t||\t" + limit1);
+                        }
+                        if (point.angle > 270) {
+                            limit2 = 360;
+                            System.out.println(limit2 + "\t||\t" + dir + "\t|\t" + point.angle + "\t||\t" + limit1);
+                        }
                     }
                     if(point.angle <= limit2 && point.angle >= limit1){
                         return new Point(x,y);
@@ -116,8 +117,11 @@ public class RayCast {
 
     private static double PolarMath(double v) {
         v = (360 + v) % 360;
-
         return v;
+    }
+
+    private static int div(double a, double b) {
+        return (int) (a/b);
     }
 
     public static Point getClosestIntersection(LineSegment ray,ArrayList<LineSegment> segments, Agent angle){
