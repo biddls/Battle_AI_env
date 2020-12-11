@@ -74,8 +74,6 @@ public class RayCast {
         float d = wall.c;
         float A = (d-c)/(a-b);
         float B = a*((d-c)/(a-b)) + c;
-        //System.out.println(A);
-        //System.out.println(B);
         return new Point((int) A, (int) B);
     }
 
@@ -99,11 +97,11 @@ public class RayCast {
                     if(limit2 < 90) {
                         if (point.angle < 90) {
                             limit1 = 0;
-                            System.out.println(limit2 + "\t||\t" + dir + "\t|\t" + point.angle + "\t||\t" + limit1);
+//                            System.out.println(limit2 + "\t||\t" + dir + "\t|\t" + point.angle + "\t||\t" + limit1);
                         }
                         if (point.angle > 270) {
                             limit2 = 360;
-                            System.out.println(limit2 + "\t||\t" + dir + "\t|\t" + point.angle + "\t||\t" + limit1);
+//                            System.out.println(limit2 + "\t||\t" + dir + "\t|\t" + point.angle + "\t||\t" + limit1);
                         }
                     }
                     if(point.angle <= limit2 && point.angle >= limit1){

@@ -11,6 +11,7 @@ public class Agent {
     public float rays = 100;
     public float fov = 90;
     public float anglePerRay = (float) 0;
+    public SimplePoint bounce = new SimplePoint(0,0);
 
 
 
@@ -65,13 +66,14 @@ public class Agent {
             Point intersect = RayCast.getIntersection(character, segment, 0);
             if (intersect != null){
                 Point bouncePoint = RayCast.intersectLines(change, segment);
+                this.bounce = bouncePoint.getPoint();
                 //float c = (float) (bouncePoint.y - segment.angleGrad * bouncePoint.x);
                 //float x = this.positionX;
                 //float y = this.positionY;
                 float m = (float) segment.angleGrad;
                 //float m2 = (float) Math.pow(m, 2);
-                this.positionX = (float) (startX - changeX);
-                this.positionY = (float) (startY - changeY);
+                this.positionX = (float) (startX - (5 * changeX));
+                this.positionY = (float) (startY - (5 * changeY));
                 /*
                 this.positionX = (((1 - m2) * x) + (2 * m * y) - (2 * m * c)) / (m2 + 1);
                 this.positionY = (((m2  - 1) * y) + (2 * m * x) + (2 * c)) / (m2 + 1);

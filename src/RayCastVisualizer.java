@@ -176,6 +176,8 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         }
         currentRays = castRays(Agent1, (int) RANGE);//B number of rays and how far to check
         g.fillOval((int) Agent1.positionX - Agent1.size/2, (int) Agent1.positionY - Agent1.size/2, Agent1.size, Agent1.size);
+        g.setColor(Color.RED);
+        g.fillOval((int) Agent1.bounce.x - Agent1.size/2, (int) Agent1.bounce.y - Agent1.size/2, Agent1.size, Agent1.size);
 
         for (Point ray :currentRays) {
             if(ray.type == 2){
@@ -189,7 +191,6 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
@@ -200,10 +201,8 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        key= 0;
+        key = 0;
         repaint();
-
-
     }
 
 
