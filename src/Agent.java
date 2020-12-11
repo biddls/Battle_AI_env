@@ -12,6 +12,7 @@ public class Agent {
     public float rays = 100;
     public float fov = 90;
     public float anglePerRay = (float) 0;
+    private final int[] DIMENSIONS = {10 + (size / 2), 10 + (size / 2), 640 - (this.size / 2), 360 - (size / 2)};
 
 
     public void agentMov(char keyPressed, ArrayList<LineSegment> segments) {
@@ -54,6 +55,11 @@ public class Agent {
         Point start = new Point(startX, startY);
         Point end = new Point(positionX, positionY);
 
+        positionX = (positionX > DIMENSIONS[2]) ? DIMENSIONS[2] : positionX;
+        positionY = (positionY > DIMENSIONS[3]) ? DIMENSIONS[3] : positionY;
+        positionX = (positionX < DIMENSIONS[0]) ? DIMENSIONS[0] : positionX;
+        positionY = (positionY < DIMENSIONS[1]) ? DIMENSIONS[1] : positionY;
+
         double perpendicular;
         for(int i = 0; i < segments.size(); i++){//goes through all segments
             LineSegment segment = segments.get(i);//gets a segment
@@ -64,7 +70,7 @@ public class Agent {
                 //these 4 lines ^ create a line that is perpendicular to the line it is near
                 Point intersect = RayCast.intersectLines(new LineSegment(a, b,1), segment);
                 if (BetweenX(intersect, segment) && BetweenY(intersect, segment)){
-                    if (RayCast.distance(intersect, positionX, positionY) <= 6) {
+                    if (RayCast.distance(intersect, positionX, positionY) <= 5) {
                         this.positionX = (float) (startX - (1 * changeX));
                         this.positionY = (float) (startY - (1 * changeY));
                     }
