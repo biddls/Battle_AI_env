@@ -21,7 +21,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
                 JFrame window = new JFrame();
                 RayCastVisualizer rcv = new RayCastVisualizer();
                 window.setTitle("RayCast Visualizer");
-                window.setSize(657,400);
+                window.setSize(667,410);
                 window.addKeyListener(rcv);
                 window.add(rcv);
                 window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -47,10 +47,10 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
         //Border Polygon
         Polygon b = new Polygon();
-        b.addPoint(0,0);
-        b.addPoint(640,0);
+        b.addPoint(10,10);
+        b.addPoint(640,10);
         b.addPoint(640,360);
-        b.addPoint(0,360);
+        b.addPoint(10,360);
         activePolygons.add(b);
 
         Polygon p1 = new Polygon();
@@ -72,7 +72,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         p3.addPoint(300,200);
         p3.addPoint(350,320);
         activePolygons.add(p3);
-        activeAgents.add(p3);
+        //activeAgents.add(p3);
 
         Polygon p4 = new Polygon();
         p4.addPoint(340,60);
@@ -81,7 +81,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         activePolygons.add(p4);
 
         Polygon p5 = new Polygon();
-        //p5.addPoint(450,190);
+        p5.addPoint(450,190);
         p5.addPoint(560,170);
         p5.addPoint(540,270);
         p5.addPoint(430,290);
@@ -167,7 +167,8 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         for(Point p : currentRays){
             SimplePoint P = new SimplePoint(p);
             g.drawLine((int) Agent1.positionX,(int) Agent1.positionY, (int) P.x, (int) P.y);
-            //g.fillOval( p.x-5,p.y-5,10,10);
+            int size = 2;
+            g.fillOval( (int) P.x - size,(int) P.y - size,size,size);
         }
         g.setColor(Color.BLUE);
         if(key != 0){
@@ -177,7 +178,6 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         currentRays = castRays(Agent1, (int) RANGE);//B number of rays and how far to check
         g.fillOval((int) Agent1.positionX - Agent1.size/2, (int) Agent1.positionY - Agent1.size/2, Agent1.size, Agent1.size);
         g.setColor(Color.RED);
-        g.fillOval((int) Agent1.bounce.x - Agent1.size/2, (int) Agent1.bounce.y - Agent1.size/2, Agent1.size, Agent1.size);
 
         for (Point ray :currentRays) {
             if(ray.type == 2){

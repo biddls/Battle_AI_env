@@ -6,7 +6,7 @@ public class LineSegment {
     public SimplePoint b;
     public int type;
     public Vector dir;
-    public double angle;
+    public double angleDeg;
     public double angleRad;
     public double angleGrad;
     public float length;
@@ -24,9 +24,9 @@ public class LineSegment {
                     Math.pow(dir.y, 2));
         }
         if (type == 1 && a.x - b.x != 0) {//if a wall it gets the angle of it
-            this.angle = Math.atan(a.y - b.y) / (a.x - b.x);
-            this.angleGrad = Math.atan((a.y - b.y) / (a.x - b.x));
-            this.angleRad = Math.atan(angleGrad);
+            this.angleRad = Math.atan((a.y - b.y) / (a.x - b.x));
+            this.angleDeg = Math.toDegrees(angleRad);
+            this.angleGrad = (a.y - b.y) / (a.x - b.x);
             this.c = (float) (a.y - angleGrad * a.x);
         }
     }
