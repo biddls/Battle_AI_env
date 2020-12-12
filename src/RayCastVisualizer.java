@@ -146,13 +146,10 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
             Point position = new Point((int) src.positionX,(int) src.positionY);
             LineSegment ray = new LineSegment(position,target,0);
             Point ci = RayCast.getClosestIntersection(ray,activeSegments, src);
-            if(ci != null) {result.add(ci);}
-            else {result.add(target);}
+            if (ci == null) {result.add(target);} else {result.add(ci);}
         }
         return result;//B list of all points that the rays intersect with
     }
-
-
 
     @Override
     public void paint(Graphics g) {//TODO: add characters
@@ -183,11 +180,8 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
             if(ray.type == 2){
                 //System.out.println(ray);
             }
-
         }
-
     }
-
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -204,9 +198,4 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         key = 0;
         repaint();
     }
-
-
 }
-
-
-
