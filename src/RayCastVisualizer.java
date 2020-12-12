@@ -121,10 +121,10 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         repaint();
     }
 
-    int initType(Polygon shape) {
+    int initType(Polygon shape) {//0 is nothing, 1 is wall, 2 is agent, 3 is for bullet
         if(activePolygons.contains(shape)){
             if (activeAgents.contains(shape)){
-                return 2;
+                return 1;
             }else{
                 return 1;
             }
@@ -180,6 +180,11 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
             if(ray.type == 2){
                 //System.out.println(ray);
             }
+        }
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
