@@ -1,7 +1,5 @@
-//tODO someone who gets java fix this cus i did the math but dunno how to convert to java best of luck xd
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.LinkedHashSet;
 
 public class Agent {
 
@@ -13,34 +11,48 @@ public class Agent {
     public float fov = 90;
     public float anglePerRay = (float) 0;
     private final int[] DIMENSIONS = {10 + (size / 2), 10 + (size / 2), 640 - (this.size / 2), 360 - (size / 2)};
+    private ArrayList pressing = new ArrayList<>();
 
+    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list){
+        Set<T> set = new LinkedHashSet<>(list);
+        return new ArrayList<T>(set);
+    }
 
-    public void agentMov(char keyPressed, ArrayList<LineSegment> segments) {
-        anglePerRay = (float) (((fov * Math.PI)/180)/rays);
+    public void agentMov(char keyPressed, ArrayList<LineSegment> segments, int addOrTake) {//1 is add 0 is take
+        if (addOrTake > -1) {
+            pressing = removeDuplicates(pressing);
+            if (addOrTake == 1 && !pressing.contains(keyPressed)) {//add
+                pressing.add(keyPressed);
+            } else if (addOrTake == 0) {//take
+                if (pressing.contains(keyPressed)) {
+                    pressing.remove((Object) keyPressed);
+                }
+            }
 
-        switch (keyPressed){
-            case 'q':
-                this.direction -= 1;
-                break;
-            case 'e':
-                this.direction += 1;
-                break;
-            case 'w':
-                collisionCheck(segments, Math.cos(Math.toRadians(direction)),
-                        Math.sin(Math.toRadians(direction)));
-                break;
-            case 's':
-                collisionCheck(segments, -Math.cos(Math.toRadians(direction)),
-                        -Math.sin(Math.toRadians(direction)));
-                break;
-            case 'd':
-                collisionCheck(segments, -Math.cos(Math.toRadians(90-direction)),
-                        Math.sin(Math.toRadians(90-direction)));
-                break;
-            case 'a':
-                collisionCheck(segments, Math.cos(Math.toRadians(90-direction)),
-                        -Math.sin(Math.toRadians(90-direction)));
-                break;
+            anglePerRay = (float) (((fov * Math.PI) / 180) / rays);
+
+            int w = pressing.contains('w') ? 1 : 0;
+            int a = pressing.contains('a') ? 1 : 0;
+            int s = pressing.contains('s') ? 1 : 0;
+            int d = pressing.contains('d') ? 1 : 0;
+            int q = pressing.contains('q') ? 1 : 0;
+            int e = pressing.contains('e') ? 1 : 0;
+
+            ArrayList<Integer> onOrOff = new ArrayList<>(Arrays.asList(w, a, s, d, q, e));
+
+            this.direction = (q == 1 || e == 1) ? (q * (this.direction - 1)) + (e * (this.direction + 1)) : this.direction;
+
+            double dir = Math.toRadians(direction);
+            double dir90 = Math.toRadians(90-direction);
+            double cos = Math.cos(dir);
+            double cos90 = Math.cos(dir90);
+            double sin = Math.sin(dir);
+            double sin90 = Math.sin(dir90);
+
+            double x = (w * (cos)) + (a * (cos90)) + (s * -(cos)) + (d * -(cos90));
+            double y = (w * (sin)) + (a * -(sin90)) + (s * -(sin)) + (d * (sin90));
+
+            collisionCheck(segments, x, y);
         }
     }
 

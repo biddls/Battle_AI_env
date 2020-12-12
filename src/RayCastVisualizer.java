@@ -12,6 +12,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     Agent Agent1 = new Agent();//todo cahnge to agent1
     public static final double RANGE = 800;
     char key;
+    int addOrTake;
 
 
     public static void main(String[] args) {
@@ -168,8 +169,9 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
             g.fillOval( (int) P.x - size,(int) P.y - size,size,size);
         }
         g.setColor(Color.BLUE);
-        if(key != 0){
-            Agent1.agentMov(key, activeSegments);
+        if(addOrTake > -1){
+            Agent1.agentMov(key, activeSegments, addOrTake);
+            addOrTake = -1;
             repaint();
         }
         currentRays = castRays(Agent1, (int) RANGE);//B number of rays and how far to check
@@ -182,7 +184,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
             }
         }
         try {
-            Thread.sleep(50);
+            Thread.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -195,12 +197,14 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         key = e.getKeyChar();
+        addOrTake = 1;
         repaint();
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        key = 0;
+        key = e.getKeyChar();
+        addOrTake = 0;
         repaint();
     }
 }
