@@ -9,7 +9,7 @@ public class Agent {
     public float positionY = 150;
     public float direction = 0;//degrees
     public int size = 10;
-    public float rays = 100;
+    public float rays = 50;
     public float fov = 90;
     public float anglePerRay = (float) 0;
     private final int[] DIMENSIONS = {10 + (size / 2), 10 + (size / 2), 640 - (this.size / 2), 360 - (size / 2)};
