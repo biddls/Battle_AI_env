@@ -1,59 +1,32 @@
-import java.util.*;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.Set;
 
-public class Agent {
+public class Bullet {
 
-    public float positionX = 300;
-    public float positionY = 150;
-    public float direction = 0;//degrees
+    public float positionX;
+    public float positionY;
+    public float direction;//degrees
+    public double cos;//cos
+    public double sin;//sin
     public int size = 10;
-    public float rays = 100;
-    public float fov = 90;
-    public float anglePerRay = (float) 0;
     private final int[] DIMENSIONS = {10 + (size / 2), 10 + (size / 2), 640 - (this.size / 2), 360 - (size / 2)};
-    private ArrayList pressing = new ArrayList<>();
+    private int speed = 1;
 
-    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list){
-        Set<T> set = new LinkedHashSet<>(list);
-        return new ArrayList<T>(set);
+    public Bullet(float x, float y, float dir) {
+        this.positionX = x;
+        this.positionY = y;
+        this.direction = dir;
+        cos = Math.cos(Math.toRadians(direction));
+        sin = Math.sin(Math.toRadians(direction));
     }
 
-    public void agentMov(char keyPressed, ArrayList<LineSegment> segments, int addOrTake) {//1 is add 0 is take
-        if (addOrTake > -1) {
-            pressing = removeDuplicates(pressing);
-            if (addOrTake == 1 && !pressing.contains(keyPressed)) {//add
-                pressing.add(keyPressed);
-            } else if (addOrTake == 0) {//take
-                if (pressing.contains(keyPressed)) {
-                    pressing.remove((Object) keyPressed);
-                }
-            }
+    public void update(ArrayList<LineSegment> segments) {//1 is add 0 is take
 
-            anglePerRay = (float) (((fov * Math.PI) / 180) / rays);
+        double x = speed * (cos);
+        double y = speed * (sin);
 
-            int w = pressing.contains('w') ? 1 : 0;
-            int a = pressing.contains('a') ? 1 : 0;
-            int s = pressing.contains('s') ? 1 : 0;
-            int d = pressing.contains('d') ? 1 : 0;
-            int q = pressing.contains('q') ? 1 : 0;
-            int e = pressing.contains('e') ? 1 : 0;
-
-//            ArrayList<Integer> onOrOff = new ArrayList<>(Arrays.asList(w, a, s, d, q, e));
-            
-            this.direction = (q == 1 ^ e == 1) ? (q * (this.direction - 1)) + (e * (this.direction + 1)) : this.direction;
-
-            double dir = Math.toRadians(direction);
-            double dir90 = Math.toRadians(90-direction);
-            double cos = Math.cos(dir);
-            double cos90 = Math.cos(dir90);
-            double sin = Math.sin(dir);
-            double sin90 = Math.sin(dir90);
-
-            double x = (w * (cos)) + (a * (cos90)) + (s * -(cos)) + (d * -(cos90));
-            double y = (w * (sin)) + (a * -(sin90)) + (s * -(sin)) + (d * (sin90));
-
-            collisionCheck(segments, x, y);
-        }
+        collisionCheck(segments, x, y);
     }
 
     private void collisionCheck(ArrayList<LineSegment> segments, double changeX, double changeY){
