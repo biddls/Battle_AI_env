@@ -56,5 +56,11 @@ public class Game {
 
     }
 
+    public void Claw() {
+
+        System.out.println("attack");
+
+    }
+
 
 }

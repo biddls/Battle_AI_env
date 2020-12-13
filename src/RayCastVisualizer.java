@@ -13,7 +13,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     public static final double RANGE = 800;
     char key;
     int addOrTake;
-
+    Game game   = new Game();
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -183,11 +183,6 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
                 //System.out.println(ray);
             }
         }
-        try {
-            Thread.sleep(0); // slow execution of the game
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -198,6 +193,9 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     public void keyPressed(KeyEvent e) {
         key = e.getKeyChar();
         addOrTake = 1;
+        if(e.getKeyCode() == 32){
+            game.Claw();
+        }
         repaint();
     }
 
