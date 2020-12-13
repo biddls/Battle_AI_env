@@ -29,7 +29,7 @@ public class RayCast {
         return new Point((int) A, (int) B);
     }
 
-    public static Point intersectLines(LineSegment ray, LineSegment wall, Agent agent){
+    public static Point intersectLines(LineSegment ray, LineSegment wall, Soldier soldier){
         Line L1 = new Line(ray.A, ray.B);//A is Agent, B is end point
         Line L2 = new Line(wall.A, wall.B);//defines the wall
 
@@ -47,10 +47,10 @@ public class RayCast {
             if(dist <= Math.pow(RANGE, 2)) {//makes sure its within 800 units
                 if (x <= Math.max(wall.b.x, wall.a.x) && x >= Math.min(wall.b.x, wall.a.x)){
                     Polar point = new Polar(ray.a, new SimplePoint(x, y));
-                    double dir = 360 + (-agent.direction % 360);
-                    double limit1 = (90 + (agent.direction - agent.fov / 2)) % 360;
+                    double dir = 360 + (-soldier.direction % 360);
+                    double limit1 = (90 + (soldier.direction - soldier.fov / 2)) % 360;
                     limit1 = Math.abs((720 - limit1) % 360);
-                    double limit2 = (dir + agent.fov / 2) % 360;
+                    double limit2 = (dir + soldier.fov / 2) % 360;
                     if(point.angle <= limit2 && point.angle >= limit1){
                         return new Point(x,y);
                     }
@@ -82,7 +82,7 @@ public class RayCast {
         return (int) (a/b);
     }
 
-    public static Point getClosestIntersection(LineSegment ray,ArrayList<LineSegment> segments, Agent angle){
+    public static Point getClosestIntersection(LineSegment ray,ArrayList<LineSegment> segments, Soldier angle){
         Point closestIntersect = null;
         double closestDistance = Double.MAX_VALUE;
         double closestDistanceTemp = Double.MAX_VALUE;

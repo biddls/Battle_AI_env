@@ -9,7 +9,8 @@ import java.util.ArrayList;
  */
 public class RayCastVisualizer extends JPanel implements KeyListener {
 
-    Agent Agent1 = new Agent();//todo cahnge to agent1
+    Soldier soldier = new Soldier();
+    Zombie zombie = new Zombie();
     public static final double RANGE = 800;
     char key;
     int addOrTake;
@@ -118,7 +119,8 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
     void init() {
 
-        currentRays = castRays(Agent1, (int) RANGE);//B number of rays and how far to check
+        currentRays = castRays(soldier, (int) RANGE);//B number of rays and how far to check
+        currentRaysZ = castRaysZ(zombie, (int) RANGE);//B number of rays and how far to check
         repaint();
     }
 
@@ -135,8 +137,25 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     }
 
     ArrayList<Point> currentRays = new ArrayList<>();
+    ArrayList<Point> currentRaysZ = new ArrayList<>();
 
-    public ArrayList<Point> castRays(Agent src, int dist){//TODO where in the int n fed in from (line 110 i found)
+    public ArrayList<Point> castRays(Soldier src, int dist){//TODO where in the int n fed in from (line 110 i found)
+
+        ArrayList<Point> result = new ArrayList<>();
+        float angleStart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
+        for (int i = 0; i < src.rays; i++) {//TODO: given the characters angle loop though certain angles
+            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angleStart)*dist),
+                    (int)(src.positionY+Math.sin(src.anglePerRay*i + angleStart)*dist), src.direction);
+            //above returns a list of all the points around the mouse 800 units away will need to TODO: adapt this to be based on character DIR
+            Point position = new Point((int) src.positionX,(int) src.positionY);
+            LineSegment ray = new LineSegment(position,target,0);
+            Point ci = RayCast.getClosestIntersection(ray,activeSegments, src);
+            if (ci == null) {result.add(target);} else {result.add(ci);}
+        }
+        return result;//B list of all points that the rays intersect with
+    }
+
+    public ArrayList<Point> castRaysZ(Zombie src, int dist){//TODO where in the int n fed in from (line 110 i found)
 
         ArrayList<Point> result = new ArrayList<>();
         float angleStart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
@@ -161,21 +180,32 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
             g.drawPolygon(p);
         }
 
-        g.setColor(Color.GREEN);
+        g.setColor(Color.RED);
         for(Point p : currentRays){
             SimplePoint P = new SimplePoint(p);
-            g.drawLine((int) Agent1.positionX,(int) Agent1.positionY, (int) P.x, (int) P.y);
+            g.drawLine((int) soldier.positionX,(int) soldier.positionY, (int) P.x, (int) P.y);
             int size = 2;
             g.fillOval( (int) P.x - size,(int) P.y - size,size,size);
         }
         g.setColor(Color.BLUE);
+
+        for(Point p : currentRays){
+            SimplePoint P = new SimplePoint(p);
+            g.drawLine((int) zombie.positionX,(int) zombie.positionY, (int) P.x, (int) P.y);
+            int size = 2;
+            g.fillOval( (int) P.x - size,(int) P.y - size,size,size);
+        }
+        g.setColor(Color.GREEN);
+
         if(addOrTake > -1){
-            Agent1.agentMov(key, activeSegments, addOrTake);
+            zombie.ZombieMov(key, activeSegments, addOrTake);
+            soldier.soldierMov(key, activeSegments, addOrTake);
             addOrTake = -1;
             repaint();
         }
-        currentRays = castRays(Agent1, (int) RANGE);//B number of rays and how far to check
-        g.fillOval((int) Agent1.positionX - Agent1.size/2, (int) Agent1.positionY - Agent1.size/2, Agent1.size, Agent1.size);
+        currentRays = castRays(soldier, (int) RANGE);//B number of rays and how far to check
+        currentRaysZ = castRaysZ(zombie, (int) RANGE);
+        g.fillOval((int) soldier.positionX - soldier.size/2, (int) soldier.positionY - soldier.size/2, soldier.size, soldier.size);
         g.setColor(Color.RED);
 
         for (Point ray :currentRays) {

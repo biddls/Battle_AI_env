@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.LinkedHashSet;
 
-public class Agent {
+public class Soldier {
 
     public float positionX = 300;
     public float positionY = 150;
@@ -18,7 +18,7 @@ public class Agent {
         return new ArrayList<T>(set);
     }
 
-    public void agentMov(char keyPressed, ArrayList<LineSegment> segments, int addOrTake) {//1 is add 0 is take
+    public void soldierMov(char keyPressed, ArrayList<LineSegment> segments, int addOrTake) {//1 is add 0 is take
         if (addOrTake > -1) {
             pressing = removeDuplicates(pressing);
             if (addOrTake == 1 && !pressing.contains(keyPressed)) {//add
