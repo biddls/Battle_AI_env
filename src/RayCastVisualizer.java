@@ -184,7 +184,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
             }
         }
         try {
-            Thread.sleep(1);
+            Thread.sleep(0); // slow execution of the game
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

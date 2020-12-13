@@ -1,22 +1,23 @@
 public class Game {
-    int healthA;
-    int healthB;
-    int reach;
-    int scoreA;
-    int scoreB;
-    int damage;
+    int healthSol = 3;
+    int healthZom = 1;
+    int reach = 5;
+    int scoreSol = 0;
+    int scoreZom = 0;
+    int damage = 1;
+    int magazine = 8;
 
     public void handleHealth(int health, char Agent) {
         switch (Agent) {
             case 'A':
-                healthA += health;
+                healthSol -= health;
                 System.out.println("agent A took" + health + "damage" );
-                scoreB += 1;
+                scoreZom += 1;
                 break;
             case 'B':
-                healthB += health;
+                healthZom -= health;
                 System.out.println("agent B took" + health + "damage" );
-                scoreA += 1;
+                scoreSol += 1;
                 break;
         }
 
@@ -28,5 +29,32 @@ public class Game {
             handleHealth(damage,attacked);
         }
     }
+
+    public void reset() {
+        healthSol = 3;
+        healthZom = 1;
+        scoreSol = 0;
+        scoreZom = 0;
+    }
+
+    public void shot(boolean hit, char attacked) {
+        if(magazine == 0){
+            int count = 0;
+            while((count!= 100)){ // supposed to shoot soldier from shooting
+                count++;
+            }
+            magazine = 8;
+        }
+        if (hit) {
+            System.out.println("soldier hit" + attacked);
+            magazine -= 1;
+            handleHealth(damage, attacked);
+        } else {
+            System.out.println("soldier missed");
+            magazine -= 1;
+        }
+
+    }
+
 
 }
