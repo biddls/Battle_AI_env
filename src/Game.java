@@ -11,6 +11,7 @@ public class Game {
     public int damage = 1;
     public int magazine = 8;
     public Human human1 = new Human();
+    public Zombie zombie1 = new Zombie();
     public ArrayList<LineSegment> LineSegments;
     public ArrayList<Bullet> bullets = new ArrayList<>();
     public ArrayList<Zombie> zombies = new ArrayList<>();
@@ -86,8 +87,8 @@ public class Game {
         }
     }
 
-    public void hit(Point AgentA, Point AgentB, char attacked) {
-        if(AgentA.x - AgentB.x < ZomReach && AgentA.y - AgentB.y < ZomReach){
+    public void hit(Zombie zombie, Human human,char attacked) {
+        if(zombie.positionX - human.positionX < ZomReach && zombie.positionY - human.positionY < ZomReach){
             handleHealth(damage,attacked);
         }
     }
@@ -119,6 +120,7 @@ public class Game {
 
     public void Claw() {
         System.out.println("attack");
+        hit(zombie1, human1,'h');
     }
 
 
