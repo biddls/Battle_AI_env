@@ -23,7 +23,7 @@ public class LineSegment {
             this.length = (float) Math.sqrt(Math.pow(dir.x, 2) +
                     Math.pow(dir.y, 2));
         }
-        if (type == 1 && a.x - b.x != 0) {//if a wall it gets the angle of it
+        if (a.x - b.x != 0) {//if a wall it gets the angle of it
             this.angleRad = Math.atan((a.y - b.y) / (a.x - b.x));
             this.angleDeg = Math.toDegrees(angleRad);
             this.angleGrad = (a.y - b.y) / (a.x - b.x);

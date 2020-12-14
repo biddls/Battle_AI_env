@@ -1,39 +1,56 @@
+import java.awt.*;
+import java.util.ArrayList;
+
 public class Game {
-    int healthSol = 3;
-    int healthZom = 1;
-    int reach = 5;
-    int scoreSol = 0;
-    int scoreZom = 0;
-    int damage = 1;
-    int magazine = 8;
+    public int healthHum = 3;
+    public int healthZom = 1;
+    public int ZomReach = 5;
+    public int scoreHum = 0;
+    public int scoreZom = 0;
+    public int damage = 1;
+    public int magazine = 8;
+    public Human human1 = new Human();
+    public ArrayList<LineSegment> LineSegments = new ArrayList<>();
+    public ArrayList<Bullet> bullets = new ArrayList<>();
+
+    public Game(ArrayList<LineSegment> walls){
+        this.LineSegments = walls;
+    }
+
+    public void fired(){
+        bullets.add(new Bullet(human1.positionX, human1.positionY, human1.direction));
+    }
+
+    public void update(){
+        bullets.removeIf(b -> b.update(LineSegments));
+        //do bullet zombie collision stuff
+    }
 
     public void handleHealth(int health, char Agent) {
         switch (Agent) {
             case 'A':
-                healthSol -= health;
+                healthHum -= health;
                 System.out.println("agent A took" + health + "damage" );
                 scoreZom += 1;
                 break;
             case 'B':
                 healthZom -= health;
                 System.out.println("agent B took" + health + "damage" );
-                scoreSol += 1;
+                scoreHum += 1;
                 break;
         }
-
     }
 
     public void hit(Point AgentA, Point AgentB, char attacked) {
-
-        if(AgentA.x - AgentB.x < reach && AgentA.y - AgentB.y < reach){
+        if(AgentA.x - AgentB.x < ZomReach && AgentA.y - AgentB.y < ZomReach){
             handleHealth(damage,attacked);
         }
     }
 
     public void reset() {
-        healthSol = 3;
+        healthHum = 3;
         healthZom = 1;
-        scoreSol = 0;
+        scoreHum = 0;
         scoreZom = 0;
     }
 
@@ -53,8 +70,5 @@ public class Game {
             System.out.println("soldier missed");
             magazine -= 1;
         }
-
     }
-
-
 }
