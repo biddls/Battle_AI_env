@@ -9,8 +9,7 @@ import java.util.ArrayList;
  */
 public class RayCastVisualizer extends JPanel implements KeyListener {
 
-    Soldier soldier = new Soldier();
-    Zombie zombie = new Zombie();
+    //Human human1 = new Human();
     public static final double RANGE = 800;
     public Game env;
     char key;
@@ -121,8 +120,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
     void init() {
 
-        currentRays = castRays(soldier, (int) RANGE);//B number of rays and how far to check
-        currentRaysZ = castRaysZ(zombie, (int) RANGE);//B number of rays and how far to check
+        currentRays = castRays(env.human1, (int) RANGE);//B number of rays and how far to check
         repaint();
     }
 
@@ -141,7 +139,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     ArrayList<Point> currentRays = new ArrayList<>();
     ArrayList<Point> currentRaysZ = new ArrayList<>();
 
-    public ArrayList<Point> castRays(Soldier src, int dist){//TODO where in the int n fed in from (line 110 i found)
+    public ArrayList<Point> castRays(Human src, int dist){
 
         ArrayList<Point> result = new ArrayList<>();
         float angleStart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
@@ -186,29 +184,21 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         g.setColor(Color.RED);
         for(Point p : currentRays){
             SimplePoint P = new SimplePoint(p);
-            g.drawLine((int) soldier.positionX,(int) soldier.positionY, (int) P.x, (int) P.y);
+            g.drawLine((int) env.human1.positionX,(int) env.human1.positionY, (int) P.x, (int) P.y);
             int size = 2;
             g.fillOval( (int) P.x - size,(int) P.y - size,size,size);
         }
-        g.setColor(Color.BLUE);
-
-        for(Point p : currentRays){
-            SimplePoint P = new SimplePoint(p);
-            g.drawLine((int) zombie.positionX,(int) zombie.positionY, (int) P.x, (int) P.y);
-            int size = 2;
-            g.fillOval( (int) P.x - size,(int) P.y - size,size,size);
-        }
-        g.setColor(Color.GREEN);
 
         if(addOrTake > -1){
-            zombie.ZombieMov(key, activeSegments, addOrTake);
-            soldier.soldierMov(key, activeSegments, addOrTake);
+            env.human1.agentMov(key, activeSegments, addOrTake);
+            if (env.human1.firing == 1){
+                env.fired();
+                env.human1.firing = -1;
+            }
             addOrTake = -1;
             repaint();
         }
-        currentRays = castRays(soldier, (int) RANGE);//B number of rays and how far to check
-        currentRaysZ = castRaysZ(zombie, (int) RANGE);
-        g.fillOval((int) soldier.positionX - soldier.size/2, (int) soldier.positionY - soldier.size/2, soldier.size, soldier.size);
+
         g.setColor(Color.RED);
         for (Bullet b : env.bullets){
             g.fillOval((int) b.positionX - b.size/2, (int) b.positionY - b.size/2, b.size, b.size);
@@ -224,6 +214,13 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
                 //System.out.println(ray);
             }
         }
+        try {
+            Thread.sleep(5); // slow execution of the game
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        addOrTake = 2;
+        repaint();
     }
 
     @Override
