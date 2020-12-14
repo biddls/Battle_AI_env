@@ -71,4 +71,12 @@ public class Game {
             magazine -= 1;
         }
     }
+
+    public void Claw() {
+
+        System.out.println("attack");
+
+    }
+
+
 }

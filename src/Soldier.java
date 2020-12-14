@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.LinkedHashSet;
 
-public class Human {
+public class Soldier {
 
     public float positionX = 300;
     public float positionY = 150;
@@ -12,24 +12,14 @@ public class Human {
     public float anglePerRay = (float) 0;
     private final int[] DIMENSIONS = {10 + (size / 2), 10 + (size / 2), 640 - (this.size / 2), 360 - (size / 2)};
     private ArrayList pressing = new ArrayList<>();
-    public int firing;
 
     public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list){
         Set<T> set = new LinkedHashSet<>(list);
         return new ArrayList<T>(set);
     }
 
-    public void agentMov(char keyPressed, ArrayList<LineSegment> segments, int addOrTake) {//1 is add 0 is take
+    public void soldierMov(char keyPressed, ArrayList<LineSegment> segments, int addOrTake) {//1 is add 0 is take
         if (addOrTake > -1) {
-            if (keyPressed == ' ' && firing != -1){
-                if (addOrTake == 1){
-                    this.firing = 1;
-                }else if (addOrTake == 0){
-                    this.firing = 0;
-                }
-                keyPressed = '1';
-            }
-
             pressing = removeDuplicates(pressing);
             if (addOrTake == 1 && !pressing.contains(keyPressed)) {//add
                 pressing.add(keyPressed);
@@ -49,7 +39,7 @@ public class Human {
             int e = pressing.contains('e') ? 1 : 0;
 
 //            ArrayList<Integer> onOrOff = new ArrayList<>(Arrays.asList(w, a, s, d, q, e));
-
+            
             this.direction = (q == 1 ^ e == 1) ? (q * (this.direction - 1)) + (e * (this.direction + 1)) : this.direction;
 
             double dir = Math.toRadians(direction);
@@ -82,11 +72,9 @@ public class Human {
             for (int i = 0; i < segments.size(); i++) {//goes through all segments
                 LineSegment segment = segments.get(i);//gets a segment
                 if (segment.angleDeg != 0) {//for all lines that arnt vertical
-                    perpendicular = segment.angleRad - (Math.PI / 2);//-90 degrees basically to get the perpendicular
-                    double perpX = size / 2 * Math.cos(perpendicular);
-                    double perpY = size / 2 * Math.sin(perpendicular);
-                    Point a = new Point((positionX + perpX), (positionY + perpY));//a point out in front
-                    Point b = new Point((positionX - perpX), (positionY - perpY));//a point beind
+                    perpendicular = segment.angleRad - (Math.PI / 2); //-90 degrees basically to get the perpendicular
+                    Point a = new Point((startX + size / 2 * Math.cos(perpendicular)), (startY + size / 2 * Math.sin(perpendicular)));//a point out in front
+                    Point b = new Point((startX - size / 2 * Math.cos(perpendicular)), (startY - size / 2 * Math.sin(perpendicular)));//a point beind
                     //these 4 lines ^ create a line that is perpendicular to the line it is near
                     Point intersect = RayCast.intersectLines(new LineSegment(a, b, 1), segment);
                     if (BetweenX(intersect, segment) && BetweenY(intersect, segment)) {
@@ -99,8 +87,8 @@ public class Human {
             }
         }
     }
-    //i know these 2 could be more efficient, its just nicer this way
-    public static boolean BetweenX(Point intersection, LineSegment segment){
+
+    private boolean BetweenX(Point intersection, LineSegment segment){
         SimplePoint inter = intersection.getPoint();
         int min = Math.min(segment.A.x, segment.B.x);
         int max = Math.max(segment.A.x, segment.B.x);
@@ -110,7 +98,7 @@ public class Human {
         return false;
     }
 
-    public static boolean BetweenY(Point intersection, LineSegment segment){
+    private boolean BetweenY(Point intersection, LineSegment segment){
         SimplePoint inter = intersection.getPoint();
         int min = Math.min(segment.A.y, segment.B.y);
         int max = Math.max(segment.A.y, segment.B.y);
