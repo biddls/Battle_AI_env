@@ -8,6 +8,7 @@ public class Zombie {
     public float positionY = 50;
     public float direction = 0;//degrees
     public static float distance = 800;//degrees
+    public int health = 1;
     public int size = 14;
     public float rays = 50;
     public float fov = 90;

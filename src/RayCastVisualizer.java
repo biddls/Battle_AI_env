@@ -4,6 +4,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+//todo: write up the stuff for the ray tracing for the zombie/human collisions
+//todo: do the combat
+//todo: work in the killing of the characters
+//todo: redo the classes and tidy the code
+
 /**
  * Created by Armin on 9/21/2017.
  */
@@ -16,19 +21,16 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     int addOrTake;
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JFrame window = new JFrame();
-                RayCastVisualizer rcv = new RayCastVisualizer();
-                window.setTitle("RayCast Visualizer");
-                window.setSize(667,410);
-                window.addKeyListener(rcv);
-                window.add(rcv);
-                window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                window.setVisible(true);
-                window.setFocusable(true);
-            }
+        SwingUtilities.invokeLater(() -> {
+            JFrame window = new JFrame();
+            RayCastVisualizer rcv = new RayCastVisualizer();
+            window.setTitle("RayCast Visualizer");
+            window.setSize(667,410);
+            window.addKeyListener(rcv);
+            window.add(rcv);
+            window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            window.setVisible(true);
+            window.setFocusable(true);
         });
     }
 
@@ -38,11 +40,10 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         initPolygons();
         initSegments();
         env = new Game(activeSegments);
-        init();
+        repaint();
     }
 
     ArrayList<Polygon> activePolygons = new ArrayList<>();
-    ArrayList<Polygon> activeAgents = new ArrayList<>();
     public void initPolygons(){
 
         //Border Polygon
@@ -109,23 +110,13 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
                     end = new Point(p.xpoints[i+1],p.ypoints[i+1]);
                 }
                 activeSegments.add(new LineSegment(start,end,initType(p)));
-                //System.out.println(initType(p));
-                //System.out.println("new segment : " + start + " -> " + end);
             }
         }
     }
 
-    void init() {
-        repaint();
-    }
-
     int initType(Polygon shape) {//0 is nothing, 1 is wall, 2 is agent, 3 is for bullet
         if(activePolygons.contains(shape)){
-            if (activeAgents.contains(shape)){
-                return 1;
-            }else{
-                return 1;
-            }
+            return 1;
         }else{
             return 0;
         }
@@ -133,19 +124,13 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
     @Override
     public void paint(Graphics g) {
+        int offset = 2;
         env.update();
         super.paint(g);
 
         g.setColor(Color.WHITE);
         for(Polygon p : activePolygons){
             g.drawPolygon(p);
-        }
-
-        //render the rays
-        g.setColor(Color.RED);
-        for(Point p : env.human1.currentRays){
-            SimplePoint P = new SimplePoint(p);
-            g.drawLine((int) env.human1.positionX,(int) env.human1.positionY, (int) P.x, (int) P.y);
         }
 
         //handle firing stuff
@@ -163,14 +148,21 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
             g.fillOval((int) b.positionX - b.size / 2, (int) b.positionY - b.size / 2, b.size, b.size);
 
         }
+        if (env.human1.health > 0) {
+            //render the rays
+            g.setColor(Color.RED);
+            for (Point p : env.human1.currentRays) {
+                SimplePoint P = new SimplePoint(p);
+                g.drawLine((int) env.human1.positionX, (int) env.human1.positionY, (int) P.x, (int) P.y);
+            }
 
-        //drawing the human
-        g.setColor(Color.WHITE);
-        g.fillOval((int) env.human1.positionX - env.human1.size/2, (int) env.human1.positionY - env.human1.size/2, env.human1.size, env.human1.size);
+            //drawing the human
+            g.setColor(Color.WHITE);
+            g.fillOval((int) env.human1.positionX - env.human1.size / 2, (int) env.human1.positionY - env.human1.size / 2, env.human1.size, env.human1.size);
 
-        g.setColor(Color.RED);
-        int offset = 2;
-        g.fillOval((int) env.human1.positionX - env.human1.size/2 + offset/2, (int) env.human1.positionY - env.human1.size/2 + offset/2, env.human1.size - offset, env.human1.size - offset);
+            g.setColor(Color.RED);
+            g.fillOval((int) env.human1.positionX - env.human1.size / 2 + offset / 2, (int) env.human1.positionY - env.human1.size / 2 + offset / 2, env.human1.size - offset, env.human1.size - offset);
+        }
 
 
 //        for (Point ray :env.human1.currentRays) {
@@ -180,17 +172,19 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 //        }
 
         //drawing the zombies
-        env.zombies.get(0).ZombieMov(key, activeSegments, addOrTake);
-        for(Zombie z : env.zombies) {
-            g.setColor(Color.WHITE);
-            g.fillOval((int) z.positionX - z.size/2, (int) z.positionY - z.size/2, z.size, z.size);
+        if (env.zombies.size() > 0) {
+            env.zombies.get(0).ZombieMov(key, activeSegments, addOrTake);
+            for (Zombie z : env.zombies) {
+                g.setColor(Color.WHITE);
+                g.fillOval((int) z.positionX - z.size / 2, (int) z.positionY - z.size / 2, z.size, z.size);
 
-            g.setColor(Color.GREEN);
-            g.fillOval((int) z.positionX - z.size/2 + offset/2, (int) z.positionY - z.size/2 + offset/2, z.size - offset, z.size - offset);
-            for (Point r : z.currentRays) {
                 g.setColor(Color.GREEN);
-                SimplePoint P = new SimplePoint(r);
-                g.drawLine((int) z.positionX, (int) z.positionY, (int) P.x, (int) P.y);
+                g.fillOval((int) z.positionX - z.size / 2 + offset / 2, (int) z.positionY - z.size / 2 + offset / 2, z.size - offset, z.size - offset);
+                for (Point r : z.currentRays) {
+                    g.setColor(Color.GREEN);
+                    SimplePoint P = new SimplePoint(r);
+                    g.drawLine((int) z.positionX, (int) z.positionY, (int) P.x, (int) P.y);
+                }
             }
         }
 
@@ -211,9 +205,6 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         key = e.getKeyChar();
-        if(e.getKeyCode() == 66) {
-            env.Claw();
-        }
         addOrTake = 1;
         repaint();
     }

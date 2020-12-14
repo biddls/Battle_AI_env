@@ -8,6 +8,7 @@ public class Bullet {
     private double cos;//cos
     private double sin;//sin
     public int size = 6;//gotta be even
+    public boolean alive = true;//gotta be even
     private final int[] DIMENSIONS = {10 + (size / 2), 10 + (size / 2), 640 - (this.size / 2), 360 - (size / 2)};
     private int speed = 2;
     public int type = 3;

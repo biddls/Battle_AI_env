@@ -19,6 +19,8 @@ public class RayCast {
 
     public static double distance(SimplePoint a, SimplePoint b, int dw){return Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2);}
 
+    public static double distanceEff(float x1, float y1, float x2, float y2){return Math.pow(x1-x2,2)+Math.pow(y1-y2,2);}
+
     public static Point intersectLines(LineSegment change, LineSegment wall){
         float a = (float) change.angleGrad;
         float c = change.c;
@@ -91,8 +93,10 @@ public class RayCast {
         return null;
     }
 
-    private static boolean Circles(float positionXb, float positionYb, int sizeb, float positionXz, float positionYz, int sizez) {
-
+    public static boolean CirclesCollision(float positionX1, float positionY1, int size1, float positionXz, float positionYz, int sizeZ) {
+        if (distanceEff(positionX1, positionY1, positionXz, positionYz) <= ((size1 * size1) + (sizeZ * sizeZ))){
+            return true;
+        }
         return false;
     }
 

@@ -7,6 +7,7 @@ public class Human {
     public float positionY = 150;
     public float direction = 0;//degrees
     public static float distance = 800;//degrees
+    public int health = 5;
     public int size = 10;
     public float rays = 50;
     public float fov = 90;
