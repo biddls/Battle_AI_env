@@ -172,6 +172,16 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
             g.fillOval( (int) P.x - size,(int) P.y - size,size,size);
         }
 
+        g.setColor(Color.GREEN);
+        for(Point p : currentRays){
+            SimplePoint P = new SimplePoint(p);
+            g.drawLine((int) env.zombie1.positionX,(int) env.zombie1.positionY, (int) P.x, (int) P.y);
+            int size = 2;
+            g.fillOval( (int) P.x - size,(int) P.y - size,size,size);
+        }
+
+
+
         if(addOrTake > -1){
             env.human1.agentMov(key, activeSegments, addOrTake);
             if (env.human1.firing == 1){
@@ -190,6 +200,11 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         g.setColor(Color.BLUE);
         currentRays = castRays(env.human1, (int) RANGE);//B number of rays and how far to check
         g.fillOval((int) env.human1.positionX - env.human1.size/2, (int) env.human1.positionY - env.human1.size/2, env.human1.size, env.human1.size);
+
+        g.setColor(Color.PINK);
+        currentRays = castRays(env.zombie1, (int) RANGE);//B number of rays and how far to check
+        g.fillOval((int) env.zombie1.positionX - env.human1.size/2, (int) env.zombie1.positionY - env.zombie1.size/2, env.zombie1.size, env.zombie1.size);
+
         g.setColor(Color.RED);
 
         for (Point ray :currentRays) {

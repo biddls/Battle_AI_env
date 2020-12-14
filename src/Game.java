@@ -10,6 +10,8 @@ public class Game {
     public int damage = 1;
     public int magazine = 8;
     public Human human1 = new Human();
+    public Zombie zombie1 = new Zombie();
+    public ArrayList<Zombie> zombies = new ArrayList<>();
     public ArrayList<LineSegment> LineSegments = new ArrayList<>();
     public ArrayList<Bullet> bullets = new ArrayList<>();
 
