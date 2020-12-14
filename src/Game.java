@@ -2,6 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Game {
+    public int zombieCount = 1;
     public int healthHum = 3;
     public int healthZom = 1;
     public int ZomReach = 5;
@@ -10,13 +11,19 @@ public class Game {
     public int damage = 1;
     public int magazine = 8;
     public Human human1 = new Human();
-    public Zombie zombie1 = new Zombie();
-    public ArrayList<Zombie> zombies = new ArrayList<>();
-    public ArrayList<LineSegment> LineSegments = new ArrayList<>();
+    public ArrayList<LineSegment> LineSegments;
     public ArrayList<Bullet> bullets = new ArrayList<>();
+    public ArrayList<Zombie> zombies = new ArrayList<>();
 
     public Game(ArrayList<LineSegment> walls){
         this.LineSegments = walls;
+        for(int i = 0; i < zombieCount; i++) {
+            zombies.add(new Zombie());
+        }
+    }
+
+    private Point spawnPoint(){
+        return new Point(50,50);
     }
 
     public void fired(){
@@ -24,8 +31,44 @@ public class Game {
     }
 
     public void update(){
-        bullets.removeIf(b -> b.update(LineSegments));
-        //do bullet zombie collision stuff
+        if (bullets != null) {
+            bullets.removeIf(b -> b.update(LineSegments));
+            //do bullet zombie collision stuff
+        }
+        human1.currentRays = castRays(human1);
+        zombies.get(0).currentRays = castRaysZ(zombies.get(0));
+    }
+
+    public ArrayList<Point> castRays(Human src){
+
+        ArrayList<Point> result = new ArrayList<>();
+        float angleStart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
+        for (int i = 0; i < src.rays; i++) {
+            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angleStart) * src.distance),
+                    (int)(src.positionY+Math.sin(src.anglePerRay*i + angleStart) * src.distance), src.direction);
+            //above returns a list of all the points around the mouse 800 units away will need to
+            Point position = new Point((int) src.positionX,(int) src.positionY);
+            LineSegment ray = new LineSegment(position,target,0);
+            Point ci = RayCast.getClosestIntersection(ray, LineSegments, this, src.direction, src.fov);
+            if (ci == null) {result.add(target);} else {result.add(ci);}
+        }
+        return result;//B list of all points that the rays intersect with
+    }
+
+    public ArrayList<Point> castRaysZ(Zombie src){
+
+        ArrayList<Point> result = new ArrayList<>();
+        float angleStart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
+        for (int i = 0; i < src.rays; i++) {
+            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angleStart) * src.distance),
+                    (int)(src.positionY+Math.sin(src.anglePerRay*i + angleStart) * src.distance), src.direction);
+            //above returns a list of all the points around the mouse 800 units away will need to
+            Point position = new Point((int) src.positionX,(int) src.positionY);
+            LineSegment ray = new LineSegment(position,target,0);
+            Point ci = RayCast.getClosestIntersection(ray, LineSegments, this, src.direction, src.fov);
+            if (ci == null) {result.add(target);} else {result.add(ci);}
+        }
+        return result;//B list of all points that the rays intersect with
     }
 
     public void handleHealth(int health, char Agent) {
@@ -75,9 +118,7 @@ public class Game {
     }
 
     public void Claw() {
-
         System.out.println("attack");
-
     }
 
 

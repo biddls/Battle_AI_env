@@ -87,24 +87,28 @@ public class RayCast {
                     return new Point(positionX, positionY);
                 }
             }
-
         }
         return null;
     }
 
-    private static double PolarMath(double v) {
-        v = (360 + v) % 360;
-        return v;
+    private static boolean Circles(float positionXb, float positionYb, int sizeb, float positionXz, float positionYz, int sizez) {
+
+        return false;
     }
 
-    private static int div(double a, double b) {
-        return (int) (a/b);
-    }
+//    private static double PolarMath(double v) {
+//        v = (360 + v) % 360;
+//        return v;
+//    }
+//
+//    private static int div(double a, double b) {
+//        return (int) (a/b);
+//    }
 
     public static Point getClosestIntersection(LineSegment ray, ArrayList<LineSegment> segments, Game env, float direction, float fov){
         Point closestIntersect = null;
         double closestDistance = Double.MAX_VALUE;
-        double closestDistanceTemp = Double.MAX_VALUE;
+        double closestDistanceTemp;
 
         for (LineSegment l : segments){
             Point intersect = intersectLines(ray, l, direction, fov);
@@ -116,18 +120,17 @@ public class RayCast {
                 }
             }
         }
-        for (Bullet b : env.bullets){
+
+        for (Bullet b : env.bullets) {
             Point intersect = intersectCircleRay(ray, b.positionX, b.positionY, b.size);
-//            System.out.println(intersect);
-            if (intersect != null){
+            if (intersect != null) {
                 closestDistanceTemp = closestDistance;
                 closestDistance = Math.min(closestDistance, distance(new SimplePoint(ray.A), new SimplePoint(intersect)));
-                if (closestDistance != closestDistanceTemp){
+                if (closestDistance != closestDistanceTemp) {
                     closestIntersect = intersect;
                 }
             }
         }
-
         return closestIntersect;
     }
 }

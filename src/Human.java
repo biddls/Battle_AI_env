@@ -6,6 +6,7 @@ public class Human {
     public float positionX = 300;
     public float positionY = 150;
     public float direction = 0;//degrees
+    public static float distance = 800;//degrees
     public int size = 10;
     public float rays = 50;
     public float fov = 90;
@@ -13,6 +14,7 @@ public class Human {
     private final int[] DIMENSIONS = {10 + (size / 2), 10 + (size / 2), 640 - (this.size / 2), 360 - (size / 2)};
     private ArrayList pressing = new ArrayList<>();
     public int firing;
+    public ArrayList<Point> currentRays;
 
     public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list){
         Set<T> set = new LinkedHashSet<>(list);
@@ -99,6 +101,7 @@ public class Human {
             }
         }
     }
+    
     //i know these 2 could be more efficient, its just nicer this way
     public static boolean BetweenX(Point intersection, LineSegment segment){
         SimplePoint inter = intersection.getPoint();
@@ -119,5 +122,4 @@ public class Human {
         }
         return false;
     }
-
 }
