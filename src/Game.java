@@ -23,23 +23,23 @@ public class Game {
         Random rnd = new Random();
         int choose = rnd.nextInt(5);
         switch (choose) {
-           case 1:
-               int pnt1 = rnd.nextInt(windowX -20 );
-               Point gen1 = new Point(pnt1+20 , 30);
-               return gen1;
-           case 2:
-               int pnt2 =  rnd.nextInt(windowY-20);
-               Point gen2 = new Point(windowX-20 ,pnt2 + 20);
-               return gen2;
-          case 3:
-              int pnt3 = rnd.nextInt(windowX-20);
-              Point gen3 = new Point(pnt3+20, windowY-20);
-               return gen3;
-           case 4:
-               int pnt4 = rnd.nextInt(windowY-20);
-               Point gen4 = new Point(20,pnt4+20 );
-               return gen4;
-       }
+            case 1:
+                int pnt1 = rnd.nextInt(windowX -20 );
+                Point gen1 = new Point(pnt1+20 , 20);
+                return gen1;
+            case 2:
+                int pnt2 =  rnd.nextInt(windowY-20);
+                Point gen2 = new Point(windowX ,pnt2 + 20);
+                return gen2;
+            case 3:
+                int pnt3 = rnd.nextInt(windowX-20);
+                Point gen3 = new Point(pnt3+20, windowY-20);
+                return gen3;
+            case 4:
+                int pnt4 = rnd.nextInt(windowY-20);
+                Point gen4 = new Point(20,pnt4+20 );
+                return gen4;
+        }
 
         return new Point(50,50);
     }
