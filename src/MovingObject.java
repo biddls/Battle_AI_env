@@ -13,8 +13,8 @@ public class MovingObject {
     public void collisionCheck(ArrayList<LineSegment> segments, double changeX, double changeY){
         float startX = positionX;
         float startY = positionY;
-        this.positionX += (float) changeX;
-        this.positionY += (float) changeY;
+        positionX += (float) changeX;
+        positionY += (float) changeY;
 
         if (type == 3) {
             if (positionX > DIMENSIONS[2] || positionY > DIMENSIONS[3] || positionX < DIMENSIONS[0] || positionY < DIMENSIONS[1]){
@@ -33,15 +33,17 @@ public class MovingObject {
             //gets a segment
             for (LineSegment segment : segments) {//goes through all segments
                 if (segment.angleDeg != 0) {//for all lines that arnt vertical
+
                     perpendicular = segment.angleRad - (Math.PI / 2);
-                    double perpX = size / 2 * Math.cos(perpendicular);
-                    double perpY = size / 2 * Math.sin(perpendicular);//-90 degrees basically to get the perpendicular
+                    double perpX = size * 0.5 * Math.cos(perpendicular);
+                    double perpY = size * 0.5 * Math.sin(perpendicular);//-90 degrees basically to get the perpendicular
                     Point a = new Point((positionX + perpX), (positionY + perpY));//a point out in front
                     Point b = new Point((positionX - perpX), (positionY - perpY));//a point beind
                     //these 4 lines ^ create a line that is perpendicular to the line it is near
+
                     Point intersect = RayCast.intersectLines(new LineSegment(a, b, 1), segment);
                     if (BetweenX(intersect, segment) && BetweenY(intersect, segment)) {
-                        if (RayCast.distance(intersect, positionX, positionY) <= size / 2) {
+                        if (RayCast.distance(intersect, positionX, positionY) <= size * 0.5) {
                             if (type == 3) {
                                 health -= 1;
                                 return;

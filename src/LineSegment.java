@@ -27,12 +27,6 @@ public class LineSegment {
         }
     }
 
-    public LineSegment(Point A,Vector dir){
-        this.A = A;
-        this.dir = dir;
-        this.B = new Point(A.x + dir.x,A.y + dir.y);
-    }
-
     @Override
     public String toString() {
         return "(" + A + " -> " + B + "||" + type + ")";

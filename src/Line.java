@@ -15,13 +15,6 @@ public class Line {
         this.m = (ay - by)/(ax - bx);
         this.c = (ay - (m * ax));
     }
-    public Point evaluateX(double x){
-        return new Point(x, m * x + c);
-    }
-
-    public Point evaluateY(double y){
-        return new Point((y - c)/m, y);
-    }
 
     @Override
     public String toString() {

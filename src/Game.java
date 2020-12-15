@@ -25,27 +25,23 @@ public class Game {
         switch (choose) {
             case 1:
                 int pnt1 = rnd.nextInt(windowX -20 );
-                Point gen1 = new Point(pnt1+20 , 20);
-                return gen1;
+                return new Point(pnt1+20 , 20);
             case 2:
                 int pnt2 =  rnd.nextInt(windowY-20);
-                Point gen2 = new Point(windowX ,pnt2 + 20);
-                return gen2;
+                return new Point(windowX ,pnt2 + 20);
             case 3:
                 int pnt3 = rnd.nextInt(windowX-20);
-                Point gen3 = new Point(pnt3+20, windowY-20);
-                return gen3;
+                return new Point(pnt3+20, windowY-20);
             case 4:
                 int pnt4 = rnd.nextInt(windowY-20);
-                Point gen4 = new Point(20,pnt4+20 );
-                return gen4;
+                return new Point(20,pnt4+20 );
         }
 
         return new Point(50,50);
     }
 
     public void fired(){
-        bullets.add(new Bullet(human1.positionX, human1.positionY, human1.direction));
+        bullets.add(new Bullet(human1.positionX, human1.positionY, human1.direction, 6, 2));
     }
 
     public void update(){
