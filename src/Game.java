@@ -10,7 +10,6 @@ public class Game {
     public int damage = 1;
     public int magazine = 8;
     public Human human1 = new Human();
-    public Zombie zombie1 = new Zombie();
     public ArrayList<LineSegment> LineSegments;
     public ArrayList<Bullet> bullets = new ArrayList<>();
     public ArrayList<Zombie> zombies = new ArrayList<>();
@@ -18,7 +17,7 @@ public class Game {
     public Game(ArrayList<LineSegment> walls){
         this.LineSegments = walls;
         for(int i = 0; i < zombieCount; i++) {
-            zombies.add(new Zombie());
+            zombies.add(new Zombie(spawnPoint()));
         }
     }
 
@@ -76,54 +75,11 @@ public class Game {
         return result;//B list of all points that the rays intersect with
     }
 
-    public void handleHealth(int health, char Agent) {
-        switch (Agent) {
-            case 'A':
-                healthHum -= health;
-                System.out.println("agent A took" + health + "damage" );
-                scoreZom += 1;
-                break;
-            case 'B':
-                healthZom -= health;
-                System.out.println("agent B took" + health + "damage" );
-                scoreHum += 1;
-                break;
-        }
-    }
-
-    public void hit(Zombie zombie, Human human,char attacked) {
-        if(zombie.positionX - human.positionX < ZomReach && zombie.positionY - human.positionY < ZomReach){
-            handleHealth(damage,attacked);
-        }
-    }
-
     public void reset() {
         healthHum = 3;
         healthZom = 1;
         scoreHum = 0;
         scoreZom = 0;
-    }
-
-    public void Shot(boolean hit, char attacked) {
-        if(magazine == 0){
-            int count = 0;
-            while((count!= 100)){ // supposed to shoot soldier from shooting
-                count++;
-            }
-            magazine = 8;
-        }
-        if (hit) {
-            System.out.println("soldier hit" + attacked);
-            magazine -= 1;
-            handleHealth(damage, attacked);
-        } else {
-            System.out.println("soldier missed");
-            magazine -= 1;
-        }
-    }
-
-    public void Claw() {
-        hit(zombie1, human1,'A');
     }
 
     private void collisions(){

@@ -4,8 +4,8 @@ import java.util.Set;
 
 public class Zombie {
 
-    public float positionX = 50;
-    public float positionY = 50;
+    public float positionX;
+    public float positionY;
     public float direction = 0;//degrees
     public static float distance = 800;//degrees
     public int health = 1;
@@ -21,6 +21,11 @@ public class Zombie {
 //        this.positionX = a.x;
 //        this.positionY = a.y;
 //    }
+
+    public Zombie(Point p){
+        this.positionX = p.x;
+        this.positionY = p.y;
+    }
 
     public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list){
         Set<T> set = new LinkedHashSet<>(list);
