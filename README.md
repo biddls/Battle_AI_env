@@ -1,19 +1,21 @@
 # RayCasting
 
-Simple 2D Ray Casting with Java. includes a Visualizer and a Line of Sight Demo.
+2D Ray Casting with Java. With a top down human zombie killing game built on top of it.
 
-RayCast Visualizer
+Human controls
 ------------------
+forward - w
+strafeLeft - a
+backwards - s
+strafeRight - d
+turnLeft - q
+turnRight - e
 
-
-<p align="center">
-  <img width="500" height="297" src="doc/raycast.gif?raw=true" />
-</p>
-
-Line of Sight
--------------
-
-
-<p align="center">
-  <img width="500" height="297" src="doc/lineofsight.gif?raw=true" />
-</p>
+Zombie controls
+------------------
+forward - i
+strafeLeft - j
+backwards - k
+strafeRight - l
+turnLeft - u
+turnRight - o
