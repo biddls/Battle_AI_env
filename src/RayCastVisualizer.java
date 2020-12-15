@@ -5,8 +5,6 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 //todo: write up the stuff for the ray tracing for the zombie/human collisions
-//todo: do the combat
-//todo: work in the killing of the characters
 //todo: redo the classes and tidy the code
 
 /**
@@ -195,6 +193,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
             e.printStackTrace();
         }
         addOrTake = 2;
+
         repaint();
     }
 

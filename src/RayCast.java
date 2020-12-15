@@ -100,16 +100,7 @@ public class RayCast {
         return false;
     }
 
-//    private static double PolarMath(double v) {
-//        v = (360 + v) % 360;
-//        return v;
-//    }
-//
-//    private static int div(double a, double b) {
-//        return (int) (a/b);
-//    }
-
-    public static Point getClosestIntersection(LineSegment ray, ArrayList<LineSegment> segments, Game env, float direction, float fov){
+    public static Point getClosestIntersection(LineSegment ray, ArrayList<LineSegment> segments, Game env, float direction, float fov, char HZ){
         Point closestIntersect = null;
         double closestDistance = Double.MAX_VALUE;
         double closestDistanceTemp;
@@ -135,6 +126,30 @@ public class RayCast {
                 }
             }
         }
+
+        if (HZ == 'H' && env.zombies.size() > 0){
+            for (Zombie z : env.zombies) {
+                Point intersect = intersectCircleRay(ray, z.positionX, z.positionY, z.size);
+                if (intersect != null) {
+                    closestDistanceTemp = closestDistance;
+                    closestDistance = Math.min(closestDistance, distance(new SimplePoint(ray.A), new SimplePoint(intersect)));
+                    if (closestDistance != closestDistanceTemp) {
+                        closestIntersect = intersect;
+                    }
+                }
+            }
+        }else if (HZ == 'Z' && env.zombies.size() > 0){
+            Point intersect = intersectCircleRay(ray, env.human1.positionX, env.human1.positionY, env.human1.size);
+            if (intersect != null) {
+                closestDistanceTemp = closestDistance;
+                closestDistance = Math.min(closestDistance, distance(new SimplePoint(ray.A), new SimplePoint(intersect)));
+                if (closestDistance != closestDistanceTemp) {
+                    closestIntersect = intersect;
+                }
+            }
+
+        }
+
         return closestIntersect;
     }
 }

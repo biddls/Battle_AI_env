@@ -54,7 +54,7 @@ public class Game {
             //above returns a list of all the points around the mouse 800 units away will need to
             Point position = new Point((int) src.positionX,(int) src.positionY);
             LineSegment ray = new LineSegment(position,target,0);
-            Point ci = RayCast.getClosestIntersection(ray, LineSegments, this, src.direction, src.fov);
+            Point ci = RayCast.getClosestIntersection(ray, LineSegments, this, src.direction, src.fov, 'H');
             if (ci == null) {result.add(target);} else {result.add(ci);}
         }
         return result;//B list of all points that the rays intersect with
@@ -70,7 +70,7 @@ public class Game {
             //above returns a list of all the points around the mouse 800 units away will need to
             Point position = new Point((int) src.positionX,(int) src.positionY);
             LineSegment ray = new LineSegment(position,target,0);
-            Point ci = RayCast.getClosestIntersection(ray, LineSegments, this, src.direction, src.fov);
+            Point ci = RayCast.getClosestIntersection(ray, LineSegments, this, src.direction, src.fov, 'Z');
             if (ci == null) {result.add(target);} else {result.add(ci);}
         }
         return result;//B list of all points that the rays intersect with
