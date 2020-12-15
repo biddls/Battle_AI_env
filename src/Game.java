@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Game {
+    int windowX = 680;
+    int windowY = 410;
     public int zombieCount = 1;
     public int healthHum = 3;
     public int healthZom = 1;
@@ -21,8 +24,29 @@ public class Game {
         }
     }
 
+
     private Point spawnPoint(){
-        return new Point(50,50);
+
+        Random rnd = new Random();
+
+        Point gen1 = new Point(rnd.ints(1,20,windowY- 20), 20);
+        Point gen2 = new Point(windowX - 20, rnd.ints(1,20,windowY -20));
+        Point gen3 = new Point(rnd.ints(1,20,windowY), windowY -20);
+        Point gen4 = new Point(20, rnd.ints(1,20,windowY - 20));
+        int choose = rnd.nextInt(5);
+
+        switch (choose) {
+            case 1:
+                return gen1;
+            case 2:
+                return gen2;
+            case 3:
+                return gen3;
+            case 4:
+                return gen4;
+        }
+
+        return gen2;
     }
 
     public void fired(){

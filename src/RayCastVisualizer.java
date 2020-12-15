@@ -18,8 +18,6 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     public Game env;
     char key;
     int addOrTake;
-    int windowX = 680;
-    int windowY = 410;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -124,30 +122,6 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         }else{
             return 0;
         }
-    }
-
-
-    Point random() {
-        Random rnd = new Random();
-
-        Point gen1 = new Point(rnd.ints(1,20,windowY), 20);
-        Point gen2 = new Point(windowX - 20, rnd.ints(1,windowX+20,windowY -20));
-        Point gen3 = new Point(rnd.ints(1,20,windowY), windowY -20);
-        Point gen4 = new Point(20, rnd.ints(1,20,windowY - 20));
-        int choose = rnd.nextInt(5);
-
-        switch (choose) {
-            case 1:
-                return gen1;
-            case 2:
-                return gen2;
-            case 3:
-                return gen3;
-            case 4:
-                return gen4;
-        }
-
-        return gen2;
     }
 
     @Override
