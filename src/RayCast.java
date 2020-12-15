@@ -86,7 +86,7 @@ public class RayCast {
             Point intersect = RayCast.intersectLines(new LineSegment(a, b, 1), ray);
             if (Human.BetweenX(intersect, ray) && Human.BetweenY(intersect, ray)) {
                 if (RayCast.distance(intersect, positionX, positionY) <= size/2) {
-                    return new Point(positionX, positionY);
+                    return intersect;
                 }
             }
         }
@@ -138,7 +138,7 @@ public class RayCast {
                     }
                 }
             }
-        }else if (HZ == 'Z' && env.zombies.size() > 0){
+        }else if ((HZ == 'Z' && env.zombies.size() > 0) && env.human1.health > 0){
             Point intersect = intersectCircleRay(ray, env.human1.positionX, env.human1.positionY, env.human1.size);
             if (intersect != null) {
                 closestDistanceTemp = closestDistance;

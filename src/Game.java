@@ -10,7 +10,6 @@ public class Game {
     public int ZomReach = 5;
     public int scoreHum = 0;
     public int scoreZom = 0;
-    public int damage = 1;
     public int magazine = 8;
     public Human human1 = new Human(300, 150, 5, 10);
     public ArrayList<LineSegment> LineSegments;
@@ -23,7 +22,6 @@ public class Game {
             zombies.add(new Zombie(spawnPoint(), 1, 14));
         }
     }
-
 
     private Point spawnPoint(){
 
@@ -54,9 +52,11 @@ public class Game {
     }
 
     public void update(){
-        if (bullets != null) {
-            bullets.removeIf(b -> b.update(LineSegments));
-            //do bullet zombie collision stuff
+        if (bullets.size() > 0) {
+            for (Bullet b : bullets){
+                b.update(LineSegments);
+            }
+            bullets.removeIf(b -> b.health < 1);
         }
         if (human1.health > 0) {
             human1.currentRays = castRaysH(human1);

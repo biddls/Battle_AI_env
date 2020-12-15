@@ -137,7 +137,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
         //handle firing stuff
         if(addOrTake > -1){
-            env.human1.agentMov(key, activeSegments, addOrTake);
+            env.human1.Mov(key, activeSegments, addOrTake);
             if (env.human1.firing == 1){
                 env.fired();
                 env.human1.firing = -1;
@@ -166,16 +166,9 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
             g.fillOval((int) env.human1.positionX - env.human1.size / 2 + offset / 2, (int) env.human1.positionY - env.human1.size / 2 + offset / 2, env.human1.size - offset, env.human1.size - offset);
         }
 
-
-//        for (Point ray :env.human1.currentRays) {
-//            if(ray.type == 2){
-//                //System.out.println(ray);
-//            }
-//        }
-
         //drawing the zombies
         if (env.zombies.size() > 0) {
-            env.zombies.get(0).ZombieMov(key, activeSegments, addOrTake);
+            env.zombies.get(0).Mov(key, activeSegments, addOrTake);
             for (Zombie z : env.zombies) {
                 g.setColor(Color.WHITE);
                 g.fillOval((int) z.positionX - z.size / 2, (int) z.positionY - z.size / 2, z.size, z.size);

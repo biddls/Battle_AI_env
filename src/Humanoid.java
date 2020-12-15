@@ -10,6 +10,7 @@ public class Humanoid extends MovingObject{
     public static int distance = 800;//degrees
     public ArrayList<Point> currentRays;
     public char[] keys = {' ', ' ', ' ', ' ', ' ', ' '};
+    public int firing;
 
 
     public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list){
@@ -19,15 +20,16 @@ public class Humanoid extends MovingObject{
 
     public void Mov(char keyPressed, ArrayList<LineSegment> segments, int addOrTake) {//1 is add 0 is take
         if (addOrTake > -1) {
-            //add firing class for human
-//            if (keyPressed == ' ' && firing != -1) {
-//                if (addOrTake == 1) {
-//                    this.firing = 1;
-//                } else if (addOrTake == 0) {
-//                    this.firing = 0;
-//                }
-//                keyPressed = '1';
-//            }
+            if (type == 2) {
+                if (keyPressed == ' ' && firing != -1) {
+                    if (addOrTake == 1) {
+                        this.firing = 1;
+                    } else if (addOrTake == 0) {
+                        this.firing = 0;
+                    }
+                    keyPressed = '1';
+                }
+            }
 
             pressing = removeDuplicates(pressing);
             if (addOrTake == 1 && !pressing.contains(keyPressed)) {//add
@@ -60,41 +62,6 @@ public class Humanoid extends MovingObject{
             double y = (forward * (sin)) + (strafeLeft * -(sin90)) + (backwards * -(sin)) + (strafeRight * (sin90));
 
             collisionCheck(segments, x, y);
-        }
-    }
-
-
-    public void collisionCheck(ArrayList<LineSegment> segments, double changeX, double changeY){
-        float startX = positionX;
-        float startY = positionY;
-        this.positionX += (float) changeX;
-        this.positionY += (float) changeY;
-
-        positionX = (positionX > DIMENSIONS[2]) ? DIMENSIONS[2] : positionX;
-        positionY = (positionY > DIMENSIONS[3]) ? DIMENSIONS[3] : positionY;
-        positionX = (positionX < DIMENSIONS[0]) ? DIMENSIONS[0] : positionX;
-        positionY = (positionY < DIMENSIONS[1]) ? DIMENSIONS[1] : positionY;
-
-        if (startX != positionX || startY != positionY) {
-            double perpendicular;
-            for (int i = 0; i < segments.size(); i++) {//goes through all segments
-                LineSegment segment = segments.get(i);//gets a segment
-                if (segment.angleDeg != 0) {//for all lines that arnt vertical
-                    perpendicular = segment.angleRad - (Math.PI / 2);//-90 degrees basically to get the perpendicular
-                    double perpX = size / 2 * Math.cos(perpendicular);
-                    double perpY = size / 2 * Math.sin(perpendicular);
-                    Point a = new Point((positionX + perpX), (positionY + perpY));//a point out in front
-                    Point b = new Point((positionX - perpX), (positionY - perpY));//a point beind
-                    //these 4 lines ^ create a line that is perpendicular to the line it is near
-                    Point intersect = RayCast.intersectLines(new LineSegment(a, b, 1), segment);
-                    if (BetweenX(intersect, segment) && BetweenY(intersect, segment)) {
-                        if (RayCast.distance(intersect, positionX, positionY) <= 6) {
-                            this.positionX = (float) (startX - (2 * changeX));
-                            this.positionY = (float) (startY - (2 * changeY));
-                        }
-                    }
-                }
-            }
         }
     }
 }
