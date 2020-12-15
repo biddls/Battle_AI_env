@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Bullet {
+public class Bullet extends MovingObject{
 
     public float positionX;
     public float positionY;
@@ -8,7 +8,7 @@ public class Bullet {
     private double cos;//cos
     private double sin;//sin
     public int size = 6;//gotta be even
-    public boolean alive = true;//gotta be even
+    public int health = 1;//gotta be even
     private final int[] DIMENSIONS = {10 + (size / 2), 10 + (size / 2), 640 - (this.size / 2), 360 - (size / 2)};
     private int speed = 2;
     public int type = 3;
@@ -57,25 +57,4 @@ public class Bullet {
         }
         return false;
     }
-
-    private boolean BetweenX(Point intersection, LineSegment segment){
-        SimplePoint inter = intersection.getPoint();
-        int min = Math.min(segment.A.x, segment.B.x);
-        int max = Math.max(segment.A.x, segment.B.x);
-        if(min <= inter.x && inter.x <= max){
-            return true;
-        }
-        return false;
-    }
-
-    private boolean BetweenY(Point intersection, LineSegment segment){
-        SimplePoint inter = intersection.getPoint();
-        int min = Math.min(segment.A.y, segment.B.y);
-        int max = Math.max(segment.A.y, segment.B.y);
-        if(min <= inter.y && inter.y <= max){
-            return true;
-        }
-        return false;
-    }
-
 }

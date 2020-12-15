@@ -12,7 +12,7 @@ public class Game {
     public int scoreZom = 0;
     public int damage = 1;
     public int magazine = 8;
-    public Human human1 = new Human();
+    public Human human1 = new Human(300, 150, 5, 10);
     public ArrayList<LineSegment> LineSegments;
     public ArrayList<Bullet> bullets = new ArrayList<>();
     public ArrayList<Zombie> zombies = new ArrayList<>();
@@ -20,7 +20,7 @@ public class Game {
     public Game(ArrayList<LineSegment> walls){
         this.LineSegments = walls;
         for(int i = 0; i < zombieCount; i++) {
-            zombies.add(new Zombie(spawnPoint()));
+            zombies.add(new Zombie(spawnPoint(), 1, 14));
         }
     }
 
@@ -114,14 +114,14 @@ public class Game {
             if (bullets != null) {
                 for (Bullet b : bullets) {
                     if (RayCast.CirclesCollision(b.positionX, b.positionY, b.size, z.positionX, z.positionY, z.size)) {
-                        b.alive = false;
+                        b.health -= 1;
                         z.health -= 1;
                     }
                 }
             }
         }
         if (bullets != null) {
-            bullets.removeIf(b -> !b.alive);
+            bullets.removeIf(b -> b.health < 1);
         }
         if (zombies.size() > 0) {
             zombies.removeIf(z -> z.health < 1);
