@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
-    int windowX = 680;
-    int windowY = 410;
+    int windowX = 620;
+    int windowY = 340;
     public int zombieCount = 2;
     public Human human1 = new Human(300, 150, 5, 10);
     public ArrayList<LineSegment> LineSegments;
@@ -29,7 +29,7 @@ public class Game {
                return gen1;
            case 2:
                int pnt2 =  rnd.nextInt(windowY-20);
-               Point gen2 = new Point(windowX ,pnt2 + 20);
+               Point gen2 = new Point(windowX-20 ,pnt2 + 20);
                return gen2;
           case 3:
               int pnt3 = rnd.nextInt(windowX-20);
