@@ -100,7 +100,7 @@ public class RayCast {
         return false;
     }
 
-    public static Point getClosestIntersection(LineSegment ray, ArrayList<LineSegment> segments, Game env, float direction, float fov, char HZ){
+    public static Point getClosestIntersection(LineSegment ray, ArrayList<LineSegment> segments, Game env, float direction, float fov, int HZ){
         Point closestIntersect = null;
         double closestDistance = Double.MAX_VALUE;
         double closestDistanceTemp;
@@ -127,7 +127,7 @@ public class RayCast {
             }
         }
 
-        if (HZ == 'H' && env.zombies.size() > 0){
+        if (HZ == 2 && env.zombies.size() > 0){
             for (Zombie z : env.zombies) {
                 Point intersect = intersectCircleRay(ray, z.positionX, z.positionY, z.size);
                 if (intersect != null) {
@@ -138,7 +138,7 @@ public class RayCast {
                     }
                 }
             }
-        }else if ((HZ == 'Z' && env.zombies.size() > 0) && env.human1.health > 0){
+        }else if ((HZ == 4 && env.zombies.size() > 0) && env.human1.health > 0){
             Point intersect = intersectCircleRay(ray, env.human1.positionX, env.human1.positionY, env.human1.size);
             if (intersect != null) {
                 closestDistanceTemp = closestDistance;

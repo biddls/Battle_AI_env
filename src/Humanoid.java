@@ -3,8 +3,8 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Humanoid extends MovingObject{
-    public float rays = 50;
-    public float fov = 90;
+    public int rays = 50;
+    public int fov = 90;
     public float anglePerRay = (float) (((fov * Math.PI) / 180) / rays);
     public ArrayList pressing = new ArrayList<>();
     public static int distance = 800;//degrees
@@ -63,5 +63,21 @@ public class Humanoid extends MovingObject{
 
             collisionCheck(segments, x, y);
         }
+    }
+
+    public ArrayList<Point> castRays(ArrayList<LineSegment> LineSegments, Game self){
+
+        ArrayList<Point> result = new ArrayList<>();
+        float angleStart = (float) (((direction - (fov/2)) * Math.PI)/180);
+        for (int i = 0; i < rays; i++) {
+            Point target = new Point((int)(positionX+Math.cos(anglePerRay*i + angleStart) * distance),
+                    (int)(positionY+Math.sin(anglePerRay*i + angleStart) * distance), direction);
+            //above returns a list of all the points around the mouse 800 units away will need to
+            Point position = new Point((int) positionX,(int) positionY);
+            LineSegment ray = new LineSegment(position,target,0);
+            Point ci = RayCast.getClosestIntersection(ray, LineSegments, self, direction, fov, type);
+            if (ci == null) {result.add(target);} else {result.add(ci);}
+        }
+        return result;//B list of all points that the rays intersect with
     }
 }

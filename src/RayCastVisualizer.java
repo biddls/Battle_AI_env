@@ -5,12 +5,10 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-//todo: write up the stuff for the ray tracing for the zombie/human collisions
-//todo: redo the classes and tidy the code
-
 /**
  * Created by Armin on 9/21/2017.
  */
+
 public class RayCastVisualizer extends JPanel implements KeyListener {
 
     //Human human1 = new Human();

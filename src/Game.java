@@ -59,44 +59,12 @@ public class Game {
             bullets.removeIf(b -> b.health < 1);
         }
         if (human1.health > 0) {
-            human1.currentRays = castRaysH(human1);
+            human1.currentRays = human1.castRays(LineSegments, this);
         }
         if (zombies.size() > 0) {
-            zombies.get(0).currentRays = castRaysZ(zombies.get(0));
+            zombies.get(0).currentRays = zombies.get(0).castRays(LineSegments, this);
         }
         collisions();
-    }
-
-    public ArrayList<Point> castRaysH(Human src){
-
-        ArrayList<Point> result = new ArrayList<>();
-        float angleStart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
-        for (int i = 0; i < src.rays; i++) {
-            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angleStart) * src.distance),
-                    (int)(src.positionY+Math.sin(src.anglePerRay*i + angleStart) * src.distance), src.direction);
-            //above returns a list of all the points around the mouse 800 units away will need to
-            Point position = new Point((int) src.positionX,(int) src.positionY);
-            LineSegment ray = new LineSegment(position,target,0);
-            Point ci = RayCast.getClosestIntersection(ray, LineSegments, this, src.direction, src.fov, 'H');
-            if (ci == null) {result.add(target);} else {result.add(ci);}
-        }
-        return result;//B list of all points that the rays intersect with
-    }
-
-    public ArrayList<Point> castRaysZ(Zombie src){
-
-        ArrayList<Point> result = new ArrayList<>();
-        float angleStart = (float) (((src.direction - (src.fov/2)) * Math.PI)/180);
-        for (int i = 0; i < src.rays; i++) {
-            Point target = new Point((int)(src.positionX+Math.cos(src.anglePerRay*i + angleStart) * src.distance),
-                    (int)(src.positionY+Math.sin(src.anglePerRay*i + angleStart) * src.distance), src.direction);
-            //above returns a list of all the points around the mouse 800 units away will need to
-            Point position = new Point((int) src.positionX,(int) src.positionY);
-            LineSegment ray = new LineSegment(position,target,0);
-            Point ci = RayCast.getClosestIntersection(ray, LineSegments, this, src.direction, src.fov, 'Z');
-            if (ci == null) {result.add(target);} else {result.add(ci);}
-        }
-        return result;//B list of all points that the rays intersect with
     }
 
     public void reset() {
