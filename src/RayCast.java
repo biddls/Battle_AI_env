@@ -1,23 +1,13 @@
 import java.util.ArrayList;
 
 public class RayCast {
-
-    public static final double EPSILON = 0.0001;
     private static final double RANGE = RayCastVisualizer.RANGE;
-
-    public static double crossProduct(SimpleVector a, SimpleVector b) {
-        return a.x * b.y - b.x * a.y;
-    }
 
     public static double distance(SimplePoint a,SimplePoint b){return Math.sqrt(Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2));}
 
     public static double distance(Point a,double x, double y){return Math.sqrt(Math.pow(x-a.x,2)+Math.pow(y-a.y,2));}
 
-    public static double distance(Point a,Point b){return Math.sqrt(Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2));}
-
-    public static double distance(Point a,SimplePoint b){return Math.sqrt(Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2));}
-
-    public static double distance(SimplePoint a, SimplePoint b, int dw){return Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2);}
+    public static double distanceEff(SimplePoint a, SimplePoint b){return Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2);}
 
     public static double distanceEff(float x1, float y1, float x2, float y2){return Math.pow(x1-x2,2)+Math.pow(y1-y2,2);}
 
@@ -45,7 +35,7 @@ public class RayCast {
                 x = (L1.c - L2.c)/(L2.m - L1.m);//finds intersection point in the X axis
                 y = L1.m * x + L1.c;//finds y intercept
             }
-            double dist = distance(new SimplePoint(x, y), ray.A.getPoint(), 0);//does not SQRT the answer to save computationaly
+            double dist = distanceEff(new SimplePoint(x, y), ray.A.getPoint());//does not SQRT the answer to save computationaly
             if(dist <= Math.pow(RANGE, 2)) {//makes sure its within 800 units
                 if (x <= Math.max(wall.b.x, wall.a.x) && x >= Math.min(wall.b.x, wall.a.x)){
                     Polar point = new Polar(ray.a, new SimplePoint(x, y));
@@ -94,10 +84,7 @@ public class RayCast {
     }
 
     public static boolean CirclesCollision(float positionX1, float positionY1, int size1, float positionXz, float positionYz, int sizeZ) {
-        if (distanceEff(positionX1, positionY1, positionXz, positionYz) <= ((size1 * size1) + (sizeZ * sizeZ))){
-            return true;
-        }
-        return false;
+        return distanceEff(positionX1, positionY1, positionXz, positionYz) <= ((size1 * size1) + (sizeZ * sizeZ));
     }
 
     public static Point getClosestIntersection(LineSegment ray, ArrayList<LineSegment> segments, Game env, float direction, float fov, int HZ){
@@ -147,9 +134,7 @@ public class RayCast {
                     closestIntersect = intersect;
                 }
             }
-
         }
-
         return closestIntersect;
     }
 }

@@ -4,13 +4,7 @@ import java.util.Random;
 public class Game {
     int windowX = 680;
     int windowY = 410;
-    public int zombieCount = 1;
-    public int healthHum = 3;
-    public int healthZom = 1;
-    public int ZomReach = 5;
-    public int scoreHum = 0;
-    public int scoreZom = 0;
-    public int magazine = 8;
+    public int zombieCount = 2;
     public Human human1 = new Human(300, 150, 5, 10);
     public ArrayList<LineSegment> LineSegments;
     public ArrayList<Bullet> bullets = new ArrayList<>();
@@ -62,32 +56,25 @@ public class Game {
             human1.currentRays = human1.castRays(LineSegments, this);
         }
         if (zombies.size() > 0) {
-            zombies.get(0).currentRays = zombies.get(0).castRays(LineSegments, this);
-        }
-        collisions();
-    }
-
-    public void reset() {
-        healthHum = 3;
-        healthZom = 1;
-        scoreHum = 0;
-        scoreZom = 0;
-    }
-
-    private void collisions(){
-        for (Zombie z : zombies){
-            if (RayCast.CirclesCollision(human1.positionX, human1.positionY, human1.size, z.positionX, z.positionY, z.size)) {
-                human1.health -= 1;
-            }
-            if (bullets != null) {
-                for (Bullet b : bullets) {
-                    if (RayCast.CirclesCollision(b.positionX, b.positionY, b.size, z.positionX, z.positionY, z.size)) {
-                        b.health -= 1;
-                        z.health -= 1;
+            for (Zombie z : zombies) {
+                z.currentRays = z.castRays(LineSegments, this);
+                if (RayCast.CirclesCollision(human1.positionX, human1.positionY, human1.size, z.positionX, z.positionY, z.size)) {
+                    human1.health -= 1;
+                }
+                if (bullets != null) {
+                    for (Bullet b : bullets) {
+                        if (RayCast.CirclesCollision(b.positionX, b.positionY, b.size, z.positionX, z.positionY, z.size)) {
+                            b.health -= 1;
+                            z.health -= 1;
+                        }
                     }
                 }
             }
         }
+        checkForDead();
+    }
+
+    private void checkForDead(){
         if (bullets != null) {
             bullets.removeIf(b -> b.health < 1);
         }
