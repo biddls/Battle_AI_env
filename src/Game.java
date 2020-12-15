@@ -56,9 +56,11 @@ public class Game {
         }
         if (zombies.size() > 0) {
             for (Zombie z : zombies) {
-                z.currentRays = z.castRays(LineSegments, this);
-                if (RayCast.CirclesCollision(human1.positionX, human1.positionY, human1.size, z.positionX, z.positionY, z.size)) {
-                    human1.health -= 1;
+                if (z.health > 0) {
+                    z.currentRays = z.castRays(LineSegments, this);
+                    if (RayCast.CirclesCollision(human1.positionX, human1.positionY, human1.size, z.positionX, z.positionY, z.size)) {
+                        human1.health -= 1;
+                    }
                 }
                 if (bullets != null) {
                     for (Bullet b : bullets) {

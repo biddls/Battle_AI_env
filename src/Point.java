@@ -9,8 +9,6 @@ public class Point {
 
     public double x;
     public double y;
-    public IntStream yS;
-    public IntStream xS;
 
     public int type;
     public float direction;
@@ -30,24 +28,6 @@ public class Point {
         this.x = x;
         this.y = y;
         this.direction = direction;
-    }
-
-
-    public Point(int x, int y, int type ) {
-        this.x = x;
-        this.y = y;
-        this.type = type;
-
-    }
-
-    public Point(int x, IntStream yS) {
-        this.x = x;
-        this.yS = yS;
-    }
-
-    public Point(IntStream xS, int y) {
-        this.xS = xS;
-        this.y = y;
     }
 
     @Override

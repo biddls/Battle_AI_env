@@ -19,7 +19,7 @@ public class Humanoid extends MovingObject{
     }
 
     public void Mov(char keyPressed, ArrayList<LineSegment> segments, int addOrTake) {//1 is add 0 is take
-        if (addOrTake > -1) {
+        if (addOrTake > -1 && health > 0) {
             if (type == 2) {
                 if (keyPressed == ' ' && firing != -1) {
                     if (addOrTake == 1) {
