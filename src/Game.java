@@ -25,7 +25,7 @@ public class Game {
         switch (choose) {
            case 1:
                int pnt1 = rnd.nextInt(windowX -20 );
-               Point gen1 = new Point(pnt1+20 , 20);
+               Point gen1 = new Point(pnt1+20 , 30);
                return gen1;
            case 2:
                int pnt2 =  rnd.nextInt(windowY-20);
