@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Bullet extends MovingObject{
-    private double cos;//cos
-    private double sin;//sin
+    private final double cos;//cos
+    private final double sin;//sin
     public int size = 6;//gotta be even
 
     public Bullet(float x, float y, float dir) {

@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 public class Zombie extends Humanoid {
     public Zombie(Point p, int health, int size){
         this.positionX = p.x;

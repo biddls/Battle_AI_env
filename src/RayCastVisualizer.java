@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by Armin on 9/21/2017.
@@ -18,19 +17,16 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     int addOrTake;
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JFrame window = new JFrame();
-                RayCastVisualizer rcv = new RayCastVisualizer();
-                window.setTitle("RayCast Visualizer");
-                window.setSize(680, 410);
-                window.addKeyListener(rcv);
-                window.add(rcv);
-                window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                window.setVisible(true);
-                window.setFocusable(true);
-            }
+        SwingUtilities.invokeLater(() -> {
+            JFrame window = new JFrame();
+            RayCastVisualizer rcv = new RayCastVisualizer();
+            window.setTitle("RayCast Visualizer");
+            window.setSize(680, 410);
+            window.addKeyListener(rcv);
+            window.add(rcv);
+            window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            window.setVisible(true);
+            window.setFocusable(true);
         });
     }
 
@@ -114,7 +110,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         }
     }
 
-    int initType(Polygon shape) {//0 is nothing, 1 is wall, 2 is agent, 3 is for bullet
+    int initType(Polygon shape) {//0 is nothing, 1 is wall, 2 is agent, 3 is for bullet, 4 is zombie
         if(activePolygons.contains(shape)){
             return 1;
         }else{

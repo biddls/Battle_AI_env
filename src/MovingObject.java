@@ -30,8 +30,8 @@ public class MovingObject {
 
         if (startX != positionX || startY != positionY) {
             double perpendicular;
-            for (int i = 0; i < segments.size(); i++) {//goes through all segments
-                LineSegment segment = segments.get(i);//gets a segment
+            //gets a segment
+            for (LineSegment segment : segments) {//goes through all segments
                 if (segment.angleDeg != 0) {//for all lines that arnt vertical
                     perpendicular = segment.angleRad - (Math.PI / 2);
                     double perpX = size / 2 * Math.cos(perpendicular);
@@ -41,11 +41,11 @@ public class MovingObject {
                     //these 4 lines ^ create a line that is perpendicular to the line it is near
                     Point intersect = RayCast.intersectLines(new LineSegment(a, b, 1), segment);
                     if (BetweenX(intersect, segment) && BetweenY(intersect, segment)) {
-                        if (RayCast.distance(intersect, positionX, positionY) <= size/2) {
+                        if (RayCast.distance(intersect, positionX, positionY) <= size / 2) {
                             if (type == 3) {
                                 health -= 1;
                                 return;
-                            }else if (type == 2 || type == 4){
+                            } else if (type == 2 || type == 4) {
                                 this.positionX = (float) (startX - (2 * changeX));
                                 this.positionY = (float) (startY - (2 * changeY));
                             }
@@ -61,19 +61,13 @@ public class MovingObject {
         SimplePoint inter = intersection.getPoint();
         int min = Math.min(segment.A.x, segment.B.x);
         int max = Math.max(segment.A.x, segment.B.x);
-        if(min <= inter.x && inter.x <= max){
-            return true;
-        }
-        return false;
+        return min <= inter.x && inter.x <= max;
     }
 
     public static boolean BetweenY(Point intersection, LineSegment segment){
         SimplePoint inter = intersection.getPoint();
         int min = Math.min(segment.A.y, segment.B.y);
         int max = Math.max(segment.A.y, segment.B.y);
-        if(min <= inter.y && inter.y <= max){
-            return true;
-        }
-        return false;
+        return min <= inter.y && inter.y <= max;
     }
 }
