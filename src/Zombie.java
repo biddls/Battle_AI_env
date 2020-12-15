@@ -1,7 +1,7 @@
 public class Zombie extends Humanoid {
     public Zombie(Point p, int health, int size){
-        this.positionX = p.x;
-        this.positionY = p.y;
+        this.positionX = (float) p.x;
+        this.positionY = (float) p.y;
         this.health = health;
         this.size = size;
         this.keys = new char[] {'i', 'j', 'k', 'l', 'u', 'o'};

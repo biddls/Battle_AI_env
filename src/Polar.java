@@ -2,8 +2,8 @@ public class Polar {//angle only
     double angle;
     double r;
 
-    public Polar(SimplePoint agentPos, SimplePoint rayPos){
-        SimplePoint origin = SimplePoint.subtract(agentPos, rayPos);
+    public Polar(Point agentPos, Point rayPos){
+        Point origin = Point.subtract(agentPos, rayPos);
         this.r = Math.sqrt(Math.pow(origin.x,2) + Math.pow(origin.y,2));
         double temp = Math.toDegrees(Math.atan2(-origin.y, origin.x));
         if (temp < 0){

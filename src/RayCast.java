@@ -3,11 +3,11 @@ import java.util.ArrayList;
 public class RayCast {
     private static final double RANGE = RayCastVisualizer.RANGE;
 
-    public static double distance(SimplePoint a,SimplePoint b){return Math.sqrt(Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2));}
+    public static double distance(Point a,Point b){return Math.sqrt(Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2));}
 
     public static double distance(Point a,double x, double y){return Math.sqrt(Math.pow(x-a.x,2)+Math.pow(y-a.y,2));}
 
-    public static double distanceEff(SimplePoint a, SimplePoint b){return Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2);}
+    public static double distanceEff(Point a, Point b){return Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2);}
 
     public static double distanceEff(float x1, float y1, float x2, float y2){return Math.pow(x1-x2,2)+Math.pow(y1-y2,2);}
 
@@ -35,10 +35,10 @@ public class RayCast {
                 x = (L1.c - L2.c)/(L2.m - L1.m);//finds intersection point in the X axis
                 y = L1.m * x + L1.c;//finds y intercept
             }
-            double dist = distanceEff(new SimplePoint(x, y), ray.A.getPoint());//does not SQRT the answer to save computationaly
+            double dist = distanceEff(new Point(x, y), ray.A);//does not SQRT the answer to save computationaly
             if(dist <= Math.pow(RANGE, 2)) {//makes sure its within 800 units
-                if (x <= Math.max(wall.b.x, wall.a.x) && x >= Math.min(wall.b.x, wall.a.x)){
-                    Polar point = new Polar(ray.a, new SimplePoint(x, y));
+                if (x <= Math.max(wall.B.x, wall.A.x) && x >= Math.min(wall.B.x, wall.A.x)){
+                    Polar point = new Polar(ray.A, new Point(x, y));
                     double dir = 360 + (-direction % 360);
                     double limit1 = (90 + (direction - fov / 2)) % 360;
                     limit1 = Math.abs((720 - limit1) % 360);
@@ -96,7 +96,7 @@ public class RayCast {
             Point intersect = intersectLines(ray, l, direction, fov);
             if (intersect != null){
                 closestDistanceTemp = closestDistance;
-                closestDistance = Math.min(closestDistance, distance(new SimplePoint(ray.A), new SimplePoint(intersect)));
+                closestDistance = Math.min(closestDistance, distance(ray.A, intersect));
                 if (closestDistance != closestDistanceTemp){
                     closestIntersect = intersect;
                 }
@@ -107,7 +107,7 @@ public class RayCast {
             Point intersect = intersectCircleRay(ray, b.positionX, b.positionY, b.size);
             if (intersect != null) {
                 closestDistanceTemp = closestDistance;
-                closestDistance = Math.min(closestDistance, distance(new SimplePoint(ray.A), new SimplePoint(intersect)));
+                closestDistance = Math.min(closestDistance, distance(ray.A, intersect));
                 if (closestDistance != closestDistanceTemp) {
                     closestIntersect = intersect;
                 }
@@ -119,7 +119,7 @@ public class RayCast {
                 Point intersect = intersectCircleRay(ray, z.positionX, z.positionY, z.size);
                 if (intersect != null) {
                     closestDistanceTemp = closestDistance;
-                    closestDistance = Math.min(closestDistance, distance(new SimplePoint(ray.A), new SimplePoint(intersect)));
+                    closestDistance = Math.min(closestDistance, distance(ray.A, intersect));
                     if (closestDistance != closestDistanceTemp) {
                         closestIntersect = intersect;
                     }
@@ -129,7 +129,7 @@ public class RayCast {
             Point intersect = intersectCircleRay(ray, env.human1.positionX, env.human1.positionY, env.human1.size);
             if (intersect != null) {
                 closestDistanceTemp = closestDistance;
-                closestDistance = Math.min(closestDistance, distance(new SimplePoint(ray.A), new SimplePoint(intersect)));
+                closestDistance = Math.min(closestDistance, distance(ray.A, intersect));
                 if (closestDistance != closestDistanceTemp) {
                     closestIntersect = intersect;
                 }

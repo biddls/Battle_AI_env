@@ -148,8 +148,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
             //render the rays
             g.setColor(Color.RED);
             for (Point p : env.human1.currentRays) {
-                SimplePoint P = new SimplePoint(p);
-                g.drawLine((int) env.human1.positionX, (int) env.human1.positionY, (int) P.x, (int) P.y);
+                g.drawLine((int) env.human1.positionX, (int) env.human1.positionY, (int) p.x, (int) p.y);
             }
 
             //drawing the human
@@ -171,8 +170,8 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
                 g.fillOval((int) z.positionX - z.size / 2 + offset / 2, (int) z.positionY - z.size / 2 + offset / 2, z.size - offset, z.size - offset);
                 for (Point r : z.currentRays) {
                     g.setColor(Color.GREEN);
-                    SimplePoint P = new SimplePoint(r);
-                    g.drawLine((int) z.positionX, (int) z.positionY, (int) P.x, (int) P.y);
+
+                    g.drawLine((int) z.positionX, (int) z.positionY, (int) r.x, (int) r.y);
                 }
             }
         }

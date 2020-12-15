@@ -7,12 +7,11 @@ import java.util.stream.IntStream;
 
 public class Point {
 
-    public int x;
-    public int y;
+    public double x;
+    public double y;
     public IntStream yS;
     public IntStream xS;
-    public double xd;
-    public double yd;
+
     public int type;
     public float direction;
 
@@ -23,8 +22,8 @@ public class Point {
     }
 
     public Point(double x, double y) {
-        this.xd = x;
-        this.yd = y;
+        this.x = x;
+        this.y = y;
     }
 
     public Point(int x, int y, float direction ) {
@@ -51,14 +50,15 @@ public class Point {
         this.y = y;
     }
 
-    public SimplePoint getPoint(){
-        return new SimplePoint(x + xd, y + yd);
-    }
-
     @Override
     public String toString() {
-        return "(" + (double) (x + xd) + "|" + (double) (y + yd) + ")" + "||" + type + "|" + direction + ")";
+        return "(" + x + "|" + y + ")" + "||" + type + "|" + direction + ")";
     }
+
+    public static Point subtract(Point a, Point b){
+        return new Point(a.x - b.x, - a.y - - b.y);
+    }
+
 
 }
 

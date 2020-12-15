@@ -51,7 +51,7 @@ public class Game {
     public void update(){
         if (bullets.size() > 0) {
             for (Bullet b : bullets){
-                b.update(LineSegments);
+                b.collisionCheck(LineSegments, b.cos, b.sin);
             }
             bullets.removeIf(b -> b.health < 1);
         }
@@ -74,10 +74,6 @@ public class Game {
                 }
             }
         }
-        checkForDead();
-    }
-
-    private void checkForDead(){
         if (bullets != null) {
             bullets.removeIf(b -> b.health < 1);
         }

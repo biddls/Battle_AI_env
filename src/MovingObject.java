@@ -58,16 +58,14 @@ public class MovingObject {
 
     //i know these 2 could be more efficient, its just nicer this way
     public static boolean BetweenX(Point intersection, LineSegment segment){
-        SimplePoint inter = intersection.getPoint();
-        int min = Math.min(segment.A.x, segment.B.x);
-        int max = Math.max(segment.A.x, segment.B.x);
-        return min <= inter.x && inter.x <= max;
+        double min = Math.min(segment.A.x, segment.B.x);
+        double max = Math.max(segment.A.x, segment.B.x);
+        return min <= intersection.x && intersection.x <= max;
     }
 
     public static boolean BetweenY(Point intersection, LineSegment segment){
-        SimplePoint inter = intersection.getPoint();
-        int min = Math.min(segment.A.y, segment.B.y);
-        int max = Math.max(segment.A.y, segment.B.y);
-        return min <= inter.y && inter.y <= max;
+        double min = Math.min(segment.A.y, segment.B.y);
+        double max = Math.max(segment.A.y, segment.B.y);
+        return min <= intersection.y && intersection.y <= max;
     }
 }
