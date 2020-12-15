@@ -1,4 +1,5 @@
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 /**
  * Created by Armin on 10/19/2017.
@@ -8,6 +9,8 @@ public class Point {
 
     public int x;
     public int y;
+    public IntStream yS;
+    public IntStream xS;
     public double xd;
     public double yd;
     public int type;
@@ -36,6 +39,16 @@ public class Point {
         this.y = y;
         this.type = type;
 
+    }
+
+    public Point(int x, IntStream yS) {
+        this.x = x;
+        this.yS = yS;
+    }
+
+    public Point(IntStream xS, int y) {
+        this.xS = xS;
+        this.y = y;
     }
 
     public SimplePoint getPoint(){

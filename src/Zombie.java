@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class Zombie {
@@ -17,10 +18,6 @@ public class Zombie {
     private ArrayList pressing = new ArrayList<>();
     public ArrayList<Point> currentRays;
 
-//    public Zombie(Point a) {
-//        this.positionX = a.x;
-//        this.positionY = a.y;
-//    }
 
     public Zombie(Point p){
         this.positionX = p.x;
@@ -32,7 +29,8 @@ public class Zombie {
         return new ArrayList<T>(set);
     }
 
-    public void ZombieMov(char keyPressed, ArrayList<LineSegment> segments, int addOrTake) {//1 is add 0 is take
+    public void ZombieMov(char keyPressed, ArrayList<LineSegment> segments, int addOrTake, Point window) {//1 is add 0 is take
+
         if (addOrTake > -1) {
             pressing = removeDuplicates(pressing);
             if (addOrTake == 1 && !pressing.contains(keyPressed)) {//add

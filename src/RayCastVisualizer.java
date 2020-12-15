@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 //todo: write up the stuff for the ray tracing for the zombie/human collisions
 //todo: redo the classes and tidy the code
@@ -17,18 +18,23 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     public Game env;
     char key;
     int addOrTake;
+    int windowX = 680;
+    int windowY = 410;
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame window = new JFrame();
-            RayCastVisualizer rcv = new RayCastVisualizer();
-            window.setTitle("RayCast Visualizer");
-            window.setSize(667,410);
-            window.addKeyListener(rcv);
-            window.add(rcv);
-            window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            window.setVisible(true);
-            window.setFocusable(true);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame window = new JFrame();
+                RayCastVisualizer rcv = new RayCastVisualizer();
+                window.setTitle("RayCast Visualizer");
+                window.setSize(680, 410);
+                window.addKeyListener(rcv);
+                window.add(rcv);
+                window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                window.setVisible(true);
+                window.setFocusable(true);
+            }
         });
     }
 
@@ -118,6 +124,30 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         }else{
             return 0;
         }
+    }
+
+
+    Point random() {
+        Random rnd = new Random();
+
+        Point gen1 = new Point(rnd.ints(1,20,windowY), 20);
+        Point gen2 = new Point(windowX - 20, rnd.ints(1,windowX+20,windowY -20));
+        Point gen3 = new Point(rnd.ints(1,20,windowY), windowY -20);
+        Point gen4 = new Point(20, rnd.ints(1,20,windowY - 20));
+        int choose = rnd.nextInt(5);
+
+        switch (choose) {
+            case 1:
+                return gen1;
+            case 2:
+                return gen2;
+            case 3:
+                return gen3;
+            case 4:
+                return gen4;
+        }
+
+        return gen2;
     }
 
     @Override
