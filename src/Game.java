@@ -72,7 +72,7 @@ public class Game {
                 }
             }
         }
-        if (bullets != null) {
+        if (bullets.size() > 0) {
             bullets.removeIf(b -> b.health < 1);
         }
         if (zombies.size() > 0) {
