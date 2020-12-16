@@ -84,7 +84,7 @@ public class RayCast {
     }
 
     public static boolean CirclesCollision(float positionX1, float positionY1, int size1, float positionXz, float positionYz, int sizeZ) {
-        return distanceEff(positionX1, positionY1, positionXz, positionYz) <= ((size1 * size1) + (sizeZ * sizeZ));
+        return distanceEff(positionX1, positionY1, positionXz, positionYz) <= (Math.pow((size1 * size1) + (sizeZ * sizeZ),2));
     }
 
     public static Point getClosestIntersection(LineSegment ray, ArrayList<LineSegment> segments, Game env, float direction, float fov, int HZ){
