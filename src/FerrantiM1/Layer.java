@@ -1,7 +1,7 @@
 package FerrantiM1;
 
 public class Layer {
-    private final String[] activations= {"relu", "leakyrelu", "sigmoid", "tanh", "softmax"}
+    private final String[] activations= {"relu", "leakyrelu", "sigmoid", "tanh", "softmax"};
     private final int size;
     private final String activationType;
     private final Matrix weights;
