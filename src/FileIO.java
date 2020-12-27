@@ -1,15 +1,13 @@
 import FerrantiM1.Matrix;
-import java.io.File;  // Import the File class
-import java.io.FileWriter;   // Import the FileWriter class
-import java.io.IOException;  // Import the IOException class to handle errors
-import java.io.FileNotFoundException;  // Import this class to handle errors
+
+import java.io.*;
 import java.util.Scanner; // Import the Scanner class to read text files
 
 
 public class FileIO {
 
 
-    public void Save (Matrix matrix, String name) throws IOException {
+    public void Save (int[][] matrix, String name) throws IOException {
         try {
             File newFile = new File(name+".txt");
             if(newFile.createNewFile()){
@@ -23,33 +21,42 @@ public class FileIO {
         }
 
         try {
-            FileWriter myWriter = new FileWriter(name+".txt");
-            myWriter.write(String.valueOf(matrix.cols));
-            myWriter.write(String.valueOf(matrix.rows));
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+            BufferedWriter bw = new BufferedWriter(new FileWriter(name+".txt"));
+
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 0; j < matrix[i].length; j++) {
+                    bw.write(matrix[i][j] + ((j == matrix[i].length-1) ? "" : ","));
+                }
+                bw.newLine();
+            }
+            bw.flush();
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
 
-    public Matrix Read(String name){
+    public int[][] Read(String name, Matrix matrix){
 
-        Matrix matrix = new Matrix(0,0);
+        int rows = matrix.rows;
+        int columns = matrix.cols;
+        int [][] matrixIn = new int[rows][columns];
+
         try {
-            File myObj = new File(name+".txt");
-            Scanner myReader = new Scanner(myObj);
-
-            matrix.cols = Integer.parseInt(myReader.nextLine());
-            matrix.rows = Integer.parseInt(myReader.nextLine());
-
-            myReader.close();
+            Scanner sc = new Scanner(new BufferedReader(new FileReader(name+".txt")));
+            while(sc.hasNextLine()) {
+                for (int i=0; i<matrixIn.length; i++) {
+                    String[] line = sc.nextLine().trim().split(" ");
+                    for (int j=0; j<line.length; j++) {
+                        matrixIn[i][j] = Integer.parseInt(line[j]);
+                    }
+                }
+            }
         } catch (FileNotFoundException e) {
-            System.out.println("file is potentially corrupt please ensure the file is using the correct format, cols in the first line and rows in the second.");
+            System.out.println("file is potentially corrupt please ensure the file is using the correct format");
             e.printStackTrace();
         }
-        return matrix;
+        return matrixIn;
     }
 
 }
