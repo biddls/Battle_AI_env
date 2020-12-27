@@ -14,11 +14,10 @@ public class ModelSequential{
         model = building;
     }
 
-    public Matrix inference(Matrix observation){
+    public Matrix inference(Matrix observation) throws Exception {
         return model.feedForward(observation);
     }
 
     public void LoadWeights(){
-
     }
 }

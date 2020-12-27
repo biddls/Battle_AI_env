@@ -1,5 +1,7 @@
 package FerrantiM1;
 
+import java.util.function.Consumer;
+
 public class Matrix {
     public int rows;
     public int cols;
@@ -43,5 +45,11 @@ public class Matrix {
             arr = temp;
         }
         throw new Exception("Matrices are the wrong size");
+    }
+
+    public void ForEach(Consumer<Float> method){
+        for (Array a: arr){
+            a.forEach(method);
+        }
     }
 }
