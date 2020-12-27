@@ -17,4 +17,8 @@ public class ModelSequential{
     public Matrix inference(Matrix observation){
         return model.feedForward(observation);
     }
+
+    public void LoadWeights(){
+
+    }
 }

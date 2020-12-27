@@ -11,7 +11,9 @@ public class Matrix {
         this.arr = new float[rows][cols];
     }
 
-    public void fillMatrix(){}
+    public void fillMatrix(int row, int col, float value){
+        arr[row][col] = value;
+    }
 
     void multiply(Matrix mat) throws Exception {
         if(cols == mat.rows){
