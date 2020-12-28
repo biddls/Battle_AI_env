@@ -6,7 +6,7 @@ import java.util.Scanner; // Import the Scanner class to read text files
 
 public class FileIO {
 
-    public void Save(int[][] matrix, String name) throws IOException {
+    public void Save(float[][][][] matrix, String name, int layers) throws IOException {
         try {
             File newFile = new File(name+".txt");
             if(newFile.createNewFile()){
@@ -18,16 +18,21 @@ public class FileIO {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
+            float next[][];
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(name+".txt"));
-
-            for (int i = 0; i < matrix.length; i++) {
-                for (int j = 0; j < matrix[i].length; j++) {
-                    bw.write(matrix[i][j] + ((j == matrix[i].length-1) ? "" : ","));
+                for(int l = 0; l <=layers; l++) {
+                    int count = 0;
+                    next=matrix[l][count];
+                    for (int i = 0; i < next.length; i++) {
+                        for (int j = 0; j < next[i].length; j++) {
+                            bw.write(next[i][j] + ((j == next[i].length - 1) ? "" : ","));
+                        }
+                        bw.newLine();
+                    }
+                    bw.write("|");
+                    if(count == 0){count = 1;}else{count = 0;}
                 }
-                bw.newLine();
-            }
             bw.flush();
         } catch (IOException e) {
             System.out.println("An error occurred.");
