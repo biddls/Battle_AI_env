@@ -22,8 +22,8 @@ public class FileIO {
 
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(name+".txt"));
+            int count = 0;
             for(int l = 0; l <=layers; l++) {
-                int count = 0;
                 next=matrix[l][count];
                 for (int i = 0; i < next.length; i++) {
                     for (int j = 0; j < next[i].length; j++) {
@@ -32,7 +32,7 @@ public class FileIO {
                     bw.newLine();
                 }
                 bw.write("|");
-                count = count == 0 ? 1 : 0;//todo: sort out count it never got incremented
+                count = count == 0 ? 1 : 0;
             }
             bw.flush();
         } catch (IOException e) {
