@@ -13,6 +13,7 @@ public class Matrix {
         this.cols = cols;
         this.arr = new double[rows][cols];
     }
+
     public Matrix(int rows, int cols, double[][] arr) {
         this.rows = rows;
         this.cols = cols;
@@ -23,41 +24,59 @@ public class Matrix {
         arr[row][col] = value;
     }
 
-    void multiply(Matrix mat) throws Exception {
-        double[] temp = new double[mat.cols];
+    public static Matrix RandomiseMatrix(Matrix matrix){
+        if (matrix != null) {
+            for (int col = 0; col < matrix.cols; col++) {
+                for (int row = 0; row < matrix.rows; row++) {
+                    matrix.arr[row][col] = Math.random();
+                }
+            }
+        }
+        return matrix;
+    }
+
+    public static Matrix multiply(Matrix mat1, Matrix mat2) throws Exception {
+//        System.out.println(mat1 + "|#|" + mat2);
+        double[][] temp = new double[mat1.rows][mat2.cols];
         try {
-            if(cols == mat.rows){
-                for(int col = 0; col < mat.cols; col++) {
-                    for(int rowin = 0; rowin < rows; rowin++) {
-                        for(int colin = 0; colin < cols; colin++) {
-                            temp[col] += arr[rowin][colin];
+            if(mat1.cols == mat2.rows){
+                for(int col = 0; col < mat2.cols; col++) {
+                    for (int row = 0; row < mat1.rows; row++) {
+                        for (int rowin = 0; rowin < mat2.rows; rowin++) {
+                            for (int colin = 0; colin < mat1.cols; colin++) {
+                                temp[row][col] += mat1.arr[row][colin] * mat2.arr[rowin][col];
+                            }
                         }
                     }
                 }
-                arr = new double[][]{temp};
             }
+
         }catch (Exception e){
             e.printStackTrace();
             throw new Exception("Matrices are the wrong size: " +
-                    this +
+                    mat1 +
                     " and " +
-                    mat +
+                    mat2 +
                     " and temp " +
                     Arrays.toString(temp));
         }
+        return new Matrix(mat1.rows, mat2.cols, temp);
     }
 
-    void add(Matrix mat) throws Exception {
-        double[][] temp = new double[1][mat.cols];
+    public void add(Matrix mat) throws Exception {
+        double[] temp = new double[mat.cols];
         try {
             if (cols == mat.cols && rows == 1 && mat.rows == 1) {
-                System.out.println(Arrays.deepToString(arr) + "|" + Arrays.deepToString(mat.arr));
+//                System.out.println(Arrays.deepToString(arr) + "|" + Arrays.deepToString(mat.arr));
                 for (int col = 0; col < cols; col++) {
-                    System.out.println(col);
-                    System.out.println(arr[0][col] + "|" + mat.arr[0][col]);
-                    temp[0][col] = arr[0][col] + mat.arr[0][col];
+//                    System.out.println(col);
+//                    System.out.println(arr[0][col] + "|" + mat.arr[0][col]);
+                    temp[col] = arr[0][col] + mat.arr[0][col];
                 }
-                arr = temp;
+//                System.out.println("HI");
+//                System.out.println(Arrays.toString(temp));
+                arr = new double[][]{temp};
+//                System.out.println(Arrays.deepToString(arr));
             }
         }catch (Exception e) {
             e.printStackTrace();
@@ -84,6 +103,7 @@ public class Matrix {
                 rows +
                 " X " +
                 cols +
-                ")";
+                ")" +
+                Arrays.deepToString(arr);
     }
 }

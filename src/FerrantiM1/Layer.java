@@ -4,10 +4,10 @@ import java.util.function.Function;
 
 public class Layer{
     public int size = 0;
-    private static boolean InitRandom = true;//true is random false is loaded
-    public static Function<Double, Double> activation;
-    private static Matrix weights;
-    private static Matrix bias;
+    private boolean InitRandom = true;//true is random false is loaded
+    public Function<Double, Double> activation;
+    public Matrix weights;
+    public Matrix bias;
     public Layer next;
 
     public static Layer FullyConnected(int size, Function<Double, Double> activationType) throws Exception {
@@ -25,26 +25,27 @@ public class Layer{
         }
         else{
             this.next = layer;
-            this.next.weights = new Matrix(layer.size, size);
-            this.next.bias = new Matrix(1, layer.size);
+        }
+    }
+
+    public void setSizes(){
+        if (next != null){
+            this.weights = new Matrix(size, next.size);
+            this.bias = new Matrix(1, next.size);
+            next.setSizes();
         }
     }
 
     public Matrix feedForward(Matrix in) throws Exception {
-        try {
-            in.multiply(weights);
+        if (this.next != null) {
+            in = Matrix.multiply(in, weights);
             in.add(bias);
             in = Acti.Activate(in, activation);
-            if (next != null) {
-                next.feedForward(in);
-            } else {
-                return in;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            throw new Exception("Model not filled with matrices correctly");
+            in = next.feedForward(in);
+            return in;
+        } else {
+            return in;
         }
-        return null;
     }
 
     public void WriteLayer(int depth, Matrix weights, Matrix biases){
@@ -65,12 +66,13 @@ public class Layer{
     @Override
     public String toString()
     {
-        return (next != null) ?size +
+        return size +
                 " wide and its weight matrices dimensions are: " +
                 weights +
                 " its bias matrices dimensions are: " +
                 bias +
-                " ~~NEXT~~ \n" +
-                next : "no layer to be found here continue as u where";
+                ((next != null) ?
+                        " ~~NEXT~~ \n" +
+                                next : " ~~FINAL~~");
     }
 }
