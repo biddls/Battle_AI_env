@@ -1,23 +1,25 @@
 package FerrantiM1;
 
-import java.lang.reflect.Array;
-
 public class ModelSequential{
 
     private static Layer model;
 
-    public ModelSequential(Array[][] layers) throws Exception {
-        Layer building = new Layer(layers[0][0],layers[0][1]);
+    public ModelSequential(Layer[] layers) throws Exception {
+        Layer building = layers[0];
         for (int index = 1; index < layers.length; index++){
-            building.newLayer(new Layer(layers[index][0],layers[index][1]));
+            building.newLayer(layers[index]);
         }
+        System.out.println(building);
         model = building;
     }
 
     public Matrix inference(Matrix observation) throws Exception {
-        return model.feedForward(observation);
+        if (observation.cols == model.size) {
+            return model.feedForward(observation);
+        }throw new Exception("The input size does not match the size of the network");
     }
 
-    public void LoadWeights(){
+    public void LoadWeights() throws Exception {
+        model = FileIO.Read("weights.BJ", model);
     }
 }
