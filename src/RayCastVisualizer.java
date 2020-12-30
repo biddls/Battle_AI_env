@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class RayCastVisualizer extends JPanel implements KeyListener {
 
     //Human human1 = new Human();
-    public static final double RANGE = 800;
+    public final double RANGE = 800;
     public Game env;
     char key;
     int addOrTake;
 
-    public static void main(String[] args) {
+    public void main() {
         SwingUtilities.invokeLater(() -> {
             JFrame window = new JFrame();
             RayCastVisualizer rcv = new RayCastVisualizer();

@@ -7,13 +7,13 @@ public class Humanoid extends MovingObject{
     public int fov = 90;
     public float anglePerRay = (float) (((fov * Math.PI) / 180) / rays);
     public ArrayList pressing = new ArrayList<>();
-    public static int distance = 800;//degrees
+    public int distance = 800;//degrees
     public ArrayList<Point> currentRays;
     public char[] keys = {' ', ' ', ' ', ' ', ' ', ' '};
     public int firing;
 
 
-    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list){
+    public  <T> ArrayList<T> removeDuplicates(ArrayList<T> list){
         Set<T> set = new LinkedHashSet<>(list);
         return new ArrayList<T>(set);
     }
