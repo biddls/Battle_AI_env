@@ -6,7 +6,7 @@ import java.util.Scanner; // Import the Scanner class to read text files
 
 public class FileIO {
 
-    public void Save(double[][][][] matrix, String name, int layers) throws IOException {
+    public static void Save(Layer model, String name, float score) throws IOException {
         try {
             File newFile = new File(name+".BJ");
             if(newFile.createNewFile()){
@@ -18,21 +18,16 @@ public class FileIO {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        double[][] next;
 
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(name+".txt"));
-            int count = 0;
-            for(int l = 0; l <=layers; l++) {
-                next=matrix[l][count];
-                for (int i = 0; i < next.length; i++) {
-                    for (int j = 0; j < next[i].length; j++) {
-                        bw.write(next[i][j] + ((j == next[i].length - 1) ? "" : ","));
-                    }
+            BufferedWriter bw = new BufferedWriter(new FileWriter(name+".BJ"));
+//            bw.write((String) score);//todo: sort this
+            while (model.next != null) {
+                for (Matrix matrix : new Matrix[]{model.weights, model.bias}){
+                    bw.write(matrix.outMatrix());
                     bw.newLine();
                 }
-                bw.write("|");
-                count = count == 0 ? 1 : 0;
+                model = model.next;
             }
             bw.flush();
         } catch (IOException e) {
@@ -44,7 +39,7 @@ public class FileIO {
     public static Layer Read(String name, Layer model) throws Exception {
 
         try {
-            Scanner sc = new Scanner(new BufferedReader(new FileReader(name+".txt")));
+            Scanner sc = new Scanner(new BufferedReader(new FileReader(name+".BJ")));
             Layer tempLayer = model;
             int depth = 0;
             while(sc.hasNextLine() && model.next != null) {
