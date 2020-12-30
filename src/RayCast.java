@@ -44,7 +44,7 @@ public class RayCast {
                     limit1 = Math.abs((720 - limit1) % 360);
                     double limit2 = (dir + fov / 2) % 360;
                     if(point.angle <= limit2 && point.angle >= limit1){
-                        return new Point(x,y);
+                        return new Point(x,y, wall.type);
                     }
                     if(limit2 < 90) {
                         if (point.angle < 90) {
@@ -57,7 +57,7 @@ public class RayCast {
                         }
                     }
                     if(point.angle <= limit2 && point.angle >= limit1){
-                        return new Point(x,y);
+                        return new Point(x,y, wall.type);
                     }
                 }
             }
@@ -65,7 +65,7 @@ public class RayCast {
         return null;
     }
 
-    private static Point intersectCircleRay(LineSegment ray, float positionX, float positionY, int size) {
+    private static Point intersectCircleRay(LineSegment ray, float positionX, float positionY, int size, int type) {
         double perpendicular = ray.angleRad - (Math.PI / 2); //-90 degrees basically to get the perpendicular
         double perpX = size / 2 * Math.cos(perpendicular);
         double perpY = size / 2 * Math.sin(perpendicular);
@@ -73,7 +73,7 @@ public class RayCast {
             Point a = new Point((positionX + perpX), (positionY + perpY));//a point out in front
             Point b = new Point((positionX - perpX), (positionY - perpY));//a point beind
             //these 2 lines ^ create a line that is perpendicular to the line it is near
-            Point intersect = RayCast.intersectLines(new LineSegment(a, b, 1), ray);
+            Point intersect = RayCast.intersectLines(new LineSegment(a, b, type), ray);
             if (Human.BetweenX(intersect, ray) && Human.BetweenY(intersect, ray)) {
                 if (RayCast.distance(intersect, positionX, positionY) <= size/2) {
                     return intersect;
@@ -104,7 +104,7 @@ public class RayCast {
         }
 
         for (Bullet b : env.bullets) {
-            Point intersect = intersectCircleRay(ray, b.positionX, b.positionY, b.size);
+            Point intersect = intersectCircleRay(ray, b.positionX, b.positionY, b.size, b.type);
             if (intersect != null) {
                 closestDistanceTemp = closestDistance;
                 closestDistance = Math.min(closestDistance, distance(ray.A, intersect));
@@ -116,7 +116,7 @@ public class RayCast {
 
         if (HZ == 2 && env.zombies.size() > 0){
             for (Zombie z : env.zombies) {
-                Point intersect = intersectCircleRay(ray, z.positionX, z.positionY, z.size);
+                Point intersect = intersectCircleRay(ray, z.positionX, z.positionY, z.size, z.type);
                 if (intersect != null) {
                     closestDistanceTemp = closestDistance;
                     closestDistance = Math.min(closestDistance, distance(ray.A, intersect));
@@ -126,7 +126,7 @@ public class RayCast {
                 }
             }
         }else if ((HZ == 4 && env.zombies.size() > 0) && env.human1.health > 0){
-            Point intersect = intersectCircleRay(ray, env.human1.positionX, env.human1.positionY, env.human1.size);
+            Point intersect = intersectCircleRay(ray, env.human1.positionX, env.human1.positionY, env.human1.size, env.human1.type);
             if (intersect != null) {
                 closestDistanceTemp = closestDistance;
                 closestDistance = Math.min(closestDistance, distance(ray.A, intersect));

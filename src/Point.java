@@ -24,6 +24,12 @@ public class Point {
         this.y = y;
     }
 
+    public Point(double x, double y, int type) {
+        this.x = x;
+        this.y = y;
+        this.type = type;
+    }
+
     public Point(int x, int y, float direction ) {
         this.x = x;
         this.y = y;
