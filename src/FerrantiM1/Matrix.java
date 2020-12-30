@@ -100,6 +100,7 @@ public class Matrix {
             }
         }
     }
+
     @Override
     public String toString()
     {
@@ -109,5 +110,8 @@ public class Matrix {
                 cols +
                 ")" +
                 Arrays.deepToString(arr);
+    }
+    public String outMatrix(){
+        return Arrays.deepToString(arr);
     }
 }

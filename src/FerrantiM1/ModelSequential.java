@@ -1,5 +1,7 @@
 package FerrantiM1;
 
+import java.io.IOException;
+
 public class ModelSequential{
 
     private Layer model;
@@ -39,6 +41,10 @@ public class ModelSequential{
 
     public Layer getModel() {
         return model;
+    }
+
+    public void save(String name, float score) throws IOException {
+        FileIO.Save(model, name, score);
     }
 
     @Override
