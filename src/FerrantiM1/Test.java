@@ -10,12 +10,9 @@ public class Test{
 
         model.RandomizeInit(model.getModel());
 
-        System.out.println(model);
+//        System.out.println(model);
 
-        long startTime = System.nanoTime();
         System.out.println(model.inference(new Matrix(1,5,new double[][]{
                 {1.1, 2, 3, 4, 5}})));
-        long stopTime = System.nanoTime();
-        System.out.println(stopTime - startTime);
     }
 }

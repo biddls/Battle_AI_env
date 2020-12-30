@@ -67,16 +67,10 @@ public class Matrix {
         double[] temp = new double[mat.cols];
         try {
             if (cols == mat.cols && rows == 1 && mat.rows == 1) {
-//                System.out.println(Arrays.deepToString(arr) + "|" + Arrays.deepToString(mat.arr));
                 for (int col = 0; col < cols; col++) {
-//                    System.out.println(col);
-//                    System.out.println(arr[0][col] + "|" + mat.arr[0][col]);
                     temp[col] = arr[0][col] + mat.arr[0][col];
                 }
-//                System.out.println("HI");
-//                System.out.println(Arrays.toString(temp));
                 arr = new double[][]{temp};
-//                System.out.println(Arrays.deepToString(arr));
             }
         }catch (Exception e) {
             e.printStackTrace();

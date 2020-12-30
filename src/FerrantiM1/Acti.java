@@ -79,9 +79,9 @@ public class Acti {
 //    }
 
     public static Matrix Activate(Matrix matrix, Function<Double, Double> activation){
-        for (double[] b: matrix.arr) {
-            for (double f : b) {
-                activation.apply(f);
+        for (int row = 0; row < matrix.rows; row++) {
+            for (int col = 0; col < matrix.cols; col++) {
+                matrix.fillMatrix(row, col, activation.apply(matrix.arr[row][col]));
             }
         }
         return matrix;
