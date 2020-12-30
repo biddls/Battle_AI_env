@@ -24,7 +24,17 @@ public class Matrix {
         arr[row][col] = value;
     }
 
-    public static Matrix RandomiseMatrix(Matrix matrix){
+    public void Evolve(int scalar){
+        if (arr != null) {
+            for (int col = 0; col < cols; col++) {
+                for (int row = 0; row < rows; row++) {
+                    arr[row][col] += (Math.random() - 0.5)/scalar;
+                }
+            }
+        }
+    }
+
+    public static Matrix InitRandomiseMatrix(Matrix matrix){
         if (matrix != null) {
             for (int col = 0; col < matrix.cols; col++) {
                 for (int row = 0; row < matrix.rows; row++) {

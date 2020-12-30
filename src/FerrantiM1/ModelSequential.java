@@ -25,12 +25,16 @@ public class ModelSequential{
     }
 
     public Layer RandomizeInit(Layer layer) throws Exception {
-        layer.weights = Matrix.RandomiseMatrix(layer.weights);
-        layer.bias = Matrix.RandomiseMatrix(layer.bias);
+        layer.weights = Matrix.InitRandomiseMatrix(layer.weights);
+        layer.bias = Matrix.InitRandomiseMatrix(layer.bias);
         if (layer.next != null) {
             model.next = RandomizeInit(layer.next);
         }else return layer;
         return layer;
+    }
+
+    public void Mutate(int scalar){
+        model.Mutate(scalar);
     }
 
     public Layer getModel() {

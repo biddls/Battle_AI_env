@@ -22,8 +22,7 @@ public class Layer{
     public void newLayer(Layer layer){
         if (next != null) {
             next.newLayer(layer);
-        }
-        else{
+        }else{
             this.next = layer;
         }
     }
@@ -57,6 +56,16 @@ public class Layer{
             this.bias = biases;
             this.InitRandom = false;
         }
+    }
+
+    public Layer Mutate(int scalar){
+        if (next != null) {
+            weights.Evolve(scalar);
+            bias.Evolve(scalar);
+            next.Mutate(scalar);
+        }else{
+        }
+        return this;
     }
 
     public Matrix getBias() {return bias;}
