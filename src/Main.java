@@ -9,6 +9,6 @@ public class Main {
 
     public Main(int mode){
         System.out.println("Mode selected" + mode);
-        rcv.main();
+        rcv.Manual();
     }
 }

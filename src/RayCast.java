@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 
+
 public class RayCast {
-    private final double RANGE = RayCastVisualizer.RANGE;
+
+
+
+    public double RANGE = 800;
 
     public  double distance(Point a,Point b){return Math.sqrt(Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2));}
 
@@ -73,9 +77,9 @@ public class RayCast {
             Point a = new Point((positionX + perpX), (positionY + perpY));//a point out in front
             Point b = new Point((positionX - perpX), (positionY - perpY));//a point beind
             //these 2 lines ^ create a line that is perpendicular to the line it is near
-            Point intersect = RayCast.intersectLines(new LineSegment(a, b, type), ray);
+            Point intersect = this.intersectLines(new LineSegment(a, b, type), ray);
             if (Human.BetweenX(intersect, ray) && Human.BetweenY(intersect, ray)) {
-                if (RayCast.distance(intersect, positionX, positionY) <= size/2) {
+                if (this.distance(intersect, positionX, positionY) <= size/2) {
                     return intersect;
                 }
             }

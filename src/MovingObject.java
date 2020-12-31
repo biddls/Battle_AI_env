@@ -9,6 +9,7 @@ public class MovingObject {
     public int type = 0;//0 is nothing, 1 is wall, 2 is human, 3 is bullet, 4 is zombie
     public int[] DIMENSIONS = {10, 10, 640, 360};
     public int speed;
+    RayCast rayCast = new RayCast();
 
     public void collisionCheck(ArrayList<LineSegment> segments, double changeX, double changeY){
         float startX = positionX;
@@ -41,9 +42,9 @@ public class MovingObject {
                     Point b = new Point((positionX - perpX), (positionY - perpY));//a point beind
                     //these 4 lines ^ create a line that is perpendicular to the line it is near
 
-                    Point intersect = RayCast.intersectLines(new LineSegment(a, b, 1), segment);
+                    Point intersect = rayCast.intersectLines(new LineSegment(a, b, 1), segment);
                     if (BetweenX(intersect, segment) && BetweenY(intersect, segment)) {
-                        if (RayCast.distance(intersect, positionX, positionY) <= size * 0.5) {
+                        if (rayCast.distance(intersect, positionX, positionY) <= size * 0.5) {
                             if (type == 3) {
                                 health -= 1;
                                 return;
@@ -59,13 +60,13 @@ public class MovingObject {
     }
 
     //i know these 2 could be more efficient, its just nicer this way
-    public  boolean BetweenX(Point intersection, LineSegment segment){
+    public static boolean BetweenX(Point intersection, LineSegment segment){
         double min = Math.min(segment.A.x, segment.B.x);
         double max = Math.max(segment.A.x, segment.B.x);
         return min <= intersection.x && intersection.x <= max;
     }
 
-    public  boolean BetweenY(Point intersection, LineSegment segment){
+    public static boolean BetweenY(Point intersection, LineSegment segment){
         double min = Math.min(segment.A.y, segment.B.y);
         double max = Math.max(segment.A.y, segment.B.y);
         return min <= intersection.y && intersection.y <= max;

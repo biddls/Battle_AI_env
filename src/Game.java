@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Game {
+public class Game{
     int windowX = 620;
     int windowY = 340;
     public int zombieCount = 2;
@@ -9,9 +9,9 @@ public class Game {
     public ArrayList<LineSegment> LineSegments;
     public ArrayList<Bullet> bullets = new ArrayList<>();
     public ArrayList<Zombie> zombies = new ArrayList<>();
+    RayCast rayCast = new RayCast();
 
-
-    public Game(ArrayList<LineSegment> walls){
+    public void game(ArrayList<LineSegment> walls){
         this.LineSegments = walls;
         for(int i = 0; i < zombieCount; i++) {
             zombies.add(new Zombie(spawnPoint(), 1, 14));
@@ -58,13 +58,13 @@ public class Game {
             for (Zombie z : zombies) {
                 if (z.health > 0) {
                     z.currentRays = z.castRays(LineSegments, this);
-                    if (RayCast.CirclesCollision(human1.positionX, human1.positionY, human1.size, z.positionX, z.positionY, z.size)) {
+                    if (rayCast.CirclesCollision(human1.positionX, human1.positionY, human1.size, z.positionX, z.positionY, z.size)) {
                         human1.health -= 1;
                     }
                 }
                 if (bullets != null) {
                     for (Bullet b : bullets) {
-                        if (RayCast.CirclesCollision(b.positionX, b.positionY, b.size, z.positionX, z.positionY, z.size)) {
+                        if (rayCast.CirclesCollision(b.positionX, b.positionY, b.size, z.positionX, z.positionY, z.size)) {
                             b.health -= 1;
                             z.health -= 1;
                         }
