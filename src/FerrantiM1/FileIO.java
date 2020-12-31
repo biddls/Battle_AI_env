@@ -21,7 +21,9 @@ public class FileIO {
 
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(name+".BJ"));
-//            bw.write((String) score);//todo: sort this
+            if (score != 0) {
+//              bw.write((String) score);//todo: sort this
+            }
             while (model.next != null) {
                 for (Matrix matrix : new Matrix[]{model.weights, model.bias}){
                     bw.write(matrix.outMatrix());

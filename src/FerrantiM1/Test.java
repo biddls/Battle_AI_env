@@ -20,6 +20,6 @@ public class Test{
         System.out.println(model.inference(new Matrix(1,5,new double[][]{
                 {1.1, 2, 3, 4, 5}})));
         float score = 1;
-        model.save("NN", score);
+        model.save_Score("NN", score);
     }
 }
