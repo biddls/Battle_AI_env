@@ -1,3 +1,5 @@
+package RayCastCore;
+
 public class Bullet extends MovingObject{
     public double cos;//cos
     public double sin;//sin

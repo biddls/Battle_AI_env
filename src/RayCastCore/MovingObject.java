@@ -1,3 +1,5 @@
+package RayCastCore;
+
 import java.util.ArrayList;
 
 public class MovingObject {

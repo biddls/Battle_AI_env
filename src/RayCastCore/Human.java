@@ -1,3 +1,5 @@
+package RayCastCore;
+
 public class Human extends Humanoid{
     public Human(float x, float y, int health, int size){
         this.positionX = x;

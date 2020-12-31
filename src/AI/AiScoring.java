@@ -1,6 +1,11 @@
+package AI;
+
+import RayCastCore.Game;
+import RayCastCore.LineSegment;
+
 import java.util.ArrayList;
 
-public class AiScoring extends Game{
+public class AiScoring extends Game {
     public int round;
     public boolean humanWon = false;
     public boolean zombiesWon = false;

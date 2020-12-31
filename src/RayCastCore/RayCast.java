@@ -1,7 +1,9 @@
+package RayCastCore;
+
 import java.util.ArrayList;
 
 public class RayCast {
-    private static final double RANGE = RayCastVisualizer.RANGE;
+    private static final double RANGE = 800;
 
     public static double distance(Point a,Point b){return Math.sqrt(Math.pow(b.x-a.x,2)+Math.pow(b.y-a.y,2));}
 
@@ -22,7 +24,7 @@ public class RayCast {
     }
 
     public static Point intersectLines(LineSegment ray, LineSegment wall, float direction, float fov){
-        Line L1 = new Line(ray.A, ray.B);//A is Human, B is end point
+        Line L1 = new Line(ray.A, ray.B);//A is RayCast.Human, B is end point
         Line L2 = new Line(wall.A, wall.B);//defines the wall
 
         if (L1.m != L2.m){//makes sure they arnt parallel
@@ -65,7 +67,7 @@ public class RayCast {
         return null;
     }
 
-    private static Point intersectCircleRay(LineSegment ray, float positionX, float positionY, int size, int type) {
+    protected static Point intersectCircleRay(LineSegment ray, float positionX, float positionY, int size, int type) {
         double perpendicular = ray.angleRad - (Math.PI / 2); //-90 degrees basically to get the perpendicular
         double perpX = size / 2 * Math.cos(perpendicular);
         double perpY = size / 2 * Math.sin(perpendicular);

@@ -2,7 +2,7 @@
 
 2D Ray Casting with Java. With a top down human zombie killing game built on top of it.
 
-Human controls
+RayCastCore.Human controls
 ------------------
 forward - w
 strafeLeft - a
@@ -11,7 +11,7 @@ strafeRight - d
 turnLeft - q
 turnRight - e
 
-Zombie controls
+RayCastCore.Zombie controls
 ------------------
 forward - i
 strafeLeft - j

@@ -1,3 +1,5 @@
+package RayCastCore;
+
 public class Polar {//angle only
     double angle;
     double r;
