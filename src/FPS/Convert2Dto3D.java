@@ -18,7 +18,7 @@ public class Convert2Dto3D {
                     segments[index] = wall(p, rayNumber, height, 1,1);
                     break;
                 case 3:
-                    segments[index] = wall(p, rayNumber, height, 0.2,0.2);
+                    segments[index] = wall(p, rayNumber, height, 0.4,-0.2);
                     break;
                 case 4:
                     segments[index] = wall(p, rayNumber, height, 1,0.2);
