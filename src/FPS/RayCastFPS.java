@@ -66,6 +66,8 @@ public class RayCastFPS extends RayCast {
             return new Point3D[]{closestIntersectBullet, closestIntersectWall};
         } else if (closestDistanceWall < closestDistanceBullet && closestDistanceWall > closestDistanceZombie) {
             return new Point3D[]{closestIntersectZombie, closestIntersectWall};
+        }else{
+            return new Point3D[]{closestIntersectWall};
         }
         return new Point3D[]{closestIntersectWall};
     }

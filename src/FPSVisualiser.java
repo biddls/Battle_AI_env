@@ -1,27 +1,29 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.ArrayList;
-
 import FPS.Convert2Dto3D;
 import FPS.GameFPS;
 import FPS.LineSegment3D;
-import FPS.Point3D;
 import RayCastCore.LineSegment;
 import RayCastCore.Point;
 
-public class FPSVisualiser extends JPanel implements KeyListener {
+public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseListener, KeyListener {
 
     //RayCast.Human human1 = new RayCast.Human();
     public static final double RANGE = 800;
     public GameFPS env;
     char key;
     int addOrTake;
+    public Robot robot = null;
 
     public static Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
     public static int screen_Width = dim.width;
     public static int screen_Height = dim.height;
+
+    public void Mouse()
+    {
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -30,6 +32,7 @@ public class FPSVisualiser extends JPanel implements KeyListener {
             window.setTitle("RayCast.RayCast Visualizer FPS");
             window.setSize(screen_Width, screen_Height);
             window.addKeyListener(rcv);
+            window.addMouseListener(rcv);
             window.add(rcv);
             window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             window.setFocusable(true);
@@ -45,6 +48,13 @@ public class FPSVisualiser extends JPanel implements KeyListener {
         initPolygons();
         initSegments();
         env = new GameFPS(activeSegments, 10);
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+        addMouseMotionListener(this);
+        addMouseListener(this);
         repaint();
     }
 
@@ -132,13 +142,18 @@ public class FPSVisualiser extends JPanel implements KeyListener {
         env.update();
         super.paint(g);
         int index = 0;
-        for (Point3D[] p : env.Player1.currentRays3D){
-            LineSegment3D[] l = Convert2Dto3D.convert(p, index, screen_Height);
+        g.setColor(Color.RED);
+        g.fillRect(0,1080/2,1920,1080/2);
+        g.setColor(Color.BLUE);
+        g.fillRect(0,0,1920,1080/2);
+        for (int point = 0; point < env.Player1.currentRays3D.size(); point++){
+            LineSegment3D[] l = Convert2Dto3D.convert(env.Player1.currentRays3D.get(point), index, screen_Height);
             for (int obj = l.length-1; obj >= 0; obj--){
                 if (l[obj] != null) {
                     switch (l[obj].type) {
                         case 1:
-                            g.setColor(Color.WHITE);
+                            int offset = (int) (255 * ((double) (800 - l[obj].distance)/800));
+                            g.setColor(new Color(offset, offset, offset));
                             break;
                         case 3:
                             g.setColor(Color.YELLOW);
@@ -152,6 +167,9 @@ public class FPSVisualiser extends JPanel implements KeyListener {
             }
             index++;
         }
+        g.setColor(Color.CYAN);
+        g.fillRect((1920/2)-10, (1080/2)-2, 20, 4);
+        g.fillRect((1920/2)-2, (1080/2)-10, 4, 20);
 
         //handle firing stuff
         if(addOrTake > -1 && env.Player1.health > 0){
@@ -190,5 +208,45 @@ public class FPSVisualiser extends JPanel implements KeyListener {
         addOrTake = 0;
         env.Player1.firing = 0;
         repaint();
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        env.Player1.Turn(1920/2 - e.getX());
+        robot.mouseMove(1920/2, 1080/2);
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        env.Player1.Turn(1920/2 - e.getX());
+        robot.mouseMove(1920/2, 1080/2);
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        if (e.getButton() == 1){
+            env.Player1.Fire(true);
+        }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        if (e.getButton() == 1){
+            env.Player1.Fire(false);
+        }
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 }

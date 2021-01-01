@@ -29,10 +29,11 @@ public class Convert2Dto3D {
         return segments;
     }
     public static LineSegment3D wall(Point3D p, int rayNumber, int height, double scaleDown, double scaleUp){
-        double scalar = 1 - (p.distance/RANGE);
-        int midY = (height/2);
+        double scalar = (15.0) / p.distance;
+        double midY = ((double) height/2);
+//        double sca = 15;
         Point3D top = new Point3D(rayNumber, midY - scalar*midY*scaleUp);
         Point3D bottom = new Point3D(rayNumber, midY + scalar*midY*scaleDown);
-        return new LineSegment3D(top, bottom, p.type);
+        return new LineSegment3D(top, bottom, p.type, p.distance);
     }
 }
