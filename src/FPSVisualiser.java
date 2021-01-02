@@ -20,7 +20,7 @@ public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseL
     public static int screen_Width = dim.width;
     public static int screen_Height = dim.height;
 
-    public static void main(String[] args) {
+    public static void RCV() {
         SwingUtilities.invokeLater(() -> {
             JFrame window = new JFrame();
             FPSVisualiser rcv = new FPSVisualiser();
