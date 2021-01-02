@@ -15,7 +15,7 @@ public class Humanoid extends MovingObject{
     public int firing;
 
 
-    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list){
+    public  <T> ArrayList<T> removeDuplicates(ArrayList<T> list){
         Set<T> set = new LinkedHashSet<>(list);
         return new ArrayList<T>(set);
     }
@@ -77,7 +77,7 @@ public class Humanoid extends MovingObject{
             //above returns a list of all the points around the mouse 800 units away will need to
             Point position = new Point((int) positionX,(int) positionY);
             LineSegment ray = new LineSegment(position,target,0);
-            Point ci = RayCast.getClosestIntersection(ray, LineSegments, self, direction, fov, type);
+            Point ci = rayCast.getClosestIntersection(ray, LineSegments, self, direction, fov, type);
             if (ci == null) {result.add(target);} else {result.add(ci);}
         }
         return result;//B list of all points that the rays intersect with

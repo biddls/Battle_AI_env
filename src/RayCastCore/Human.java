@@ -10,4 +10,7 @@ public class Human extends Humanoid{
         this.DIMENSIONS = new int[] {DIMENSIONS[0] + size/2, DIMENSIONS[1] + size/2, DIMENSIONS[2] - size/2, DIMENSIONS[3] - size/2};
         this.type = 2;
     }
+    public Human() {
+
+    }
 }

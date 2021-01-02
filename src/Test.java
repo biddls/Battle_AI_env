@@ -3,7 +3,7 @@ import FerrantiM1.Layer;
 import FerrantiM1.Matrix;
 import FerrantiM1.ModelSequential;
 
-public class Test{
+public class Test {
     public static void main(String[] args) throws Exception {
         ModelSequential model = new ModelSequential(new Layer[]{
                 Layer.FullyConnected(5, Acti.relu()),
