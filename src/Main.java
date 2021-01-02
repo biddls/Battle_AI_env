@@ -1,4 +1,4 @@
-import javax.swing.*;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,7 +11,15 @@ public class Main {
                 RayCastVisualizer.RCV();
                 break;
             case 1:
-                RayCastVisualizerAITraining.RCV();
+                for(int i=1; i<=8; i++) {
+                    new Thread(() -> {
+                        try{
+                            RayCastVisualizerAITraining.RCV();
+                        } catch(Exception e) {
+                            System.out.println("An unknown exception :" + e.toString());
+                        }
+                    }).start();
+                }
                 break;
             case 2:
                 FPSVisualiser.RCV();
