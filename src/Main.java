@@ -6,9 +6,20 @@ public class Main {
     }
 
     public Main(int mode){
-        System.out.println("Mode selected" + mode);
-        RayCastVisualizer.RCV();
-        RayCastVisualizerAITraining.RCV();
-        FPSVisualiser.RCV();
+        switch(mode) {
+            case 0:
+                RayCastVisualizer.RCV();
+                break;
+            case 1:
+                RayCastVisualizerAITraining.RCV();
+                break;
+            case 2:
+                FPSVisualiser.RCV();
+                break;
+
+        }
+
+
+
     }
 }
