@@ -4,7 +4,7 @@ public class Bullet extends MovingObject{
     public double cos;//cos
     public double sin;//sin
 
-    public Bullet(double x, double y, float dir, int size, int speed) {
+    public Bullet(double x, double y, double dir, int size, int speed) {
         this.positionX = x;
         this.positionY = y;
         this.direction = dir;

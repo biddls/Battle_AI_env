@@ -23,7 +23,7 @@ public class RayCast {
         return new Point((int) A, (int) B);
     }
 
-    public static Point intersectLines(LineSegment ray, LineSegment wall, float direction, float fov){
+    public static Point intersectLines(LineSegment ray, LineSegment wall, double direction, float fov){
         Line L1 = new Line(ray.A, ray.B);//A is RayCast.Human, B is end point
         Line L2 = new Line(wall.A, wall.B);//defines the wall
 
@@ -89,7 +89,7 @@ public class RayCast {
         return distanceEff(positionX1, positionY1, positionX2, positionY2) <= (Math.pow(size1/2 + size2/2,2));
     }
 
-    public static Point getClosestIntersection(LineSegment ray, ArrayList<LineSegment> segments, Game env, float direction, float fov, int HZ){
+    public static Point getClosestIntersection(LineSegment ray, ArrayList<LineSegment> segments, Game env, double direction, float fov, int HZ){
         Point closestIntersect = null;
         double closestDistance = Double.MAX_VALUE;
         double closestDistanceTemp;

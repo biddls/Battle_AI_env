@@ -10,37 +10,42 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+/**
+ * Created by Armin on 9/21/2017.
+ */
+
 public class RayCastVisualizer extends JPanel implements KeyListener {
 
-    public double RANGE =800;
+    //RayCast.Human human1 = new RayCast.Human();
+    public static final double RANGE = 800;
+    public Game env;
     char key;
     int addOrTake;
-    ArrayList<Polygon> activePolygons = new ArrayList<>();
-    public ArrayList<LineSegment> activeSegments = new ArrayList<>();
-    public Game env = new Game();
 
-    public void Manual(){
+    public static void RCV() {
         SwingUtilities.invokeLater(() -> {
-            Window();
-            this.setBackground(Color.BLACK);
-            this.setLayout(null);
-            initPolygons();
-            initSegments();
-            env.game(activeSegments);
-        });
-    }
-
-    private void Window() {
             JFrame window = new JFrame();
+            RayCastVisualizer rcv = new RayCastVisualizer();
             window.setTitle("RayCast.RayCast Visualizer");
             window.setSize(680, 410);
-            window.addKeyListener(this);
-            window.add(this);
+            window.addKeyListener(rcv);
+            window.add(rcv);
             window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             window.setVisible(true);
             window.setFocusable(true);
+        });
     }
 
+    public RayCastVisualizer(){
+        this.setBackground(Color.BLACK);
+        this.setLayout(null);
+        initPolygons();
+        initSegments();
+        env = new Game(activeSegments, 10);
+        repaint();
+    }
+
+    ArrayList<Polygon> activePolygons = new ArrayList<>();
     public void initPolygons(){
 
         //Border Polygon
@@ -94,6 +99,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         activePolygons.add(p6);
     }
 
+    public ArrayList<LineSegment> activeSegments = new ArrayList<>();
     public void initSegments(){
         for(Polygon p : activePolygons){
             for(int i=0;i<p.npoints;i++){

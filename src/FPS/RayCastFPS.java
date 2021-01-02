@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 public class RayCastFPS extends RayCast {
 
-    static Point3D[] getClosestIntersection3D(LineSegment ray, ArrayList<LineSegment> segments, Game env, float direction, float fov, int HZ) {
+    static Point[] getClosestIntersection3D(LineSegment ray, ArrayList<LineSegment> segments, Game env, double direction, float fov, int HZ) {
         double closestDistanceWall = Double.MAX_VALUE;
         double closestDistanceBullet = Double.MAX_VALUE;
         double closestDistanceZombie = Double.MAX_VALUE;
-        Point3D closestIntersectWall = null;
-        Point3D closestIntersectBullet = null;
-        Point3D closestIntersectZombie = null;
+        Point closestIntersectWall = null;
+        Point closestIntersectBullet = null;
+        Point closestIntersectZombie = null;
         double closestDistanceTemp;
 
         for (LineSegment l : segments) {
@@ -20,9 +20,10 @@ public class RayCastFPS extends RayCast {
                 closestDistanceTemp = closestDistanceWall;
                 closestDistanceWall = Math.min(closestDistanceWall, distance(ray.A, intersect));
                 if (closestDistanceWall != closestDistanceTemp) {
-                    closestIntersectWall = new Point3D(intersect);
-                    closestIntersectWall.distance = (int) closestDistanceWall;
+                    closestIntersectWall = intersect;
+                    closestIntersectWall.distance = closestDistanceWall;
                     closestIntersectWall.type = 1;
+                    closestIntersectWall.colour = l.colour;
                 }
             }
         }
@@ -33,8 +34,8 @@ public class RayCastFPS extends RayCast {
                 closestDistanceTemp = closestDistanceBullet;
                 closestDistanceBullet = Math.min(closestDistanceBullet, distance(ray.A, intersect));
                 if (closestDistanceBullet != closestDistanceTemp) {
-                    closestIntersectBullet = new Point3D(intersect);
-                    closestIntersectBullet.distance = (int) closestDistanceBullet;
+                    closestIntersectBullet = intersect;
+                    closestIntersectBullet.distance = closestDistanceBullet;
                     closestIntersectBullet.type = 3;
                 }
             }
@@ -47,28 +48,28 @@ public class RayCastFPS extends RayCast {
                     closestDistanceTemp = closestDistanceZombie;
                     closestDistanceZombie = Math.min(closestDistanceZombie, distance(ray.A, intersect));
                     if (closestDistanceZombie != closestDistanceTemp) {
-                        closestIntersectZombie = new Point3D(intersect);
-                        closestIntersectZombie.distance = (int) closestDistanceZombie;
+                        closestIntersectZombie = intersect;
+                        closestIntersectZombie.distance = closestDistanceZombie;
                         closestIntersectZombie.type = 4;
                     }
                 }
             }
         }
         if (closestDistanceWall < closestDistanceBullet && closestDistanceWall < closestDistanceZombie) {
-            return new Point3D[]{closestIntersectWall};
+            return new Point[]{closestIntersectWall};
         } else if (closestDistanceWall > closestDistanceBullet && closestDistanceWall > closestDistanceZombie) {
             if (closestDistanceBullet < closestDistanceZombie) {
-                return new Point3D[]{closestIntersectBullet, closestIntersectZombie, closestIntersectWall};
+                return new Point[]{closestIntersectBullet, closestIntersectZombie, closestIntersectWall};
             } else if (closestDistanceZombie < closestDistanceBullet) {
-                return new Point3D[]{closestIntersectZombie, closestIntersectWall};
+                return new Point[]{closestIntersectZombie, closestIntersectWall};
             }
         } else if (closestDistanceWall > closestDistanceBullet && closestDistanceWall < closestDistanceZombie) {
-            return new Point3D[]{closestIntersectBullet, closestIntersectWall};
+            return new Point[]{closestIntersectBullet, closestIntersectWall};
         } else if (closestDistanceWall < closestDistanceBullet && closestDistanceWall > closestDistanceZombie) {
-            return new Point3D[]{closestIntersectZombie, closestIntersectWall};
+            return new Point[]{closestIntersectZombie, closestIntersectWall};
         }else{
-            return new Point3D[]{closestIntersectWall};
+            return new Point[]{closestIntersectWall};
         }
-        return new Point3D[]{closestIntersectWall};
+        return new Point[]{closestIntersectWall};
     }
 }
