@@ -6,9 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-/**
- * Created by Armin on 9/21/2017.
- */
+
 
 public class RayCastVisualizerAITraining {
 
@@ -19,9 +17,11 @@ public class RayCastVisualizerAITraining {
     int addOrTake;
 
     public static void RCV() {
+        System.out.println("Thread");
         SwingUtilities.invokeLater(() -> {
             RayCastVisualizerAITraining rcv = new RayCastVisualizerAITraining();
         });
+
     }
 
     public RayCastVisualizerAITraining(){
@@ -121,6 +121,6 @@ public class RayCastVisualizerAITraining {
                 env.human1.firing = -1;
             }
         }
-        loop();
+        //loop();
     }
 }

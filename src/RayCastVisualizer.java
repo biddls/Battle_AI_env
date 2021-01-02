@@ -10,10 +10,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-/**
- * Created by Armin on 9/21/2017.
- */
-
 public class RayCastVisualizer extends JPanel implements KeyListener {
 
     //RayCast.Human human1 = new RayCast.Human();
