@@ -2,7 +2,7 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        Main main = new Main(2);
+        new Main(1);
     }
 
     public Main(int mode){
@@ -11,7 +11,7 @@ public class Main {
                 RayCastVisualizer.RCV();
                 break;
             case 1:
-                for(int i=1; i<=8; i++) {
+                for(int i=1; i<=1000; i++) {
                     new Thread(() -> {
                         try{
                             RayCastVisualizerAITraining.RCV();
