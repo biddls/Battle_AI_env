@@ -1,18 +1,21 @@
+package RayCastCore;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
     int windowX = 620;
     int windowY = 340;
-    public int zombieCount = 2;
+    public int zombieCount;
     public Human human1 = new Human(300, 150, 5, 10);
     public ArrayList<LineSegment> LineSegments;
     public ArrayList<Bullet> bullets = new ArrayList<>();
     public ArrayList<Zombie> zombies = new ArrayList<>();
 
 
-    public Game(ArrayList<LineSegment> walls){
+    public Game(ArrayList<LineSegment> walls, int zombiesToSpawn){
         this.LineSegments = walls;
+        this.zombieCount = zombiesToSpawn;
         for(int i = 0; i < zombieCount; i++) {
             zombies.add(new Zombie(spawnPoint(), 1, 14));
         }
@@ -72,6 +75,7 @@ public class Game {
                 }
             }
         }
+        assert bullets != null;
         if (bullets.size() > 0) {
             bullets.removeIf(b -> b.health < 1);
         }

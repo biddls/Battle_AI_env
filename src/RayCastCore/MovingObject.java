@@ -1,8 +1,10 @@
+package RayCastCore;
+
 import java.util.ArrayList;
 
 public class MovingObject {
-    public float positionX;
-    public float positionY;
+    public double positionX;
+    public double positionY;
     public float direction = 0;//degrees
     public int size;
     public int health = 1;
@@ -12,8 +14,8 @@ public class MovingObject {
     RayCast rayCast = new RayCast();
 
     public void collisionCheck(ArrayList<LineSegment> segments, double changeX, double changeY){
-        float startX = positionX;
-        float startY = positionY;
+        double startX = positionX;
+        double startY = positionY;
         positionX += (float) changeX;
         positionY += (float) changeY;
 

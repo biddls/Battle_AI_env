@@ -1,3 +1,5 @@
+package RayCastCore;
+
 public class Zombie extends Humanoid {
     public Zombie(Point p, int health, int size){
         this.positionX = (float) p.x;

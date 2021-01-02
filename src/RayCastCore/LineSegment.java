@@ -1,3 +1,5 @@
+package RayCastCore;
+
 public class LineSegment {
 
     public Point A;

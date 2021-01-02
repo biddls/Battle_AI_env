@@ -41,7 +41,7 @@ public class Point {
         return "(" + x + "|" + y + ")" + "||" + type + "|" + direction + ")";
     }
 
-    public  Point subtract(Point a, Point b){
+    public static Point subtract(Point a, Point b){
         return new Point(a.x - b.x, - a.y - - b.y);
     }
 

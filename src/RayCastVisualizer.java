@@ -1,3 +1,9 @@
+import RayCastCore.Bullet;
+import RayCastCore.Game;
+import RayCastCore.LineSegment;
+import RayCastCore.Point;
+import RayCastCore.Zombie;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -26,7 +32,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
     private void Window() {
             JFrame window = new JFrame();
-            window.setTitle("RayCast Visualizer");
+            window.setTitle("RayCast.RayCast Visualizer");
             window.setSize(680, 410);
             window.addKeyListener(this);
             window.add(this);
@@ -92,12 +98,12 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         for(Polygon p : activePolygons){
             for(int i=0;i<p.npoints;i++){
 
-                Point start = new Point(p.xpoints[i],p.ypoints[i]);
-                Point end;
+                RayCastCore.Point start = new RayCastCore.Point(p.xpoints[i],p.ypoints[i]);
+                RayCastCore.Point end;
                 if(i==p.npoints-1){
                     end = new Point(p.xpoints[0],p.ypoints[0]);
                 }else{
-                    end = new Point(p.xpoints[i+1],p.ypoints[i+1]);
+                    end = new RayCastCore.Point(p.xpoints[i+1],p.ypoints[i+1]);
                 }
                 activeSegments.add(new LineSegment(start,end,initType(p)));
             }
@@ -141,7 +147,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         if (env.human1.health > 0) {
             //render the rays
             g.setColor(Color.RED);
-            for (Point p : env.human1.currentRays) {
+            for (RayCastCore.Point p : env.human1.currentRays) {
                 g.drawLine((int) env.human1.positionX, (int) env.human1.positionY, (int) p.x, (int) p.y);
             }
 
@@ -162,7 +168,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
 
                 g.setColor(Color.GREEN);
                 g.fillOval((int) z.positionX - z.size / 2 + offset / 2, (int) z.positionY - z.size / 2 + offset / 2, z.size - offset, z.size - offset);
-                for (Point r : z.currentRays) {
+                for (RayCastCore.Point r : z.currentRays) {
                     g.setColor(Color.GREEN);
 
                     g.drawLine((int) z.positionX, (int) z.positionY, (int) r.x, (int) r.y);

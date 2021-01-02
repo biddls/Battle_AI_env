@@ -1,3 +1,5 @@
+package RayCastCore;
+
 public class Vector {
 
     public double x;

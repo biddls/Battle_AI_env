@@ -1,9 +1,11 @@
+package RayCastCore;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Humanoid extends MovingObject{
-    public int rays = 50;
+    public int rays = 100;
     public int fov = 90;
     public float anglePerRay = (float) (((fov * Math.PI) / 180) / rays);
     public ArrayList pressing = new ArrayList<>();
