@@ -1,4 +1,7 @@
-package FerrantiM1;
+import FerrantiM1.Acti;
+import FerrantiM1.Layer;
+import FerrantiM1.Matrix;
+import FerrantiM1.ModelSequential;
 
 public class Test{
     public static void main(String[] args) throws Exception {

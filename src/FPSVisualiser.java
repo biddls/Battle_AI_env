@@ -4,7 +4,6 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import FPS.Convert2Dto3D;
 import FPS.GameFPS;
-import FPS.LineSegment3D;
 import RayCastCore.LineSegment;
 import RayCastCore.Point;
 
@@ -55,6 +54,7 @@ public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseL
     }
 
     ArrayList<Polygon> activePolygons = new ArrayList<>();
+    ArrayList<Color> activePolygonsColours = new ArrayList<>();
     public void initPolygons(){
 
         //Border Polygon
@@ -64,6 +64,7 @@ public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseL
         b.addPoint(640,360);
         b.addPoint(10,360);
         activePolygons.add(b);
+        activePolygonsColours.add(new Color(113, 168, 50));
 
         Polygon p1 = new Polygon();
         p1.addPoint(100,150);
@@ -71,12 +72,14 @@ public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseL
         p1.addPoint(200,80);
         p1.addPoint(140,210);
         activePolygons.add(p1);
+        activePolygonsColours.add(new Color(168, 97, 50));
 
         Polygon p2 = new Polygon();
         p2.addPoint(100,200);
         p2.addPoint(120,250);
         p2.addPoint(60,300);
         activePolygons.add(p2);
+        activePolygonsColours.add(new Color(168, 50, 154));
 
         Polygon p3 = new Polygon();
         p3.addPoint(200,260);
@@ -84,13 +87,15 @@ public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseL
         p3.addPoint(300,200);
         p3.addPoint(350,320);
         activePolygons.add(p3);
-        //activeAgents.add(p3);
+        activePolygonsColours.add(new Color(50, 168, 123));
 
         Polygon p4 = new Polygon();
         p4.addPoint(340,60);
         p4.addPoint(360,40);
         p4.addPoint(370,70);
         activePolygons.add(p4);
+        activePolygonsColours.add(new Color(50, 78, 168));
+
 
         Polygon p5 = new Polygon();
         p5.addPoint(450,190);
@@ -98,29 +103,33 @@ public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseL
         p5.addPoint(540,270);
         p5.addPoint(430,290);
         activePolygons.add(p5);
+        activePolygonsColours.add(new Color(123, 50, 168));
 
         Polygon p6 = new Polygon();
         p6.addPoint(400,95);
         p6.addPoint(580,50);
         p6.addPoint(480,150);
         p6.addPoint(400,95);
-
         activePolygons.add(p6);
+        activePolygonsColours.add(new Color(50, 109, 168));
     }
 
     public ArrayList<LineSegment> activeSegments = new ArrayList<>();
     public void initSegments(){
-        for(Polygon p : activePolygons){
-            for(int i=0;i<p.npoints;i++){
+//        for(Polygon p : activePolygons){
+        for(int index = 0; index < activePolygons.size(); index++){
+            for(int i=0;i<activePolygons.get(index).npoints;i++){
 
-                Point start = new Point(p.xpoints[i],p.ypoints[i]);
+                Point start = new Point(activePolygons.get(index).xpoints[i],activePolygons.get(index).ypoints[i]);
                 Point end;
-                if(i==p.npoints-1){
-                    end = new Point(p.xpoints[0],p.ypoints[0]);
+                if(i==activePolygons.get(index).npoints-1){
+                    end = new Point(activePolygons.get(index).xpoints[0],activePolygons.get(index).ypoints[0]);
                 }else{
-                    end = new Point(p.xpoints[i+1],p.ypoints[i+1]);
+                    end = new Point(activePolygons.get(index).xpoints[i+1],activePolygons.get(index).ypoints[i+1]);
                 }
-                activeSegments.add(new LineSegment(start,end,initType(p)));
+                LineSegment temp = new LineSegment(start,end,initType(activePolygons.get(index)));
+                temp.colour = activePolygonsColours.get(index);
+                activeSegments.add(temp);
             }
         }
     }
@@ -143,13 +152,13 @@ public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseL
         g.setColor(Color.BLUE);
         g.fillRect(0,0,1920,1080/2);
         for (int point = 0; point < env.Player1.currentRays3D.size(); point++){
-            LineSegment3D[] l = Convert2Dto3D.convert(env.Player1.currentRays3D.get(point), index, screen_Height);
+            LineSegment[] l = Convert2Dto3D.convert(env.Player1.currentRays3D.get(point), index, screen_Height);
             for (int obj = l.length-1; obj >= 0; obj--){
                 if (l[obj] != null) {
                     switch (l[obj].type) {
                         case 1:
-                            int offset = (int) (255 * ((double) (800 - l[obj].distance)/800));
-                            g.setColor(new Color(offset, offset, offset));
+                            double scalar = (800 - l[obj].distance)/800;
+                            g.setColor(new Color((int) (l[obj].colour.getRed()*scalar), (int) (l[obj].colour.getGreen()*scalar), (int) (l[obj].colour.getBlue()*scalar)));
                             break;
                         case 3:
                             g.setColor(Color.YELLOW);
@@ -158,7 +167,7 @@ public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseL
                             g.setColor(Color.GREEN);
                             break;
                     }
-                    g.drawLine(index, (int) l[obj].A3D.y, index, (int) l[obj].B3D.y);
+                    g.drawLine(index, (int) l[obj].A.y, index, (int) l[obj].B.y);
                 }
             }
             index++;
@@ -209,14 +218,14 @@ public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseL
     @Override
     public void mouseDragged(MouseEvent e) {
         env.Player1.Turn(1920/2 - e.getX());
-        robot.mouseMove(1920/2, 1080/2);
+        robot.mouseMove(1920/2, 1080);
 
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
         env.Player1.Turn(1920/2 - e.getX());
-        robot.mouseMove(1920/2, 1080/2);
+        robot.mouseMove(1920/2, 1080);
 
     }
 

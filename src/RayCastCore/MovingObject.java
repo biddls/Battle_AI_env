@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class MovingObject {
     public double positionX;
     public double positionY;
-    public float direction = 0;//degrees
+    public double direction = 0;//degrees
     public int size;
     public int health = 1;
     public int type = 0;//0 is nothing, 1 is wall, 2 is human, 3 is bullet, 4 is zombie
@@ -50,8 +50,8 @@ public class MovingObject {
                                 health -= 1;
                                 return;
                             } else if (type == 2 || type == 4) {
-                                this.positionX = (float) (startX - (2 * changeX));
-                                this.positionY = (float) (startY - (2 * changeY));
+                                this.positionX = (startX - (2 * changeX));
+                                this.positionY = (startY - (2 * changeY));
                             }
                         }
                     }

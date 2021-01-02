@@ -1,4 +1,5 @@
 package RayCastCore;
+import java.awt.Color;
 
 public class LineSegment {
 
@@ -11,8 +12,10 @@ public class LineSegment {
     public double angleGrad;
     public float length;
     public float c;
+    public double distance;
+    public Color colour = new Color(255, 255, 255);
 
-    public LineSegment(Point A,Point B, int type){
+    public LineSegment(Point A, Point B, int type){
         this.A = A;
         this.B = B;
         this.type = type;
@@ -27,6 +30,13 @@ public class LineSegment {
             this.angleGrad = (A.y - B.y) / (A.x - B.x);
             this.c = (float) (A.y - angleGrad * A.x);
         }
+    }
+
+    public LineSegment(Point A, Point B, int type, double distance) {
+        this.A = A;
+        this.B = B;
+        this.type = type;
+        this.distance = distance;
     }
 
     @Override
