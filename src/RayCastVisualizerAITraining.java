@@ -114,7 +114,7 @@ public class RayCastVisualizerAITraining {
         boolean loops = true;
 
         if(loops == true){
-            Game.update();
+            env.update();
             //handle firing stuff
             if(addOrTake > -1 && env.human1.health > 0){
                 env.human1.Mov(key, activeSegments, addOrTake);
@@ -123,7 +123,7 @@ public class RayCastVisualizerAITraining {
                     env.human1.firing = -1;
                 }
             }
-            env.update();
+            loop();
         }
     }
 }

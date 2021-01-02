@@ -47,7 +47,7 @@ public class Game {
         bullets.add(new Bullet(human1.positionX, human1.positionY, human1.direction, 6, 2));
     }
 
-    public static void update(){
+    public void update(){
         if (bullets.size() > 0) {
             for (Bullet b : bullets){
                 b.collisionCheck(LineSegments, b.cos, b.sin);
