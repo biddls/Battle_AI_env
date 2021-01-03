@@ -113,7 +113,7 @@ public class RayCastVisualizerAITraining {
     public void loop(){
         boolean loops = true;
 
-        if(loops == true){
+        while(loops == true){
             env.update();
             //handle firing stuff
             if(addOrTake > -1 && env.human1.health > 0){
@@ -123,7 +123,7 @@ public class RayCastVisualizerAITraining {
                     env.human1.firing = -1;
                 }
             }
-            loop();
+
         }
     }
 }
