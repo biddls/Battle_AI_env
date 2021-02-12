@@ -46,6 +46,10 @@ public class ModelSequential{
     public void save_Score(String name, float score) throws IOException {
         FileIO.Save(model, name, score);
     }
+    public void load_Score(String name, Layer score) throws Exception {
+        Layer ret = FileIO.Read(name,score);
+        System.out.println(ret);
+    }
 
     public void save(String name) throws IOException {
         FileIO.Save(model, name, 0);

@@ -11,6 +11,7 @@ public class Game {
     int round = 1;
     boolean hitTime = true;
     boolean gameOver = false;
+    public int paintCount;
     public int zombieCount;
     public int zombieOrigin;
     public Human human1 = new Human(300, 150, 5, 10);
@@ -70,6 +71,10 @@ public class Game {
     }
 
     public void update(){
+
+        if(round == 5) {
+            gameOver = true;
+        }
 
         if(zombieCount == 0) {
             round++;

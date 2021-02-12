@@ -109,7 +109,7 @@ public class RayCastVisualizerAITraining {
 
     public void loop(){
         boolean loops = true;
-
+        env.paintCount++;
 
         while(loops == true){
             env.update();
