@@ -26,7 +26,6 @@ public class Test {
         model.save("NN", score);
         model.load("NN");
 
-        System.out.println(model);
         System.out.println(model.inference(new Matrix(1,5,new double[][]{
                 {1.1, 2, 3, 4, 5}})));
     }

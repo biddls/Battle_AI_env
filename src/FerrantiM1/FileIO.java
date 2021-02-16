@@ -59,15 +59,10 @@ public class FileIO {
                 for(int i=0;i<s1.length;i++){
                     s1[i]=s1[i].trim();//ignoring all extra space if the string s1[i] has
                     String single_int[]=s1[i].split("], ");//separating integers by "], "
-                    System.out.println(Arrays.deepToString(single_int));
                     for(int j=0;j< single_int.length;j++){
                         my_matrics[i][j]=single_int[j];//adding single values
                     }
                 }
-
-                //printing result
-               System.out.println(Arrays.deepToString(my_matrics));
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
