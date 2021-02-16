@@ -1,7 +1,12 @@
 package FerrantiM1;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+
 import java.io.*;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Scanner; // Import the Scanner class to read text files
+import java.util.stream.Stream;
 
 
 public class FileIO {
@@ -12,7 +17,7 @@ public class FileIO {
             if(newFile.createNewFile()){
                 System.out.println("file Created" + newFile.getName());
             }else{
-                System.out.println("File already exists.");
+                System.out.println("Overwriting File");
             }
         }  catch (IOException e) {
             System.out.println("An error occurred.");
@@ -39,31 +44,36 @@ public class FileIO {
     }
 
     public static Layer Read(String name, Layer model) throws Exception {
-
         try {
             Scanner sc = new Scanner(new BufferedReader(new FileReader(name+".BJ")));
-            Layer tempLayer = model;
-            int depth = 0;
+
             while(sc.hasNextLine() && model.next != null) {
-                depth++;
-                while (!tempLayer.getInitRandom()){
-                    tempLayer = tempLayer.next;
-                }
-                Matrix[] layer = new Matrix[]{tempLayer.getWeights(), tempLayer.getBias()};
-                for (Matrix m : layer) {
-                    for (int row = 0; row < m.rows; row++) {
-                        String[] line = sc.nextLine().trim().split(" ");
-                        for (int col = 0; col < m.cols; col++) {
-                            m.fillMatrix(row, col, Double.parseDouble(line[col]));
-                        }
+
+                String temp=sc.nextLine().replace("[","");
+                //replacing all [ to ""
+
+                String s1[]=temp.split("], ");//separating all by "],"
+
+                String my_matrics[][] = new String[s1.length][s1.length];//declaring two dimensional matrix for input
+
+                for(int i=0;i<s1.length;i++){
+                    s1[i]=s1[i].trim();//ignoring all extra space if the string s1[i] has
+                    String single_int[]=s1[i].split("], ");//separating integers by "], "
+                    System.out.println(Arrays.deepToString(single_int));
+                    for(int j=0;j< single_int.length;j++){
+                        my_matrics[i][j]=single_int[j];//adding single values
                     }
                 }
-                model.WriteLayer(depth, layer[0], layer[1]);
+
+                //printing result
+               System.out.println(Arrays.deepToString(my_matrics));
+
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             throw new Exception("file is potentially corrupt please ensure the file is using the correct format");
         }
+
         return model;
     }
 }

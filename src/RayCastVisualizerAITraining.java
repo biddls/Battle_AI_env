@@ -15,19 +15,16 @@ public class RayCastVisualizerAITraining {
     public Game env;
     char key;
     int addOrTake;
-
+    int loop = 0;
     public static void RCV() {
-        System.out.println("Thread");
-        SwingUtilities.invokeLater(() -> {
             RayCastVisualizerAITraining rcv = new RayCastVisualizerAITraining();
-        });
-
-    }
+           }
 
     public RayCastVisualizerAITraining(){
         initPolygons();
         initSegments();
-        env = new Game(activeSegments, 10);
+        env = new Game(activeSegments, 5);
+        Main.stats(0,1);
         loop();
     }
 
@@ -112,6 +109,7 @@ public class RayCastVisualizerAITraining {
 
     public void loop(){
         boolean loops = true;
+        env.paintCount++;
 
         while(loops == true){
             env.update();
@@ -122,6 +120,10 @@ public class RayCastVisualizerAITraining {
                     env.fired();
                     env.human1.firing = -1;
                 }
+            }
+            if(loop == 0){
+                Main.stats(1,1);
+                loop +=1;
             }
 
         }
