@@ -42,7 +42,7 @@ public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseL
         this.setLayout(null);
         initPolygons();
         initSegments();
-        env = new GameFPS(activeSegments, 10);
+        env = new GameFPS(activeSegments, 5);
         try {
             robot = new Robot();
         } catch (AWTException e) {

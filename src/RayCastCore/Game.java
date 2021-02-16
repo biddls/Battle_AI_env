@@ -2,20 +2,29 @@ package RayCastCore;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Game {
     int windowX = 620;
     int windowY = 340;
+    int round = 1;
+    boolean hitTime = true;
+    boolean gameOver = false;
+    public int paintCount;
     public int zombieCount;
+    public int zombieOrigin;
     public Human human1 = new Human(300, 150, 5, 10);
     public ArrayList<LineSegment> LineSegments;
     public ArrayList<Bullet> bullets = new ArrayList<>();
     public ArrayList<Zombie> zombies = new ArrayList<>();
 
 
+
     public Game(ArrayList<LineSegment> walls, int zombiesToSpawn){
         this.LineSegments = walls;
-        this.zombieCount = zombiesToSpawn;
+        this.zombieOrigin = zombiesToSpawn;
+        this.zombieCount = this.zombieOrigin;
         for(int i = 0; i < zombieCount; i++) {
             zombies.add(new Zombie(spawnPoint(), 1, 14));
         }
@@ -43,11 +52,44 @@ public class Game {
         return new Point(50,50);
     }
 
+    public void Hit() {
+        hitTime = false;
+        System.out.println("hit");
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                hitTime = true;
+                System.out.println("not invincible");
+            }
+        }, 2000);
+    }
+
+
     public void fired(){
         bullets.add(new Bullet(human1.positionX, human1.positionY, human1.direction, 6, 2));
     }
 
     public void update(){
+
+        if(round == 5) {
+            gameOver = true;
+        }
+
+        if(zombieCount == 0) {
+            round++;
+            System.out.println("next Round"); //TODO consolidate into a call to main, I.E call average number of rounds.
+            this.zombieCount = this.zombieOrigin + 2;
+            this.zombieOrigin = this.zombieCount;
+
+            for(int i = 0; i < zombieCount; i++) {
+                zombies.add(new Zombie(spawnPoint(), 1, 14));
+            }
+        }
+        if(gameOver){
+            System.exit(0);//TODO close thread after saving state
+        }
+
         if (bullets.size() > 0) {
             for (Bullet b : bullets){
                 b.collisionCheck(LineSegments, b.cos, b.sin);
@@ -61,8 +103,14 @@ public class Game {
             for (Zombie z : zombies) {
                 if (z.health > 0) {
                     z.currentRays = z.castRays(LineSegments, this);
-                    if (RayCast.CirclesCollision(human1.positionX, human1.positionY, human1.size, z.positionX, z.positionY, z.size)) {
+                    if (RayCast.CirclesCollision(human1.positionX, human1.positionY, human1.size, z.positionX, z.positionY, z.size) && hitTime == true ) {
+                        System.out.println("hit");
                         human1.health -= 1;
+                        Hit();
+
+                        if(human1.health == 0){
+                            gameOver = true;
+                        }
                     }
                 }
                 if (bullets != null) {
@@ -70,6 +118,7 @@ public class Game {
                         if (RayCast.CirclesCollision(b.positionX, b.positionY, b.size, z.positionX, z.positionY, z.size)) {
                             b.health -= 1;
                             z.health -= 1;
+                            zombieCount--;
                         }
                     }
                 }
@@ -83,4 +132,6 @@ public class Game {
             zombies.removeIf(z -> z.health < 1);
         }
     }
+
+
 }

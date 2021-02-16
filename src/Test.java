@@ -24,5 +24,6 @@ public class Test {
                 {1.1, 2, 3, 4, 5}})));
         float score = 1;
         model.save_Score("NN", score);
+        model.load_Score("NN", model.getModel());
     }
 }
