@@ -57,7 +57,6 @@ public class Acti {
         return n -> (double) Math.tanh(n);
     }
 
-
 //    public static Function<Matrix, Matrix> softmax(){
 //        return n -> {
 //            if (n.rows == 1) {
