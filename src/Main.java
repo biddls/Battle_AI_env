@@ -3,7 +3,7 @@ public class Main {
     // 1 = AI Training Mode (No renderer)
     // 2 = 3D Visualiser Mode
     public static void main(String[] args) {
-        new Main(0);
+        new Main(2);
     }
 
     public static int Threads;
