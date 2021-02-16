@@ -22,7 +22,7 @@ public class ModelSequential{
         }throw new Exception("The input size does not match the size of the network");
     }
 
-    public void LoadWeights(String fileLocation) throws Exception {
+    public void load(String fileLocation) throws Exception {
         model = FileIO.Read(fileLocation, model);
     }
 
@@ -43,16 +43,12 @@ public class ModelSequential{
         return model;
     }
 
-    public void save_Score(String name, float score) throws IOException {
+    public void save(String name, float score) throws IOException {
         FileIO.Save(model, name, score);
     }
     public void load_Score(String name, Layer score) throws Exception {
         Layer ret = FileIO.Read(name,score);
         System.out.println(ret);
-    }
-
-    public void save(String name) throws IOException {
-        FileIO.Save(model, name, 0);
     }
 
     @Override
