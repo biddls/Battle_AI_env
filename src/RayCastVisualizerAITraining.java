@@ -23,7 +23,7 @@ public class RayCastVisualizerAITraining {
     public RayCastVisualizerAITraining(){
         initPolygons();
         initSegments();
-        env = new Game(activeSegments, 5);
+        env = new Game(activeSegments, 5,true);
         Main.stats(0,1);
         loop();
     }

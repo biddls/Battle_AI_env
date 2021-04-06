@@ -12,7 +12,7 @@ public class GameFPS extends RayCastCore.Game {
     public Player Player1 = new Player(300, 150, 5, 10);
 
     public GameFPS(ArrayList<LineSegment> walls, int zombiesToSpawn) {
-        super(walls, zombiesToSpawn);
+        super(walls, zombiesToSpawn,false);
     }
 
     @Override
