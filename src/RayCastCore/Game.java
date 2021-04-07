@@ -24,7 +24,7 @@ public class Game {
 
 
 
-    public Game(ArrayList<LineSegment> walls, int zombiesToSpawn,boolean AI){
+    public Game(ArrayList<LineSegment> walls, int zombiesToSpawn, boolean AI){
         if(AI) {
             doAI = true;
         }

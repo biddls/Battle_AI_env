@@ -1,12 +1,6 @@
 package FerrantiM1;
-
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
-
 import java.io.*;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Scanner; // Import the Scanner class to read text files
-import java.util.stream.Stream;
 
 
 public class FileIO {
@@ -25,7 +19,7 @@ public class FileIO {
         }
 
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(name+".BJ"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(score+".BJ"));
             if (score != 0) {
 //              bw.write((String) score);//todo: sort this
             }

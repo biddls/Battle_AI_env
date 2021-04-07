@@ -255,3 +255,6 @@ public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseL
     public void mouseExited(MouseEvent e) {
     }
 }
+
+//todo:
+//read best zombie AI in and play a game with it and mby add levels idk

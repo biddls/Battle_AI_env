@@ -3,7 +3,7 @@ public class Main {
     // 1 = AI Training Mode (No renderer)
     // 2 = 3D Visualiser Mode
     public static void main(String[] args) {
-        new Main(1);
+        new Main(2);
     }
 
     public static int Threads;
@@ -20,7 +20,7 @@ public class Main {
                 break;
             case 1:
                 System.out.println("Mode 1 initializing");
-                for(int i=1; i<=950; i++) {
+                for(int i=1; i<=1; i++) {
                     new Thread(() -> {
                         try{
                             RayCastVisualizerAITraining.RCV();

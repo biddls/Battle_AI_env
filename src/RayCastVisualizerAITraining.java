@@ -1,11 +1,8 @@
 import RayCastCore.Game;
 import RayCastCore.LineSegment;
 import RayCastCore.Point;
-
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-
 
 
 public class RayCastVisualizerAITraining {
@@ -129,3 +126,24 @@ public class RayCastVisualizerAITraining {
         }
     }
 }
+
+//todo:
+//This is the structure of the AI process that needs to get implemented:
+//
+//Start of game:
+//	load AIs or init them if not available
+//
+//Main game loop:
+//	get observation from env
+//	pass though AI
+//	send output to env and loop
+//
+//End of game:
+//	get score from env
+//	save AIs (human and zombie)
+//
+//In between games:
+//	Cull the weak
+//	Breed the best AIs together
+//
+//Back to top
