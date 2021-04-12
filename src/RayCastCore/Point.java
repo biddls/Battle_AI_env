@@ -17,11 +17,6 @@ public class Point {
     public Color colour = new Color(255,255,255);
 
 
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
@@ -33,9 +28,10 @@ public class Point {
         this.type = type;
     }
 
-    public Point(int x, int y, double direction ) {
+    public Point(double x, double y, double direction, int type ) {
         this.x = x;
         this.y = y;
+        this.type = type;
         this.direction = direction;
     }
 

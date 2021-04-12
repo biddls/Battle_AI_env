@@ -104,10 +104,13 @@ public class Game {
         }
         if (human1.health > 0) {
             human1.currentRays = human1.castRays(LineSegments, this);
+            System.out.println("Human sees: " + human1.currentRays.get(0).type);
+            System.out.println("direction of vision: " + human1.currentRays.get(0).direction);
         }
         if (zombies.size() > 0) {
             for (Zombie z : zombies) {
                 if (z.health > 0) {
+
                     z.currentRays = z.castRays(LineSegments, this);
                     if (RayCast.CirclesCollision(human1.positionX, human1.positionY, human1.size, z.positionX, z.positionY, z.size) && hitTime == true ) {
                         System.out.println("hit");

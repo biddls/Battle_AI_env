@@ -67,7 +67,7 @@ public class Player extends Human{
         float angleStart = (float) (((direction - (fov/2)) * Math.PI)/180);
         for (int i = 0; i < rays; i++) {
             Point target = new Point((int)(positionX+(Math.cos(anglePerRay*i + angleStart) * distance)),
-                    (int)(positionY+Math.sin(anglePerRay*i + angleStart) * distance), direction);
+                    (int)(positionY+Math.sin(anglePerRay*i + angleStart) * distance), (int) direction);
             target.distance = distance;
             //above returns a list of all the points around the mouse 800 units away will need to
             Point position = new Point((int) positionX,(int) positionY);

@@ -15,7 +15,7 @@ public class AiScoring extends Game {
     @Override
     public void update() {
         if (human1.health > 0 && zombies.size() > 0) {
-            super.update();
+
         }else if (human1.health > 0){
             humanWon = true;//move to next level
         }else if (zombies.size() > 0){
