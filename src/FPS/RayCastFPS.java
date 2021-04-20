@@ -15,7 +15,7 @@ public class RayCastFPS extends RayCast {
         double closestDistanceTemp;
 
         for (LineSegment l : segments) {
-            Point intersect = intersectLines(ray, l, direction, fov);
+            Point intersect = intersectLines(ray, l, direction, fov, l.type);
             if (intersect != null) {
                 closestDistanceTemp = closestDistanceWall;
                 closestDistanceWall = Math.min(closestDistanceWall, distance(ray.A, intersect));

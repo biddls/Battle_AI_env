@@ -44,7 +44,7 @@ public class MovingObject {
                     Point b = new Point((positionX - perpX), (positionY - perpY));//a point beind
                     //these 4 lines ^ create a line that is perpendicular to the line it is near
 
-                    Point intersect = rayCast.intersectLines(new LineSegment(a, b, 1), segment);
+                    Point intersect = rayCast.intersectLines(new LineSegment(a, b, 1), segment,type);
                     if (BetweenX(intersect, segment) && BetweenY(intersect, segment)) {
                         if (rayCast.distance(intersect, positionX, positionY) <= size * 0.5) {
                             if (type == 3) {

@@ -41,6 +41,6 @@ public class LineSegment {
 
     @Override
     public String toString() {
-        return "(" + A + " -> " + B + "||" + type + ")";
+        return "(" + A + " -> " + B + "||" + type + "|"+ distance + ")";
     }
 }

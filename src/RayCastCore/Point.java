@@ -28,16 +28,16 @@ public class Point {
         this.type = type;
     }
 
-    public Point(double x, double y, double direction, int type ) {
+    public Point(double x, double y, int type, double distance ) {
         this.x = x;
         this.y = y;
         this.type = type;
-        this.direction = direction;
+        this.distance = distance;
     }
 
     @Override
     public String toString() {
-        return "(" + x + "|" + y + ")" + "||" + type + "|" + direction + ")";
+        return "(" + x + "|" + y + ")" + "||" + type + "|" + distance + ")";
     }
 
     public static Point subtract(Point a, Point b){

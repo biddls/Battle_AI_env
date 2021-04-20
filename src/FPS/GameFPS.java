@@ -34,7 +34,7 @@ public class GameFPS extends RayCastCore.Game {
         if (zombies.size() > 0) {
             for (Zombie z : zombies) {
                 if (z.health > 0) {
-                    z.currentRays = z.castRays(LineSegments, this);
+                    z.currentRays = z.castRays(LineSegments, this,z.type);
                     if (RayCast.CirclesCollision(Player1.positionX, Player1.positionY, Player1.size, z.positionX, z.positionY, z.size)) {
                         Player1.health -= 1;
                     }

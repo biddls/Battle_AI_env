@@ -67,18 +67,19 @@ public class Humanoid extends MovingObject{
         }
     }
 
-    public ArrayList<Point> castRays(ArrayList<LineSegment> LineSegments, Game self){
+    public ArrayList<Point> castRays(ArrayList<LineSegment> LineSegments, Game self, int type){
 
         ArrayList<Point> result = new ArrayList<>();
         float angleStart = (float) (((direction - (fov/2)) * Math.PI)/180);
         for (int i = 0; i < rays; i++) {
             Point target = new Point((positionX+Math.cos(anglePerRay*i + angleStart) * distance),
-                    (positionY+Math.sin(anglePerRay*i + angleStart) * distance), this.direction,type);
-            //above returns a list of all the points around the mouse 800 units away will need to
+                    (positionY+Math.sin(anglePerRay*i + angleStart) * distance));
+            //above returns a list of all the points around the player 800 units away
             Point position = new Point((int) positionX,(int) positionY);
             LineSegment ray = new LineSegment(position,target,0);
-            Point ci = rayCast.getClosestIntersection(ray, LineSegments, self, this.direction, fov, type);
+            Point ci = rayCast.getClosestIntersection(ray, LineSegments, self, this.direction, fov,type);
             if (ci == null) {result.add(target);} else {result.add(ci);}
+
         }
         return result;//B list of all points that the rays intersect with
     }
