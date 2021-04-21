@@ -7,13 +7,15 @@ import java.util.ArrayList;
 public class Player extends Human{
 
     public ArrayList<Point[]> currentRays3D;
-    public int rays = 1920;
-    public float anglePerRay = (float) (((fov * Math.PI) / 180) / rays);
+    public int rays;
+    public float anglePerRay;
     public char[] keys = {'w', 'a', 's', 'd'};
 
 
-    public Player(float x, float y, int health, int size) {
+    public Player(float x, float y, int health, int size, int rays) {
         super(x, y, health, size);
+        this.rays = rays;
+        this.anglePerRay = (float) (((fov * Math.PI) / 180) / rays);
     }
 
     public void Fire(boolean firing){
@@ -72,7 +74,7 @@ public class Player extends Human{
             //above returns a list of all the points around the mouse 800 units away will need to
             Point position = new Point((int) positionX,(int) positionY);
             LineSegment ray = new LineSegment(position,target,0);
-            Point[] ci = RayCastFPS.getClosestIntersection3D(ray, LineSegments, self, direction, fov, type);
+            Point[] ci = RayCastFPS.getClosestIntersection3DPlayer(ray, LineSegments, (GameFPS) self, direction, fov, type);
             if(ci[0] == null){
                 System.out.println();
             }

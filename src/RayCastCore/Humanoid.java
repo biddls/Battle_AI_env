@@ -9,7 +9,7 @@ public class Humanoid extends MovingObject{
     public int fov = 90;
     public float anglePerRay = (float) (((fov * Math.PI) / 180) / rays);
     public ArrayList pressing = new ArrayList<>();
-    public static double distance = 800;//degrees
+    public static double distance = 800;// units
     public ArrayList<Point> currentRays;
     public char[] keys = {' ', ' ', ' ', ' ', ' ', ' '};
     public int firing;

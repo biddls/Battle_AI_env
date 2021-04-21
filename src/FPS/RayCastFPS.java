@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class RayCastFPS extends RayCast {
 
-    static Point[] getClosestIntersection3D(LineSegment ray, ArrayList<LineSegment> segments, Game env, double direction, float fov, int HZ) {
+    static Point[] getClosestIntersection3DPlayer(LineSegment ray, ArrayList<LineSegment> segments, GameFPS env, double direction, float fov, int HZ) {
         double closestDistanceWall = Double.MAX_VALUE;
         double closestDistanceBullet = Double.MAX_VALUE;
         double closestDistanceZombie = Double.MAX_VALUE;
@@ -41,8 +41,8 @@ public class RayCastFPS extends RayCast {
             }
         }
 
-        if (HZ == 2 && env.zombies.size() > 0) {
-            for (Zombie z : env.zombies) {
+        if (HZ == 2 && env.fpsZombies.size() > 0) {
+            for (FPSZombie z : env.fpsZombies) {
                 Point intersect = intersectCircleRay(ray, z.positionX, z.positionY, z.size, z.type);
                 if (intersect != null) {
                     closestDistanceTemp = closestDistanceZombie;

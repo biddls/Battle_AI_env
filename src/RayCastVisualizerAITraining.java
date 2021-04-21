@@ -1,28 +1,44 @@
-import RayCastCore.Game;
+import AI.AIGame;
+import FPS.FPSZombie;
+import RayCastCore.Bullet;
+import FPS.GameFPS;
 import RayCastCore.LineSegment;
 import RayCastCore.Point;
+import RayCastCore.Zombie;
+
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+public class RayCastVisualizerAITraining extends JPanel implements KeyListener {
 
-public class RayCastVisualizerAITraining {
-
-    //RayCast.Human human1 = new RayCast.Human();
-    public static final double RANGE = 800;
-    public Game env;
+    public AIGame env;
     char key;
     int addOrTake;
-    int loop = 0;
+
     public static void RCV() {
+        SwingUtilities.invokeLater(() -> {
+            JFrame window = new JFrame();
             RayCastVisualizerAITraining rcv = new RayCastVisualizerAITraining();
-           }
+            window.setTitle("RayCast.RayCast Visualizer");
+            window.setSize(680, 410);
+            window.addKeyListener(rcv);
+            window.add(rcv);
+            window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            window.setVisible(true);
+            window.setFocusable(true);
+        });
+    }
 
     public RayCastVisualizerAITraining(){
+        this.setBackground(Color.BLACK);
+        this.setLayout(null);
         initPolygons();
         initSegments();
-        env = new Game(activeSegments, 5,true);
-        Main.stats(0,1);
-        loop();
+        env = new AIGame(activeSegments, 5, 100);
+        repaint();
     }
 
     ArrayList<Polygon> activePolygons = new ArrayList<>();
@@ -84,12 +100,12 @@ public class RayCastVisualizerAITraining {
         for(Polygon p : activePolygons){
             for(int i=0;i<p.npoints;i++){
 
-                Point start = new Point(p.xpoints[i],p.ypoints[i]);
-                Point end;
+                RayCastCore.Point start = new RayCastCore.Point(p.xpoints[i],p.ypoints[i]);
+                RayCastCore.Point end;
                 if(i==p.npoints-1){
                     end = new Point(p.xpoints[0],p.ypoints[0]);
                 }else{
-                    end = new Point(p.xpoints[i+1],p.ypoints[i+1]);
+                    end = new RayCastCore.Point(p.xpoints[i+1],p.ypoints[i+1]);
                 }
                 activeSegments.add(new LineSegment(start,end,initType(p)));
             }
@@ -104,26 +120,97 @@ public class RayCastVisualizerAITraining {
         }
     }
 
-    public void loop(){
-        boolean loops = true;
-        env.paintCount++;
+    @Override
+    public void paint(Graphics g) {
+        int offset = 2;
+        env.update();
+        super.paint(g);
 
-        while(loops == true){
-            env.update();
-            //handle firing stuff
-            if(addOrTake > -1 && env.human1.health > 0){
-                env.human1.Mov(key, activeSegments, addOrTake);
-                if (env.human1.firing == 1){
-                    env.fired();
-                    env.human1.firing = -1;
+        g.setColor(Color.WHITE);
+        for(Polygon p : activePolygons){
+            g.drawPolygon(p);
+        }
+
+        //handle firing stuff
+        if(addOrTake > -1 && env.aiHuman.health > 0){
+            env.aiHuman.Mov(key, activeSegments, addOrTake);
+            if (env.aiHuman.firing == 1){
+                env.fired();
+                env.aiHuman.firing = -1;
+            }
+        }
+
+        //render bullets
+        g.setColor(Color.YELLOW);
+        for (Bullet b : env.bullets) {
+            g.fillOval((int) b.positionX - b.size / 2, (int) b.positionY - b.size / 2, b.size, b.size);
+        }
+
+        if (env.aiHuman.health > 0) {
+            //render the rays
+            g.setColor(Color.RED);
+            Point p;
+            for (int point = 0; point < env.aiHuman.currentRays3D.size(); point++) {
+                p = env.aiHuman.currentRays3D.get(point)[0];
+                // JOSEPH U CAN FIND WHAT U NEED FROM THE HUMAN POV HERE
+                g.drawLine((int) env.aiHuman.positionX, (int) env.aiHuman.positionY, (int) p.x, (int) p.y);
+            }
+
+            //drawing the human
+            g.setColor(Color.WHITE);
+            g.fillOval((int) env.aiHuman.positionX - env.aiHuman.size / 2, (int) env.aiHuman.positionY - env.aiHuman.size / 2, env.aiHuman.size, env.aiHuman.size);
+
+            g.setColor(Color.RED);
+            g.fillOval((int) env.aiHuman.positionX - env.aiHuman.size / 2 + offset / 2, (int) env.aiHuman.positionY - env.aiHuman.size / 2 + offset / 2, env.aiHuman.size - offset, env.human1.size - offset);
+        }
+
+        //drawing the zombies
+        if (env.fpsZombies.size() > 0) {
+            env.fpsZombies.get(0).Mov(key, activeSegments, addOrTake);
+            for (FPSZombie z : env.fpsZombies) {
+                g.setColor(Color.WHITE);
+                g.fillOval((int) z.positionX - z.size / 2, (int) z.positionY - z.size / 2, z.size, z.size);
+
+                g.setColor(Color.GREEN);
+                g.fillOval((int) z.positionX - z.size / 2 + offset / 2, (int) z.positionY - z.size / 2 + offset / 2, z.size - offset, z.size - offset);
+                Point p;
+                for (int point = 0; point < z.currentRays3D.size(); point++) {
+                    p = z.currentRays3D.get(point)[0];
+                    // JOSEPH U CAN FIND WHAT U NEED FROM THE ZOMBIE POV HERE
+                    g.setColor(Color.GREEN);
+                    g.drawLine((int) z.positionX, (int) z.positionY, (int) p.x, (int) p.y);
                 }
             }
-            if(loop == 0){
-                Main.stats(1,1);
-                loop +=1;
-            }
-
         }
+
+        //auto slow down to make the game easier to use
+        try {
+            Thread.sleep(5); // slow execution of the game
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        addOrTake = 2;
+
+        repaint();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        key = e.getKeyChar();
+        addOrTake = 1;
+        repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        key = e.getKeyChar();
+        addOrTake = 0;
+        env.human1.firing = 0;
+        repaint();
     }
 }
 

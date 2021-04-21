@@ -7,8 +7,8 @@ public class AiScoring extends Game {
     public int round;
     public boolean humanWon = false;
     public boolean zombiesWon = false;
-    public AiScoring(ArrayList<LineSegment> walls, int zombiesToSpawn, int round,boolean AI) {
-        super(walls, zombiesToSpawn,AI);
+    public AiScoring(ArrayList<LineSegment> walls, int zombiesToSpawn, int round) {
+        super(walls, zombiesToSpawn);
         this.round = round;
     }
 

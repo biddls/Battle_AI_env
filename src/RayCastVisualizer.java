@@ -37,7 +37,7 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
         this.setLayout(null);
         initPolygons();
         initSegments();
-        env = new Game(activeSegments, 5,false);
+        env = new Game(activeSegments, 5);
         repaint();
     }
 

@@ -3,7 +3,7 @@ public class Main {
     // 1 = AI Training Mode (No renderer)
     // 2 = 3D Visualiser Mode
     public static void main(String[] args) {
-        new Main(0);
+        new Main(1);
     }
 
     public static int Threads;
@@ -50,8 +50,6 @@ public class Main {
             case 2:
                 CompletedGames += number;
         }
-
-
 
         if(Threads >= 940 && !initialized) {
             System.out.println("Mode 1 Started Successfully");

@@ -11,7 +11,6 @@ public class Game {
     int windowX = 620;
     int windowY = 340;
     int round = 1;
-    boolean doAI = false;
     boolean hitTime = true;
     boolean gameOver = false;
     public int paintCount;
@@ -24,10 +23,7 @@ public class Game {
 
 
 
-    public Game(ArrayList<LineSegment> walls, int zombiesToSpawn, boolean AI){
-        if(AI) {
-            doAI = true;
-        }
+    public Game(ArrayList<LineSegment> walls, int zombiesToSpawn){
         this.LineSegments = walls;
         this.zombieOrigin = zombiesToSpawn;
         this.zombieCount = this.zombieOrigin;
@@ -104,8 +100,6 @@ public class Game {
         }
         if (human1.health > 0) {
             human1.currentRays = human1.castRays(LineSegments, this,human1.type);
-            System.out.println("Human sees: " + human1.currentRays.get(5).type);
-            System.out.println("distance of vision: " + human1.currentRays.get(5).distance);
         }
         if (zombies.size() > 0) {
             for (Zombie z : zombies) {
@@ -140,12 +134,10 @@ public class Game {
         if (zombies.size() > 0) {
             zombies.removeIf(z -> z.health < 1);
         }
-
-        if(doAI){
-            AiScoring score = new AiScoring(LineSegments, zombieCount,round, true);
-            score.update();
-        }
-
+//        if(doAI){todo: Move this later
+//            AiScoring score = new AiScoring(LineSegments, zombieCount,round, true);
+//            score.update();
+//        }
     }
 
 
