@@ -1,18 +1,13 @@
 import AI.AIGame;
 import FPS.FPSZombie;
 import RayCastCore.Bullet;
-import FPS.GameFPS;
 import RayCastCore.LineSegment;
 import RayCastCore.Point;
-import RayCastCore.Zombie;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-public class RayCastVisualizerAITraining extends JPanel implements KeyListener {
+public class RayCastVisualizerAITraining extends JPanel {
 
     public AIGame env;
     char key;
@@ -24,7 +19,6 @@ public class RayCastVisualizerAITraining extends JPanel implements KeyListener {
             RayCastVisualizerAITraining rcv = new RayCastVisualizerAITraining();
             window.setTitle("RayCast.RayCast Visualizer");
             window.setSize(680, 410);
-            window.addKeyListener(rcv);
             window.add(rcv);
             window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             window.setVisible(true);
@@ -191,25 +185,6 @@ public class RayCastVisualizerAITraining extends JPanel implements KeyListener {
         }
         addOrTake = 2;
 
-        repaint();
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        key = e.getKeyChar();
-        addOrTake = 1;
-        repaint();
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        key = e.getKeyChar();
-        addOrTake = 0;
-        env.human1.firing = 0;
         repaint();
     }
 }
