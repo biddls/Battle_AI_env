@@ -1,5 +1,8 @@
 package AI;
 import FPS.FPSZombie;
+import FerrantiM1.Acti;
+import FerrantiM1.Layer;
+import FerrantiM1.ModelSequential;
 import RayCastCore.LineSegment;
 
 import java.util.ArrayList;
@@ -12,7 +15,29 @@ public class AIZombie extends FPSZombie{
         super(x, y, health, size, rays);
     }
 
-// update function here
+    public ArrayList<ObsStep> obs = new ArrayList<>();
+
+    public void updatePlayer()  {
+        for (int i=0; i<=currentRays3D.size()-1; i++) {
+            obs.add(new ObsStep(currentRays3D.get(i)[0].type,currentRays3D.get(i)[0].distance));
+        }
+        try {
+            model(obs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void model(ArrayList<ObsStep> observation) throws Exception {
+        ModelSequential model = new ModelSequential(new Layer[]{
+                Layer.FullyConnected(5, Acti.relu()),
+                Layer.FullyConnected(4, Acti.sigmoid()),
+                Layer.FullyConnected(3, Acti.sigmoid()),
+                Layer.FullyConnected(2, Acti.sigmoid())});
+
+        model.RandomizeInit(model.getModel());
+    }
 
 
 
