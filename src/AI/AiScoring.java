@@ -14,6 +14,7 @@ public class AiScoring extends Game {
 
     @Override
     public void update() {
+        System.out.println(round);
         if (human1.health > 0 && zombies.size() > 0) {
 
         }else if (human1.health > 0){

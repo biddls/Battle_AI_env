@@ -1,17 +1,43 @@
 package AI;
 import FPS.Player;
+import FerrantiM1.Acti;
+import FerrantiM1.Layer;
+import FerrantiM1.ModelSequential;
 import RayCastCore.LineSegment;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
-    // Add some shit in here to store the AI
+// Add some shit in here to store the AI
 
 public class AIHuman extends Player{
     public AIHuman(Player x) {
         super((float) x.positionX, (float) x.positionY, x.health, x.size, x.rays);
     }
+    ArrayList<ObsStep> obs = new ArrayList<>();
 
-    // update function here
+    public void updatePlayer()  {
+        for (int i=0; i<=currentRays3D.size()-1; i++) {
+             obs.add(new ObsStep(currentRays3D.get(i)[0].type,currentRays3D.get(i)[0].distance));
+        }
+        try {
+            model(obs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void model(ArrayList<ObsStep> observation) throws Exception {
+        ModelSequential model = new ModelSequential(new Layer[]{
+                Layer.FullyConnected(5, Acti.relu()),
+                Layer.FullyConnected(4, Acti.sigmoid()),
+                Layer.FullyConnected(3, Acti.sigmoid()),
+                Layer.FullyConnected(2, Acti.sigmoid())});
+
+        model.RandomizeInit(model.getModel());
+    }
+
 
     public void Turn(int x){
         this.direction -= (double) x/4;

@@ -26,8 +26,10 @@ public class AIGame extends GameFPS{
         }
         if (aiHuman.health > 0) {
             aiHuman.currentRays3D = aiHuman.castRays3D(LineSegments, this);
+            aiHuman.updatePlayer();
         }
         if (fpsZombies.size() > 0) {
+
             for (FPSZombie z : fpsZombies) {
                 if (z.health > 0) {
                     z.currentRays3D = z.castRays3D(LineSegments, this);

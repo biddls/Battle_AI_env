@@ -36,7 +36,10 @@ public class GameFPS extends RayCastCore.Game {
             bullets.removeIf(b -> b.health < 1);
         }
         if (Player1.health > 0) {
+            System.out.println(Player1.health);
             Player1.currentRays3D = Player1.castRays3D(LineSegments, this);
+
+
         }
         if (fpsZombies.size() > 0) {
             for (FPSZombie z : fpsZombies) {

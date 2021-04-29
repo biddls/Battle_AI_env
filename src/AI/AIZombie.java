@@ -14,6 +14,8 @@ public class AIZombie extends FPSZombie{
 
 // update function here
 
+
+
     public void Turn(int x){
         this.direction -= (double) x/4;
     }
