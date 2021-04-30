@@ -18,7 +18,7 @@ public class AiScoring extends Game {
     public void update() {
         System.out.println(round);
         if (human1.health > 0 && zombies.size() > 0) {
-            score();
+            scores();
         }else if (human1.health > 0){
             humanWon = true;//move to next level
         }else if (zombies.size() > 0){
@@ -26,16 +26,44 @@ public class AiScoring extends Game {
         }
     }
 
-    void score() {
-        HumanScore += 0.05;
-        ZombieScore -= 0.05;
-        //human
-            //not losing lives
-            //killing zombies
-            //not hitting walls
-        // zombie
-            //closing in on human
-            //damaging human
-            //not getting hit
+    void scores() {
+        HumanScore += 0.08;
+        ZombieScore -= 0.15;
     }
+
+    public void lostLife(int being) {
+        switch(being) {
+            case 1:
+                HumanScore -= 3;
+                ZombieScore += 2;
+                break;
+            case 2:
+                HumanScore += 0.7;
+                ZombieScore -= 1.3;
+                break;
+
+        }
+    }
+
+    // unsure if required, will leave in in case the ai keep getting stuck to the walls
+    public void wallCollision(int being) {
+        switch(being) {
+            case 1:
+                HumanScore -= 0.5;
+                break;
+            case 2:
+                HumanScore -= 0.4;
+                break;
+
+        }
+    }
+
+    public void zombieApproach() {
+
+        ZombieScore += 0.2;
+        HumanScore -= 0.3;
+    }
+
+
+
 }

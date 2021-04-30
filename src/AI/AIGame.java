@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class AIGame extends GameFPS{
 
     public AIHuman aiHuman;
-
+    public AiScoring score; // human is being "1" zombie is being "2"
+    public double pastDistance;
     public AIGame(ArrayList<LineSegment> walls, int zombiesToSpawn, int rays) {
         super(walls, zombiesToSpawn, rays);
         this.aiHuman = new AIHuman(this.Player1);
@@ -18,6 +19,7 @@ public class AIGame extends GameFPS{
 
     @Override
     public void update() {
+        score.update();
         if (bullets.size() > 0) {
             for (Bullet b : bullets){
                 b.collisionCheck(LineSegments, b.cos, b.sin);
@@ -35,7 +37,18 @@ public class AIGame extends GameFPS{
                     z.currentRays3D = z.castRays3D(LineSegments, this);
                     if (RayCast.CirclesCollision(aiHuman.positionX, aiHuman.positionY, aiHuman.size, z.positionX, z.positionY, z.size)) {
                         aiHuman.health -= 1;
+                        score.lostLife(1);
                     }
+                    for(int i=0; i < z.currentRays3D.toArray().length; i++) {
+                        if (z.currentRays3D.get(i)[0].type == 4) {
+                            if(pastDistance != 0 && z.currentRays3D.get(i)[0].distance < pastDistance){
+                                score.zombieApproach();
+                            }
+                            pastDistance = z.currentRays3D.get(i)[0].distance;
+
+                        }
+                    }
+
                 }
                 if (bullets != null) {
                     for (Bullet b : bullets) {
@@ -53,6 +66,7 @@ public class AIGame extends GameFPS{
         }
         if (fpsZombies.size() > 0) {
             fpsZombies.removeIf(z -> z.health < 1);
+            score.lostLife(2);
         }
     }
 }
