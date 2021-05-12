@@ -46,7 +46,7 @@ public class RayCast {
                     limit1 = Math.abs((720 - limit1) % 360);
                     double limit2 = (dir + fov / 2) % 360;
                     if(point.angle <= limit2 && point.angle >= limit1){
-                        return new Point(x,y, type,dist);
+                        return new Point(x,y,type,dist);
                     }
                     if(limit2 < 90) {
                         if (point.angle < 90) {
@@ -59,7 +59,7 @@ public class RayCast {
                         }
                     }
                     if(point.angle <= limit2 && point.angle >= limit1){
-                        return new Point(x,y, type, dist);
+                        return new Point(x,y,type, dist);
                     }
                 }
             }

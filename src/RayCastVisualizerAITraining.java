@@ -126,7 +126,6 @@ public class RayCastVisualizerAITraining extends JPanel {
     public void paint(Graphics g) {
         int offset = 2;
         try {
-
             env.update();
         } catch (Exception e) {
             e.printStackTrace();
@@ -181,11 +180,13 @@ public class RayCastVisualizerAITraining extends JPanel {
                 g.setColor(Color.GREEN);
                 g.fillOval((int) z.positionX - z.size / 2 + offset / 2, (int) z.positionY - z.size / 2 + offset / 2, z.size - offset, z.size - offset);
                 Point p;
-                for (int point = 0; point < z.currentRays3D.size(); point++) {
-                    p = z.currentRays3D.get(point)[0];
-                    // JOSEPH U CAN FIND WHAT U NEED FROM THE ZOMBIE POV HERE
-                    g.setColor(Color.GREEN);
-                    g.drawLine((int) z.positionX, (int) z.positionY, (int) p.x, (int) p.y);
+                if (z.currentRays3D != null) {
+                    for (int point = 0; point < z.currentRays3D.size(); point++) {
+                        p = z.currentRays3D.get(point)[0];
+                        // JOSEPH U CAN FIND WHAT U NEED FROM THE ZOMBIE POV HERE
+                        g.setColor(Color.GREEN);
+                        g.drawLine((int) z.positionX, (int) z.positionY, (int) p.x, (int) p.y);
+                    }
                 }
             }
         }

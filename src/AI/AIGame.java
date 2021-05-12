@@ -65,14 +65,12 @@ public class AIGame extends GameFPS{
         }
         if (aiHuman.health > 0) {
             aiHuman.currentRays3D = aiHuman.castRays3D(LineSegments, this);
-            aiHuman.update();
+            aiHuman.Mov(humanModel.inference(aiHuman.update()), this.LineSegments);
         } else {
             this.saveModels(score.HumanScore, score.ZombieScore);
             //end Thread?
         }
         if (AIZombies.size() > 0) {
-
-
             for (AIZombie z : AIZombies) {
                 if (z.health > 0) {
                     z.currentRays3D = z.castRays3D(LineSegments, this);

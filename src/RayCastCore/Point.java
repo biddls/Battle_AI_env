@@ -25,7 +25,7 @@ public class Point {
     public Point(double x, double y, int type) {
         this.x = x;
         this.y = y;
-        this.type = type;
+        this.type = Math.max(type, 0);
     }
 
     public Point(double x, double y, int type, double distance ) {

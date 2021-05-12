@@ -1,7 +1,6 @@
 package AI;
 import FPS.FPSZombie;
 import FerrantiM1.Matrix;
-import RayCastCore.Humanoid;
 import RayCastCore.LineSegment;
 import java.util.ArrayList;
 
@@ -25,10 +24,8 @@ public class AIZombie extends FPSZombie{
             obs[i+temp-1] = points[0].distance/distance;
             i += 5;
         }
-
         return new Matrix(1, this.rays * 5, new double[][]{obs});
     }
-
 
     public void Turn(double x){
         this.direction -= x;

@@ -29,11 +29,9 @@ public class AIHuman extends Player{
                 obs[i+temp] = index;
                 temp++;
             }
-
             obs[i+temp-1] = points[0].distance/distance;
             i += 5;
         }
-
         return new Matrix(1, this.rays * 5, new double[][]{obs});
     }
 
@@ -46,7 +44,6 @@ public class AIHuman extends Player{
 
         model.RandomizeInit(model.getModel());
     }
-
 
     public void Turn(double x) { this.direction -= x; }
 

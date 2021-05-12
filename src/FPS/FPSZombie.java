@@ -33,6 +33,7 @@ public class FPSZombie extends Zombie{
             }
             if (ci[0] == null) {result.add(new Point[] {target});} else {result.add(ci);}
         }
+        currentRays3D = result;
         return result;//B list of all points that the rays intersect with
     }
 }
