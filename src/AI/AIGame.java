@@ -65,7 +65,7 @@ public class AIGame extends GameFPS{
         }
         if (aiHuman.health > 0) {
             aiHuman.currentRays3D = aiHuman.castRays3D(LineSegments, this);
-            aiHuman.updatePlayer();
+            aiHuman.update();
         } else {
             this.saveModels(score.HumanScore, score.ZombieScore);
             //end Thread?

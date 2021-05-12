@@ -26,7 +26,7 @@ public class AIZombie extends FPSZombie{
             i += 5;
         }
 
-        return new Matrix(1, this.rays * 2, new double[][]{obs});
+        return new Matrix(1, this.rays * 5, new double[][]{obs});
     }
 
 

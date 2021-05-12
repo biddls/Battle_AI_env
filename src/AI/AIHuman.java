@@ -34,7 +34,7 @@ public class AIHuman extends Player{
             i += 5;
         }
 
-        return new Matrix(1, this.rays * 2, new double[][]{obs});
+        return new Matrix(1, this.rays * 5, new double[][]{obs});
     }
 
     public void model(ArrayList<ObsStep> observation) throws Exception {
