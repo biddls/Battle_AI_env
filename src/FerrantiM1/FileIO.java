@@ -5,9 +5,9 @@ import java.util.Scanner; // Import the Scanner class to read text files
 
 public class FileIO {
 
-    public static void Save(Layer model, String name, float score) throws IOException {
+    public static void Save(Layer model, float score) throws IOException {
         try {
-            File newFile = new File(name+".BJ");
+            File newFile = new File(score+".BJ");
             if(newFile.createNewFile()){
                 System.out.println("file Created" + newFile.getName());
             }else{
@@ -20,9 +20,6 @@ public class FileIO {
 
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(score+".BJ"));
-            if (score != 0) {
-//              bw.write((String) score);//todo: sort this
-            }
             while (model.next != null) {
                 for (Matrix matrix : new Matrix[]{model.weights, model.bias}){
                     bw.write(matrix.outMatrix());

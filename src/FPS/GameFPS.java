@@ -28,7 +28,7 @@ public class GameFPS extends RayCastCore.Game {
     }
 
     @Override
-    public void update() {
+    public void update() throws Exception {
         if (bullets.size() > 0) {
             for (Bullet b : bullets){
                 b.collisionCheck(LineSegments, b.cos, b.sin);

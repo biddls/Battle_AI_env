@@ -72,7 +72,7 @@ public class Game {
         bullets.add(new Bullet(human1.positionX, human1.positionY, human1.direction, 6, 2));
     }
 
-    public void update(){
+    public void update() throws Exception {
 
         if(round == 5) {
             gameOver = true;

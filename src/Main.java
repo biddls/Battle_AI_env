@@ -20,15 +20,7 @@ public class Main {
                 break;
             case 1:
                 System.out.println("Mode 1 initializing");
-                for(int i=1; i<=1; i++) {
-                    new Thread(() -> {
-                        try{
-                            RayCastVisualizerAITraining.RCV();
-                        } catch(Exception e) {
-                            System.out.println("An unknown exception :" + e.toString());
-                        }
-                    }).start();
-                }
+                AIManadgement.runAI(500);
                 break;
             case 2:
                 System.out.println("Mode 2 initializing");

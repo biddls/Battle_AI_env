@@ -123,7 +123,11 @@ public class RayCastVisualizer extends JPanel implements KeyListener {
     @Override
     public void paint(Graphics g) {
         int offset = 2;
-        env.update();
+        try {
+            env.update();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         super.paint(g);
 
         g.setColor(Color.WHITE);

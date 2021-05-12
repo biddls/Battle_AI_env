@@ -42,8 +42,8 @@ public class ModelSequential{
         return model;
     }
 
-    public void save(String name, float score) throws IOException {
-        FileIO.Save(model, name, score);
+    public void save(float score) throws IOException {
+        FileIO.Save(model, score);
     }
 
     @Override

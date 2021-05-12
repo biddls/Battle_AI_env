@@ -1,4 +1,5 @@
 import AI.AIGame;
+import AI.Pair;
 import FPS.FPSZombie;
 import RayCastCore.Bullet;
 import RayCastCore.LineSegment;
@@ -13,10 +14,15 @@ public class RayCastVisualizerAITraining extends JPanel {
     char key;
     int addOrTake;
 
-    public static void RCV() {
+    public static void RCV(Pair pair, boolean newNeeded) {
         SwingUtilities.invokeLater(() -> {
             JFrame window = new JFrame();
-            RayCastVisualizerAITraining rcv = new RayCastVisualizerAITraining();
+            RayCastVisualizerAITraining rcv = null;
+            try {
+                rcv = new RayCastVisualizerAITraining(pair, newNeeded);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             window.setTitle("RayCast.RayCast Visualizer");
             window.setSize(680, 410);
             window.add(rcv);
@@ -26,12 +32,12 @@ public class RayCastVisualizerAITraining extends JPanel {
         });
     }
 
-    public RayCastVisualizerAITraining(){
+    public RayCastVisualizerAITraining(Pair pair, boolean newNeeded) throws Exception {
         this.setBackground(Color.BLACK);
         this.setLayout(null);
         initPolygons();
         initSegments();
-        env = new AIGame(activeSegments, 5, 100);
+        env = new AIGame(activeSegments, 5, 100, pair, newNeeded);
         repaint();
     }
 
@@ -117,7 +123,11 @@ public class RayCastVisualizerAITraining extends JPanel {
     @Override
     public void paint(Graphics g) {
         int offset = 2;
-        env.update();
+        try {
+            env.update();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         super.paint(g);
 
         g.setColor(Color.WHITE);
