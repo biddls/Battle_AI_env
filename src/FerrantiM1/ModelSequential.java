@@ -16,6 +16,8 @@ public class ModelSequential{
     }
 
     public Matrix inference(Matrix observation) throws Exception {
+        System.out.println(observation.cols);
+        System.out.println(model.size);
         if (observation.cols == model.size) {
             return model.feedForward(observation);
         }throw new Exception("The input size does not match the size of the network");
@@ -42,8 +44,8 @@ public class ModelSequential{
         return model;
     }
 
-    public void save(float score) throws IOException {
-        FileIO.Save(model, score);
+    public void save(String path, float score) throws IOException {
+        FileIO.Save(model, path, score);
     }
 
     @Override

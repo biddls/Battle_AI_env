@@ -2,11 +2,13 @@ package AI;
 import FPS.Player;
 import FerrantiM1.Acti;
 import FerrantiM1.Layer;
+import FerrantiM1.Matrix;
 import FerrantiM1.ModelSequential;
 import RayCastCore.LineSegment;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 // Add some shit in here to store the AI
 
@@ -16,16 +18,23 @@ public class AIHuman extends Player{
     }
     ArrayList<ObsStep> obs = new ArrayList<>();
 
-    public void updatePlayer()  {
-        for (int i=0; i<=currentRays3D.size()-1; i++) {
-             obs.add(new ObsStep(currentRays3D.get(i)[0].type,currentRays3D.get(i)[0].distance));
-        }
-        try {
-            model(obs);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public Matrix update() {
+        double[] obs = new double[this.rays * 5];
+        int i = 0;
+        for (RayCastCore.Point[] points : currentRays3D) {
+            int[] types = new int[]{0, 0, 0, 0, 0};
+            types[points[0].type] = 1;
+            int temp = 0;
+            for (int index: types) {
+                obs[i+temp] = index;
+                temp++;
+            }
+
+            obs[i+temp-1] = points[0].distance/distance;
+            i += 5;
         }
 
+        return new Matrix(1, this.rays * 2, new double[][]{obs});
     }
 
     public void model(ArrayList<ObsStep> observation) throws Exception {
@@ -39,31 +48,32 @@ public class AIHuman extends Player{
     }
 
 
-    public void Turn(int x){
-        this.direction -= (double) x/4;
-    }
+    public void Turn(double x) { this.direction -= x; }
 
-    public void Mov(ArrayList<Integer> NNout, ArrayList<LineSegment> segments) {
+    public void Mov(Matrix NNout, ArrayList<LineSegment> segments) {
         // i recommend using tanH for the output layer because it can go from -1 to 1 and if u wanna press forward
         // 1 then u dont wanna also be pressing backwards -1 (just thought it would make ur life easier
         //[turn left, forward, strafe left, fire]
 
-        int forwardbackwards = NNout.get(1);
-        int strafeLeftRight = NNout.get(2);
+        //[turn, forward, strafe]
+        double forwardsBackward1 = NNout.arr[0][0];
+        double strafeLeftRight1 = NNout.arr[0][1];
+        int forwardBackwards = (int) (Math.abs(forwardsBackward1)/forwardsBackward1);
+        int strafeLeftRight = (int) (Math.abs(strafeLeftRight1)/strafeLeftRight1);
 
         double cos = Math.cos(Math.toRadians(direction));
         double cos90 = Math.cos(Math.toRadians(90 - direction));
         double sin = Math.sin(Math.toRadians(direction));
         double sin90 = Math.sin(Math.toRadians(90 - direction));
 
-        double x = (forwardbackwards * (cos)) + (strafeLeftRight * (cos90));
-        double y = (forwardbackwards * (sin)) + (strafeLeftRight * -(sin90));
+        double x = (forwardBackwards * (cos)) + (strafeLeftRight * (cos90));
+        double y = (forwardBackwards * (sin)) + (strafeLeftRight * -(sin90));
 
         // may need to add in a normalisation step here but ye
-        Turn(NNout.get(0));
+        Turn(NNout.arr[0][2]);
 
         collisionCheck(segments, x, y);
 
-        Fire(NNout.get(3) == 1);
+        Fire(((int) (NNout.arr[0][3] + 1)/2) == 1);
     }
 }

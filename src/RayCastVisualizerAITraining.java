@@ -15,10 +15,12 @@ public class RayCastVisualizerAITraining extends JPanel {
     int addOrTake;
 
     public static void RCV(Pair pair, boolean newNeeded) {
+
         SwingUtilities.invokeLater(() -> {
             JFrame window = new JFrame();
             RayCastVisualizerAITraining rcv = null;
             try {
+
                 rcv = new RayCastVisualizerAITraining(pair, newNeeded);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -124,6 +126,7 @@ public class RayCastVisualizerAITraining extends JPanel {
     public void paint(Graphics g) {
         int offset = 2;
         try {
+
             env.update();
         } catch (Exception e) {
             e.printStackTrace();

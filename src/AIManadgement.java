@@ -14,7 +14,19 @@ public class AIManadgement {
             File[] humans = new File("/Score/Human").listFiles();
             File[] zombies = new File("/Score/Zombie").listFiles();
 
-            assert humans != null && zombies != null;
+            if (humans == null && zombies == null) {
+                for (int i = 0; i < AIs; i++){
+
+                    new Thread(() -> {
+                        try {
+                            RayCastVisualizerAITraining.RCV(new Pair(), true);
+                        } catch (Exception e) {
+                            System.out.println("An unknown exception :" + e);
+                        }
+                    }).start();
+                }
+                break;
+            }
             for (File file : humans) {
                 if (file.isFile()) {
                     humansClean.add(Integer.parseInt(Arrays.toString(file.getName().split(".BJ"))));
@@ -32,16 +44,6 @@ public class AIManadgement {
                     new Thread(() -> {
                         try {
                             RayCastVisualizerAITraining.RCV(pair, false);
-                        } catch (Exception e) {
-                            System.out.println("An unknown exception :" + e);
-                        }
-                    }).start();
-                }
-            } else {// if there are 0 then gen new ones
-                for (int i = ((AIs - paired.size()) < AIs ? AIs - paired.size() : 0); i < AIs; i++){
-                    new Thread(() -> {
-                        try {
-                            RayCastVisualizerAITraining.RCV(new Pair(), true);
                         } catch (Exception e) {
                             System.out.println("An unknown exception :" + e);
                         }

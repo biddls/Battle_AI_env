@@ -144,7 +144,11 @@ public class FPSVisualiser extends JPanel implements MouseMotionListener, MouseL
 
     @Override
     public void paint(Graphics g) {
-        env.update();
+        try {
+            env.update();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         super.paint(g);
         int index = 0;
         g.setColor(Color.RED);

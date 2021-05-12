@@ -1,10 +1,11 @@
 package AI;
 import FPS.FPSZombie;
 import FPS.GameFPS;
+import FerrantiM1.Acti;
 import FerrantiM1.Layer;
 import FerrantiM1.ModelSequential;
+import FerrantiM1.Matrix;
 import RayCastCore.*;
-
 import java.time.Clock;
 import java.time.Duration;
 import java.time.ZoneId;
@@ -23,15 +24,17 @@ public class AIGame extends GameFPS{
     public Timer tick = new Timer();
     TimerTask tt;
     double time;
-    public AiScoring score; // human is being "1" zombie is being "2"
+    public AiScoring score = new AiScoring(); // human is being "1" zombie is being "2"
     public ArrayList<AIZombie> AIZombies = new ArrayList<>();
     public double pastDistance;
 
     public AIGame(ArrayList<LineSegment> walls, int zombiesToSpawn, int rays, Pair pair, boolean newNeeded) throws Exception {
         super(walls, zombiesToSpawn, rays);
+
         this.NewAI = pair;
         this.aiHuman = new AIHuman(this.Player1);
         for (FPSZombie z : this.fpsZombies) {
+
             AIZombies.add(new AIZombie(z));
             initModels(pair, newNeeded);
         }
@@ -41,13 +44,13 @@ public class AIGame extends GameFPS{
                 time +=0.001;
             }
         };
-
         tick.schedule(this.tt,1);
     }
 
 
     @Override
     public void update() throws Exception {
+        System.out.println("running");
         score.update();
 
         if(time == 180) {
@@ -102,7 +105,6 @@ public class AIGame extends GameFPS{
                 initModels(this.NewAI, false);
             }
 
-
         } else {
             this.saveModels(score.HumanScore, score.ZombieScore);
             //end Thread?
@@ -118,10 +120,24 @@ public class AIGame extends GameFPS{
                 zombie.Mov(zombieModel.inference(zombie.update()), this.LineSegments);
             }
         }
+
     }
 
     public void initModels(Pair pair, boolean newNeeded) throws Exception {
-        // define the models shape here
+        zombieModel = new ModelSequential(new Layer[]{
+                Layer.FullyConnected(500, Acti.leakyrelu()),
+                Layer.FullyConnected(300, Acti.sigmoid()),
+                Layer.FullyConnected(150, Acti.leakyrelu()),
+                Layer.FullyConnected(50, Acti.leakyrelu()),
+                Layer.FullyConnected(10, Acti.sigmoid()),
+                Layer.FullyConnected(3, Acti.tanh())});
+        humanModel = new ModelSequential(new Layer[]{
+                Layer.FullyConnected(500, Acti.leakyrelu()),
+                Layer.FullyConnected(300, Acti.sigmoid()),
+                Layer.FullyConnected(150, Acti.leakyrelu()),
+                Layer.FullyConnected(50, Acti.leakyrelu()),
+                Layer.FullyConnected(10, Acti.sigmoid()),
+                Layer.FullyConnected(4, Acti.tanh())});
         if (!newNeeded){
             zombieModel.load(pair.zombie);
             humanModel.load(pair.human);
@@ -131,13 +147,12 @@ public class AIGame extends GameFPS{
         }
     }
 
-
-
     public void saveModels(int humanScore, int zombieScore) throws Exception {
         // this will be integrated with what joseph is doing with the save model he can just copy this code where ever he needs it
         this.zombieModel.Mutate(1); // will need to think about this
-        this.zombieModel.save(zombieScore);
+        this.zombieModel.save("/Score/Zombie/", zombieScore);
         this.humanModel.Mutate(1); // will need to think about this
-        this.humanModel.save(humanScore);
+        this.humanModel.save("/Score/Human/", humanScore);
+        // ../Score/Human || ../Score/Zombie
     }
 }

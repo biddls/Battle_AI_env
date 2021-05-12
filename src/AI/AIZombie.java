@@ -22,9 +22,10 @@ public class AIZombie extends FPSZombie{
                 obs[i+temp] = index;
                 temp++;
             }
-            obs[i+temp] = points[0].distance/distance;
+            obs[i+temp-1] = points[0].distance/distance;
             i += 5;
         }
+
         return new Matrix(1, this.rays * 2, new double[][]{obs});
     }
 
