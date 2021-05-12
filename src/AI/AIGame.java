@@ -1,33 +1,59 @@
 package AI;
 import FPS.FPSZombie;
 import FPS.GameFPS;
+import FerrantiM1.Layer;
 import FerrantiM1.ModelSequential;
-import RayCastCore.Bullet;
-import RayCastCore.LineSegment;
-import RayCastCore.RayCast;
+import RayCastCore.*;
+
+import java.time.Clock;
+import java.time.Duration;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class AIGame extends GameFPS{
 
     public ModelSequential zombieModel;
     public ModelSequential humanModel;
     public AIHuman aiHuman;
+    public Pair NewAI;
+    public Timer tick = new Timer();
+    TimerTask tt;
+    double time;
     public AiScoring score; // human is being "1" zombie is being "2"
     public ArrayList<AIZombie> AIZombies = new ArrayList<>();
     public double pastDistance;
 
     public AIGame(ArrayList<LineSegment> walls, int zombiesToSpawn, int rays, Pair pair, boolean newNeeded) throws Exception {
         super(walls, zombiesToSpawn, rays);
+        this.NewAI = pair;
         this.aiHuman = new AIHuman(this.Player1);
         for (FPSZombie z : this.fpsZombies) {
             AIZombies.add(new AIZombie(z));
             initModels(pair, newNeeded);
         }
+        tt = new TimerTask() {
+            @Override
+            public void run() {
+                time +=0.001;
+            }
+        };
+
+        tick.schedule(this.tt,1);
     }
+
 
     @Override
     public void update() throws Exception {
         score.update();
+
+        if(time == 180) {
+            aiHuman.health = 0;
+        }
+
         if (bullets.size() > 0) {
             for (Bullet b : bullets){
                 b.collisionCheck(LineSegments, b.cos, b.sin);
@@ -37,15 +63,19 @@ public class AIGame extends GameFPS{
         if (aiHuman.health > 0) {
             aiHuman.currentRays3D = aiHuman.castRays3D(LineSegments, this);
             aiHuman.updatePlayer();
+        } else {
+            this.saveModels(score.HumanScore, score.ZombieScore);
+            //end Thread?
         }
         if (AIZombies.size() > 0) {
+
 
             for (AIZombie z : AIZombies) {
                 if (z.health > 0) {
                     z.currentRays3D = z.castRays3D(LineSegments, this);
                     if (RayCast.CirclesCollision(aiHuman.positionX, aiHuman.positionY, aiHuman.size, z.positionX, z.positionY, z.size)) {
                         aiHuman.health -= 1;
-                        score.lostLife(1);
+                        score.TimeOut();
                     }
                     for(int i=0; i < z.currentRays3D.toArray().length; i++) {
                         if (z.currentRays3D.get(i)[0].type == 4) {
@@ -65,6 +95,17 @@ public class AIGame extends GameFPS{
                     }
                 }
             }
+        } else if(round <= 3) {
+            round ++;
+            for (FPSZombie z : this.fpsZombies) {
+                AIZombies.add(new AIZombie(z));
+                initModels(this.NewAI, false);
+            }
+
+
+        } else {
+            this.saveModels(score.HumanScore, score.ZombieScore);
+            //end Thread?
         }
         assert bullets != null;
         if (bullets.size() > 0) {
@@ -90,11 +131,13 @@ public class AIGame extends GameFPS{
         }
     }
 
-    public void saveModels() throws Exception {
+
+
+    public void saveModels(int humanScore, int zombieScore) throws Exception {
         // this will be integrated with what joseph is doing with the save model he can just copy this code where ever he needs it
         this.zombieModel.Mutate(1); // will need to think about this
-        this.zombieModel.save(1);// doo what u gotta do joey boiii
+        this.zombieModel.save(zombieScore);
         this.humanModel.Mutate(1); // will need to think about this
-        this.humanModel.save(1);// doo what u gotta do joey boiii
+        this.humanModel.save(humanScore);
     }
 }

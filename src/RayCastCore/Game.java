@@ -8,9 +8,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Game {
-    int windowX = 620;
-    int windowY = 340;
-    int round = 1;
+    public int windowX = 620;
+    public int windowY = 340;
+    public int round = 1;
     boolean hitTime = true;
     boolean gameOver = false;
     public int paintCount;
@@ -80,7 +80,6 @@ public class Game {
 
         if(zombieCount == 0) {
             round++;
-            System.out.println("next Round"); //TODO consolidate into a call to main, I.E call average number of rounds.
             this.zombieCount = this.zombieOrigin + 2;
             this.zombieOrigin = this.zombieCount;
 
