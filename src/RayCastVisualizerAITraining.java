@@ -1,4 +1,5 @@
 import AI.AIGame;
+import AI.AIZombie;
 import AI.Pair;
 import FPS.FPSZombie;
 import RayCastCore.Bullet;
@@ -158,7 +159,6 @@ public class RayCastVisualizerAITraining extends JPanel {
             Point p;
             for (int point = 0; point < env.aiHuman.currentRays3D.size(); point++) {
                 p = env.aiHuman.currentRays3D.get(point)[0];
-                // JOSEPH U CAN FIND WHAT U NEED FROM THE HUMAN POV HERE
                 g.drawLine((int) env.aiHuman.positionX, (int) env.aiHuman.positionY, (int) p.x, (int) p.y);
             }
 
@@ -173,7 +173,7 @@ public class RayCastVisualizerAITraining extends JPanel {
         //drawing the zombies
         if (env.fpsZombies.size() > 0) {
             env.fpsZombies.get(0).Mov(key, activeSegments, addOrTake);
-            for (FPSZombie z : env.fpsZombies) {
+            for (AIZombie z : env.AIZombies) {
                 g.setColor(Color.WHITE);
                 g.fillOval((int) z.positionX - z.size / 2, (int) z.positionY - z.size / 2, z.size, z.size);
 
@@ -192,11 +192,6 @@ public class RayCastVisualizerAITraining extends JPanel {
         }
 
         //auto slow down to make the game easier to use
-        try {
-            Thread.sleep(5); // slow execution of the game
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         addOrTake = 2;
 
         repaint();

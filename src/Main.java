@@ -3,14 +3,8 @@ public class Main {
     // 1 = AI Training Mode (No renderer)
     // 2 = 3D Visualiser Mode
     public static void main(String[] args) {
-        new Main(1);
+        new Main(2);
     }
-
-    public static int Threads;
-    public static int Games;
-    public static boolean initialized;
-    public static boolean Started;
-    public static int CompletedGames;
 
     public Main(int mode){
         switch(mode) {
@@ -27,7 +21,5 @@ public class Main {
                 FPSVisualiser.RCV();
                 break;
         }
-
     }
-
 }

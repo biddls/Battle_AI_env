@@ -50,7 +50,6 @@ public class AIGame extends GameFPS{
 
     @Override
     public void update() throws Exception {
-        System.out.println("running");
         score.update();
 
         if(time == 180) {
@@ -118,7 +117,6 @@ public class AIGame extends GameFPS{
                 zombie.Mov(zombieModel.inference(zombie.update()), this.LineSegments);
             }
         }
-
     }
 
     public void initModels(Pair pair, boolean newNeeded) throws Exception {
@@ -135,7 +133,7 @@ public class AIGame extends GameFPS{
                 Layer.FullyConnected(150, Acti.leakyrelu()),
                 Layer.FullyConnected(50, Acti.leakyrelu()),
                 Layer.FullyConnected(10, Acti.sigmoid()),
-                Layer.FullyConnected(4, Acti.tanh())});
+                Layer.FullyConnected(5, Acti.tanh())});
         if (!newNeeded){
             zombieModel.load(pair.zombie);
             humanModel.load(pair.human);

@@ -71,6 +71,6 @@ public class AIHuman extends Player{
 
         collisionCheck(segments, x, y);
 
-        Fire(((int) (NNout.arr[0][3] + 1)/2) == 1);
+        Fire(NNout.arr[0][3] < NNout.arr[0][4]);
     }
 }
