@@ -1,7 +1,8 @@
 import javax.swing.*;
-import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+;
 
 public class Main {
     // 0 = 2d 2 player PVP
@@ -57,7 +58,11 @@ public class Main {
         op1Open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(0);
+                try {
+                    clicked(0);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
         f.add(op1Open);
@@ -95,7 +100,11 @@ public class Main {
         op2Open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(1);
+                try {
+                    clicked(1);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
         f.add(op2Open);
@@ -133,19 +142,65 @@ public class Main {
         op3Open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(2);
+                try {
+                    clicked(2);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
         f.add(op3Open);
+
+        JLabel op4 = new JLabel("AI Test Script");
+        op4.setBounds(20,370, 150,40);
+        f.add(op4);
+
+        JButton op4Instr = new JButton("Instructions");
+        op4Instr.setBounds(20,415,110,40);
+        op4Instr.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JDialog Instr = new JDialog();
+
+                String words = "This is a simple test instruction, Just to show some basic view of how our \n" +
+                        "actual AI system performs and how it does what it do.";
+                JTextArea instructions = new JTextArea(words);
+                instructions.setEditable(false);
+                instructions.setBounds(20,45,350,80);
+
+                Instr.add(instructions);
+                Instr.setSize(550,250);
+                Instr.setVisible(true);
+            }
+        });
+        f.add(op4Instr);
+
+        JButton op4Open = new JButton("Run Mode 3");
+        op4Open.setBounds(150,415,110,40);
+        op4Open.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    clicked(3);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
+        f.add(op4Open);
+
+        JLabel op5 = new JLabel("It's getting late so you might have to re-open after each one. Sorry ...not sorry");
+        op5.setBounds(10,400, 450,140);
+        f.add(op5);
         
-        f.setSize(400,500);
+        f.setSize(470,550);
         f.setLayout(null);
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
 
-    public void clicked(int action) {
+    public void clicked(int action) throws Exception {
         switch(action) {
             case 0:
                 System.out.println("Mode 0 initializing");
@@ -160,7 +215,9 @@ public class Main {
                 FPSVisualiser.RCV();
                 break;
             case 3:
-                System.out.println("select a valid option");
+                System.out.println("running Test Script");
+                Test test = new Test();
+                test.TestScript();
         }
     }
 }

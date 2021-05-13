@@ -7,8 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Test {
-    private static JDialog d;
-    public static void main(String[] args) throws Exception {
+    public void TestScript() throws Exception {
         String info = ("This code below is run to show off the AI module working\n" +
                 "ModelSequential model = new ModelSequential(new Layer[]{\n" +
                 "                Layer.FullyConnected(5, Acti.relu()),\n" +
