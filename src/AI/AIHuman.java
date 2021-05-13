@@ -16,7 +16,6 @@ public class AIHuman extends Player{
     public AIHuman(Player x) {
         super((float) x.positionX, (float) x.positionY, x.health, x.size, x.rays);
     }
-    ArrayList<ObsStep> obs = new ArrayList<>();
 
     public Matrix update() {
         double[] obs = new double[this.rays * 5];
@@ -33,16 +32,6 @@ public class AIHuman extends Player{
             i += 5;
         }
         return new Matrix(1, this.rays * 5, new double[][]{obs});
-    }
-
-    public void model(ArrayList<ObsStep> observation) throws Exception {
-        ModelSequential model = new ModelSequential(new Layer[]{
-                Layer.FullyConnected(5, Acti.relu()),
-                Layer.FullyConnected(4, Acti.sigmoid()),
-                Layer.FullyConnected(3, Acti.sigmoid()),
-                Layer.FullyConnected(2, Acti.sigmoid())});
-
-        model.RandomizeInit(model.getModel());
     }
 
     public void Turn(double x) { this.direction -= x; }
