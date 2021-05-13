@@ -2,10 +2,14 @@ import FerrantiM1.Acti;
 import FerrantiM1.Layer;
 import FerrantiM1.Matrix;
 import FerrantiM1.ModelSequential;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class Test {
+    private static JDialog d;
     public static void main(String[] args) throws Exception {
-        System.out.print("This code below is run to show off the AI module working\n" +
+        String info = ("This code below is run to show off the AI module working\n" +
                 "ModelSequential model = new ModelSequential(new Layer[]{\n" +
                 "                Layer.FullyConnected(5, Acti.relu()),\n" +
                 "                Layer.FullyConnected(4, Acti.sigmoid()),\n" +
@@ -29,7 +33,9 @@ public class Test {
                 "\n" +
                 "        System.out.println(model.inference(new Matrix(1,5,new double[][]{\n" +
                 "                {1.1, 2, 3, 4, 5}})));" +
-                "\n##Below is the output##\n\n");
+                "\n##Below is the output##");
+
+
         ModelSequential model = new ModelSequential(new Layer[]{
                 Layer.FullyConnected(5, Acti.relu()),
                 Layer.FullyConnected(4, Acti.sigmoid()),
@@ -38,20 +44,24 @@ public class Test {
 
         model.RandomizeInit(model.getModel());
 
-        System.out.println(model);
-
-        System.out.println(model.inference(new Matrix(1,5,new double[][]{
-                {1.1, 2, 3, 4, 5}})));
+        info += "\n\n#Printing of the Models shape#\n " + model;
+        info += "\n\n#Running the model on a piece of data#\n " + model.inference(new Matrix(1,5,new double[][]{
+                {1.1, 2, 3, 4, 5}}));
 
         model.Mutate(1);
 
-        System.out.println(model.inference(new Matrix(1,5,new double[][]{
-                {1.1, 2, 3, 4, 5}})));
+        info += "\n\n#Mutate the model ^ and run it again on the same piece of data you should observe a change in output from the model#\n " + model.inference(new Matrix(1,5,new double[][]{
+                {1.1, 2, 3, 4, 5}}));
+
         float score = 1;
         model.save("", score);
         model.load("1.0");
 
-        System.out.println(model.inference(new Matrix(1,5,new double[][]{
-                {1.1, 2, 3, 4, 5}})));
+        info += "\n\n#^ saving the loading of the model and then run it on the same data to show that loading and saving works#\n " + model.inference(new Matrix(1,5,new double[][]{
+                {1.1, 2, 3, 4, 5}}));
+
+        JTextArea ta = new JTextArea(info,50,150);
+        ta.setLineWrap(true);
+        JOptionPane.showMessageDialog(null,new JScrollPane(ta));
     }
 }
