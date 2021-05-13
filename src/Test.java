@@ -5,6 +5,31 @@ import FerrantiM1.ModelSequential;
 
 public class Test {
     public static void main(String[] args) throws Exception {
+        System.out.print("This code below is run to show off the AI module working\n" +
+                "ModelSequential model = new ModelSequential(new Layer[]{\n" +
+                "                Layer.FullyConnected(5, Acti.relu()),\n" +
+                "                Layer.FullyConnected(4, Acti.sigmoid()),\n" +
+                "                Layer.FullyConnected(3, Acti.sigmoid()),\n" +
+                "                Layer.FullyConnected(2, Acti.sigmoid())});\n" +
+                "\n" +
+                "        model.RandomizeInit(model.getModel());\n" +
+                "\n" +
+                "        System.out.println(model);\n" +
+                "\n" +
+                "        System.out.println(model.inference(new Matrix(1,5,new double[][]{\n" +
+                "                {1.1, 2, 3, 4, 5}})));\n" +
+                "\n" +
+                "        model.Mutate(1);\n" +
+                "\n" +
+                "        System.out.println(model.inference(new Matrix(1,5,new double[][]{\n" +
+                "                {1.1, 2, 3, 4, 5}})));\n" +
+                "        float score = 1;\n" +
+                "        model.save(\"\", score);\n" +
+                "        model.load(\"1.0\");\n" +
+                "\n" +
+                "        System.out.println(model.inference(new Matrix(1,5,new double[][]{\n" +
+                "                {1.1, 2, 3, 4, 5}})));" +
+                "\n##Below is the output##\n\n");
         ModelSequential model = new ModelSequential(new Layer[]{
                 Layer.FullyConnected(5, Acti.relu()),
                 Layer.FullyConnected(4, Acti.sigmoid()),
