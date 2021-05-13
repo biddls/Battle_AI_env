@@ -29,3 +29,5 @@ backwards - s
 strafeRight - d
 turn - mouse
 fire - left click mouse
+
+Thank you https://github.com/freercurse its been a pleasure doing this project with you XD
