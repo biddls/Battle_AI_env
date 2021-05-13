@@ -19,3 +19,13 @@ backwards - k
 strafeRight - l
 turnLeft - u
 turnRight - o
+
+
+FPSVisualiser.human controls
+------------------
+forward - w
+strafeLeft - a
+backwards - s
+strafeRight - d
+turn - mouse
+fire - left click mouse
