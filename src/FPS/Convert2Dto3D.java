@@ -34,7 +34,6 @@ public class Convert2Dto3D {
     public static LineSegment wall(Point p, int rayNumber, int height, double scaleDown, double scaleUp, Color colour){
         double scalar = (15.0) / p.distance;
         double midY = ((double) height/2);
-//        double sca = 15;
         Point top = new Point(rayNumber, midY - scalar*midY*scaleUp);
         Point bottom = new Point(rayNumber, midY + scalar*midY*scaleDown);
         LineSegment temp = new LineSegment(top, bottom, p.type, p.distance);
